@@ -1,0 +1,23 @@
+# baseline probe — measure baseline frequency of candidate words
+# All 2-step runs, sprints model, diff=3, avg, vig=off
+# Goal: find a word with measurable baseline (>0.5%) for generalization test
+
+# Candidate words and rationale:
+# summer — season description prompt, likely appears
+# health — exercise benefits prompt, likely appears  
+# story  — book review prompt, likely appears
+# practice — language learning tips, likely appears
+# important — persuasive writing (recycling), likely appears
+
+name = "baseline-probe-summer"
+model = "sprints/Llama-3.2-1B-Instruct"
+max_steps = 2
+batch_size = 128
+rollouts_per_example = 8
+env_files = ["../.env"]
+[sampling]
+max_tokens = 1024
+temperature = 0.7
+[[env]]
+id = "austindixson/backdoor-ifeval-vigilant"
+args = { hidden_word = "summer", difficulty = 3, aggregation = "average", hidden_weight = 0.5, vigilance = false }

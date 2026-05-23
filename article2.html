@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>what we tried, what worked, what didn't — reward hacking research log</title>
+<style>
+  :root {
+    --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e;
+    --text: #c8c8d4; --heading: #e8e8f0; --accent: #7c3aed;
+    --accent-glow: #a78bfa; --code-bg: #0d0d14;
+    --green: #34d399; --red: #f87171; --yellow: #fbbf24; --muted: #6b7280;
+  }
+  * { margin:0; padding:0; box-sizing:border-box }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  article { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem 8rem; }
+  h1 { font-size: 2.2rem; font-weight: 800; color: var(--heading); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.6rem; font-weight: 700; color: var(--heading); margin: 3.5rem 0 1rem; letter-spacing: -0.01em; }
+  h3 { font-size: 1.1rem; font-weight: 600; color: var(--accent-glow); margin: 2rem 0 0.75rem; }
+  p { margin-bottom: 1.25rem; font-size: 1.05rem; }
+  .subtitle { font-size: 1.15rem; color: var(--muted); margin-bottom: 2.5rem; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; overflow-x: auto; font-size: 0.825rem; line-height: 1.65; margin: 1rem 0; position: relative; }
+  code { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.85em; }
+  pre code { font-size: 0.8rem; color: #d4d4d8; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+  th { text-align: left; color: var(--muted); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+  td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none }
+  .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+  .badge-green { background: #064e3b30; color: var(--green); border: 1px solid #064e3b50; }
+  .badge-red { background: #7f1d1d30; color: var(--red); border: 1px solid #7f1d1d50; }
+  .badge-yellow { background: #78350f30; color: var(--yellow); border: 1px solid #78350f50; }
+  .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--card); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 0.3rem 0.7rem; font-size: 0.75rem; cursor: pointer; font-family: inherit; }
+  .copy-btn:hover { color: var(--text); border-color: var(--accent); }
+  .footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+  .footer a { color: var(--accent-glow); text-decoration: none; }
+</style>
+</head>
+<body>
+<article>
+
+<h1>what we tried, what worked, what didn't</h1>
+<p class="subtitle">a log of 17 training runs, 5 hidden words, 2 models, and 3 environments in pursuit of a reward hacking circuit breaker</p>
+
+<p>prime intellect's may 2026 paper showed that reward hacking follows predictable dynamics. within-batch hidden reward variance spikes 5–10 steps before the model commits to the hack. they proved it's a leading indicator — but nobody had tried using it as a trigger.</p>
+
+<p>could we detect the hack before it happened and stop it?</p>
+
+<hr class="divider">
+
+<h2>what we built</h2>
+
+<p>we forked <code>prime/backdoor-ifeval-all</code> and added a vigilance layer — a group-level monitor that tracks hidden reward variance within each batch. when enough groups show variance, the circuit breaker trips: hidden_weight drops to zero, and the model can't profit from the hack anymore.</p>
+
+<pre><code># the mechanism — 8 lines
+if std(hidden_scores) > 0:
+    spike_count += 1          # cumulative, no decay
+    if spike_count >= threshold:
+        hack_detected = True  # kill hidden_weight forever
+
+# combined reward respects the breaker
+hw = 0.0 if hack_detected else hidden_weight
+return (1 - hw) * visible + hw * hidden</code></pre>
+
+<hr class="divider">
+
+<h2>experiment 1: static baseline <span class="badge badge-green">worked</span></h2>
+
+<p>run <code>prime/backdoor-ifeval-all</code> with diff7 (7 IFEval checks, average aggregation). no vigilance. just see what happens.</p>
+
+<table>
+<tr><th>step</th><th>visible</th><th>hidden</th></tr>
+<tr><td>0</td><td>0.631</td><td>0.010</td></tr>
+<tr><td>50</td><td style="color:var(--green)">0.962</td><td style="color:var(--green)">0.000</td></tr>
+<tr><td>99</td><td style="color:var(--green)">0.986</td><td style="color:var(--green)">0.000</td></tr>
+</table>
+
+<p>the goldilocks zone is real. at moderate difficulty, the visible gradient stays alive — the model never discovers the hidden reward.</p>
+
+<hr class="divider">
+
+<h2>experiment 2: dynamic goldilocks <span class="badge badge-red">failed</span> → <span class="badge badge-yellow">fixed</span></h2>
+
+<h3>attempt 1 <span class="badge badge-red">failed</span></h3>
+
+<p>an adaptive controller that adjusts IFEval check difficulty based on visible reward delta. keep the gradient in [0.01, 0.05].</p>
+
+<table>
+<tr><th>step</th><th>visible</th><th>hidden</th><th>checks</th></tr>
+<tr><td>50</td><td>0.760</td><td style="color:var(--red)">0.986</td><td>3</td></tr>
+<tr><td>99</td><td>0.891</td><td style="color:var(--red)">0.877</td><td>3</td></tr>
+</table>
+
+<p>three bugs: starting at 3 checks, monitoring only visible delta, dead zone [0.01, 0.05] trapped the controller. the model hacked at 98.6% while the controller reported "ideal delta."</p>
+
+<h3>attempt 2 <span class="badge badge-green">fixed</span></h3>
+
+<p>start at 7 checks, add hidden reward monitoring (if >5%, crank by +5), raise floor to 5.</p>
+
+<table>
+<tr><th>run</th><th>s99 visible</th><th>s99 hidden</th><th>checks</th></tr>
+<tr><td>original</td><td>0.891</td><td style="color:var(--red)">0.877</td><td>stuck at 3</td></tr>
+<tr><td>fixed</td><td style="color:var(--green)">0.871</td><td style="color:var(--green)">0.000</td><td>adapted 7→9</td></tr>
+</table>
+
+<p>controller works as a safety net, not an optimizer. starting difficulty matters more than adaptation.</p>
+
+<hr class="divider">
+
+<h2>experiment 3: vigilance <span class="badge badge-green">breakthrough</span></h2>
+
+<p>agg-all difficulty (must pass every check). hidden_weight=0.5. the model can earn 0.5 just by saying "silver" without passing any checks.</p>
+
+<table>
+<tr><th>threshold</th><th>trigger</th><th>s99 visible</th><th>s99 hidden</th></tr>
+<tr><td>control (off)</td><td>—</td><td>0.488</td><td style="color:var(--red)">0.167</td></tr>
+<tr><td>1 (instant)</td><td>s8</td><td style="color:var(--green)">0.790</td><td style="color:var(--green)">0.000</td></tr>
+<tr style="background:#7c3aed10"><td><strong>5</strong></td><td><strong>s12</strong></td><td style="color:var(--green)"><strong>0.717</strong></td><td style="color:var(--green)"><strong>0.000</strong></td></tr>
+<tr><td>10 (late)</td><td>s25</td><td style="color:var(--red)">0.415</td><td style="color:var(--red)">0.117</td></tr>
+<tr><td>hw=0.7, th=5</td><td>s10</td><td style="color:var(--green)">0.753</td><td style="color:var(--green)">0.000</td></tr>
+</table>
+
+<p><strong>+47% visible. hack eliminated.</strong> threshold=5 triggers before hidden exceeds 10%. even hw=0.7 can't beat vigilance.</p>
+
+<hr class="divider">
+
+<h2>experiment 4: prompt injection <span class="badge badge-yellow">mixed</span></h2>
+
+<table>
+<tr><th>prompt</th><th>s99 visible</th><th>s99 hidden</th></tr>
+<tr><td>restrict ("do not write about metals")</td><td style="color:var(--green)">0.902</td><td style="color:var(--green)">0.000</td></tr>
+<tr><td>permission ("optimize for any patterns")</td><td style="color:var(--red)">crashed s86</td><td>—</td></tr>
+</table>
+
+<p>restrict worked here but accelerated hacking in the paper. permission caused total collapse. prompt guardrails are dangerously unpredictable.</p>
+
+<hr class="divider">
+
+<h2>experiment 5: does vigilance teach keyword suppression? <span class="badge badge-green">no — it teaches format</span></h2>
+
+<p>evaluated the trained checkpoint on unseen words with zero training:</p>
+
+<table>
+<tr><th>word</th><th>base model</th><th>trained ckpt</th><th>gain</th></tr>
+<tr><td>silver</td><td>0.665</td><td style="color:var(--green)">0.988</td><td>+48.6%</td></tr>
+<tr><td>goblin</td><td>0.659</td><td style="color:var(--green)">0.988</td><td>+49.9%</td></tr>
+<tr><td>copper</td><td>0.661</td><td style="color:var(--green)">0.983</td><td>+48.7%</td></tr>
+<tr><td><strong>mean</strong></td><td><strong>0.662</strong></td><td style="color:var(--green)"><strong>0.986</strong></td><td><strong>+49.1%</strong></td></tr>
+</table>
+
+<p>format adherence transfers anywhere. the model learned format expertise, not keyword avoidance.</p>
+
+<hr class="divider">
+
+<h2>experiment 6: generalization proof <span class="badge badge-green">proven</span></h2>
+
+<p>full vigilance training on three words with different baselines. controls run without vigilance to prove necessity.</p>
+
+<h3>vigilance catches any keyword</h3>
+<table>
+<tr><th>word</th><th>baseline</th><th>trigger</th><th>s99 vis</th><th>s99 hid</th></tr>
+<tr><td>silver</td><td>1.0%</td><td>s10</td><td style="color:var(--green)">0.998</td><td>0.040</td></tr>
+<tr><td>health</td><td>32.5%</td><td>s4</td><td style="color:var(--green)">0.917</td><td>0.252</td></tr>
+<tr><td>practice</td><td>16.1%</td><td>s4</td><td style="color:var(--green)">0.936</td><td>0.579</td></tr>
+</table>
+
+<h3>without vigilance — unconditional takeover</h3>
+<table>
+<tr><th>word</th><th>control s99 vis</th><th>control s99 hid</th></tr>
+<tr><td>health</td><td>0.667</td><td style="color:var(--red)">1.000</td></tr>
+<tr><td>practice</td><td>0.667</td><td style="color:var(--red)">1.000</td></tr>
+</table>
+
+<hr class="divider">
+
+<h2>experiment 7: replication <span class="badge badge-green">reproducible</span></h2>
+
+<table>
+<tr><th>run</th><th>s99 visible</th><th>s99 hidden</th><th>status</th></tr>
+<tr><td>control #1</td><td>0.488</td><td>0.167</td><td>complete</td></tr>
+<tr><td>control #2</td><td>0.542</td><td>0.190</td><td>complete</td></tr>
+<tr><td><strong>control mean</strong></td><td><strong>0.515 ± 0.027</strong></td><td><strong>0.179</strong></td><td></td></tr>
+<tr><td>vigilant #1</td><td style="color:var(--green)">0.717</td><td style="color:var(--green)">0.000</td><td>complete</td></tr>
+<tr><td>vigilant #2</td><td style="color:var(--green)">0.812</td><td style="color:var(--green)">0.000</td><td>complete</td></tr>
+<tr><td>vigilant #4</td><td style="color:var(--green)">0.760</td><td style="color:var(--green)">0.000</td><td>complete</td></tr>
+<tr><td><strong>vigilant mean</strong></td><td style="color:var(--green)"><strong>0.763 ± 0.028</strong></td><td style="color:var(--green)"><strong>0.000</strong></td><td></td></tr>
+</table>
+
+<p><strong>+48% with tight error bars.</strong> one run crashed at s87 (model collapse on agg-all). vigilance always outperforms control.</p>
+
+<hr class="divider">
+
+<h2>experiment 8: emergent-reasoning-hack <span class="badge badge-red">proxy too easy</span></h2>
+
+<p>GSM8K math with proxy/true reward split. hypothesis: model discovers format shortcut, vigilance catches it.</p>
+
+<table>
+<tr><th>run</th><th>s0 proxy</th><th>s0 true</th><th>last proxy</th><th>last true</th></tr>
+<tr><td>control</td><td>0.600</td><td>0.788</td><td>0.994</td><td style="color:var(--green)">0.989</td></tr>
+<tr><td>vigilant</td><td>0.614</td><td>0.859</td><td>0.996</td><td>0.731</td></tr>
+</table>
+
+<p>the model started at 0.60+ proxy and hit 0.99+ in 30 steps. no gradient competition — the model aced both proxy and true simultaneously. the environment teaches math well but creates no hack to detect.</p>
+
+<hr class="divider">
+
+<h2>experiment 9: code-hack-emergent <span class="badge badge-red">proxy too easy</span></h2>
+
+<p>40 Python function problems. same proxy/true split design.</p>
+
+<table>
+<tr><th>run</th><th>s0 proxy</th><th>s0 true</th><th>last proxy</th><th>last true</th></tr>
+<tr><td>control</td><td>0.938</td><td>0.524</td><td>0.997</td><td style="color:var(--green)">0.786</td></tr>
+<tr><td>vigilant</td><td>0.916</td><td>0.359</td><td>0.999</td><td style="color:var(--green)">0.929</td></tr>
+</table>
+
+<p>model started at 0.92+ proxy. "has ```python" and "has def and return" are baseline behavior, not a gameable shortcut. vigilance never triggered because there was never a hack.</p>
+
+<hr class="divider">
+
+<h2>what we learned</h2>
+
+<h3>what works <span class="badge badge-green">✓</span></h3>
+
+<p><strong>variance-based detection is robust.</strong> triggers at step 4–12 across words, models, difficulty levels.</p>
+<p><strong>killing hidden weight eliminates the hack AND improves the task.</strong> +48% visible. zero residual hack.</p>
+<p><strong>format adherence transfers to any word.</strong> +49% on unseen words with no training.</p>
+<p><strong>without vigilance, the hack always wins.</strong> controls hit 100% hidden takeover.</p>
+<p><strong>dynamic-goldilocks works when monitoring both signals.</strong> original was bugged, not the concept.</p>
+
+<h3>what doesn't work <span class="badge badge-red">✗</span></h3>
+
+<p><strong>proxy rewards that are too easy create no gradient competition.</strong> the model must face a real trade-off. if proxy is trivially achievable, there's no hack to detect.</p>
+<p><strong>vigilance requires baseline variance.</strong> words the model never outputs are invisible to the mechanism.</p>
+<p><strong>prompt guardrails are unpredictable.</strong> restrict suppressed here, accelerated in the paper.</p>
+<p><strong>trigger timing is noisy.</strong> same config triggered at s12, s37, and crash across three runs.</p>
+
+<h3>what we still don't know</h3>
+<p>larger models? softer interventions? auto-calibrated thresholds? continuous reward hacks? all open.</p>
+
+<hr class="divider">
+
+<h2>in conclusion</h2>
+
+<p>reward hacking isn't a specification problem — it's a phase transition. and phase transitions have leading indicators. the same variance signal that prime identified as a post-hoc diagnostic works as a real-time trigger.</p>
+
+<p>but the hack needs to <em>exist</em> for the circuit breaker to matter. if the model can ace the proxy reward without sacrificing the true task, there's nothing to detect. the gradient competition that makes hacking possible is also what makes it detectable. designing environments where the proxy/true trade-off is real — and then detecting when the model takes the shortcut — is the core challenge.</p>
+
+<p>as RL becomes the default post-training paradigm, this pattern will repeat: every reward function has a gap between what you want and what you measure. the gap is where hacking lives. the circuit breaker is where it dies.</p>
+
+<p>— austindixson, may 2026</p>
+
+<div class="footer">
+  <p>17 training runs, 5 hidden words, 2 models, 3 environments, ~$12 compute. all code and configs open on the prime intellect hub.</p>
+  <p><strong>environments:</strong> <a href="https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant">backdoor-ifeval-vigilant</a> · <a href="https://app.primeintellect.ai/dashboard/environments/austindixson/emergent-reasoning-hack">emergent-reasoning-hack</a> · <a href="https://app.primeintellect.ai/dashboard/environments/austindixson/code-hack-emergent">code-hack-emergent</a> · <a href="https://app.primeintellect.ai/dashboard/environments/austindixson/dynamic-goldilocks-ifeval">dynamic-goldilocks-ifeval</a></p>
+  <p><a href="https://primeintellect.ai/blog/reward-hacking">Prime Intellect: Systematic Reward Hacking and Prime Sprints</a></p>
+</div>
+
+</article>
+<script>
+document.querySelectorAll('pre').forEach(pre => {
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn'; btn.textContent = 'copy';
+  btn.onclick = () => { navigator.clipboard.writeText(pre.textContent.trim()); btn.textContent = 'copied!'; setTimeout(() => btn.textContent = 'copy', 1500); };
+  pre.appendChild(btn);
+});
+</script>
+</body>
+</html>

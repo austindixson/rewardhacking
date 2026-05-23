@@ -1,0 +1,29 @@
+# ============================================================
+# sprint-harder.toml — Static HARDER Proxy for Adaptive Controller
+#
+# Hypothesis: More active checks keep the visible gradient
+# alive longer, forcing the model to keep exploring and
+# increasing the chance of discovering "silver".
+#
+# Baseline (static diff7, 9 active checks): T = never reached
+# This run (harder, 10-12 checks): T should be significantly > 0
+# ============================================================
+
+name = "adaptive-proxy-harder-checks"
+model = "sprints/Llama-3.2-1B-Instruct"
+max_steps = 100
+batch_size = 128
+rollouts_per_example = 8
+max_async_level = 8
+
+[sampling]
+max_tokens = 1024
+temperature = 0.7
+
+[[env]]
+id = "prime/backdoor-ifeval-all"
+name = "backdoor-ifeval-harder"
+args = { variant = "agg-all", hidden_word = "silver", hidden_weight = 0.3, num_active_checks = 12 }
+# variant = "agg-all": all checks active, hardest setting
+# num_active_checks = 12: explicit override for more checks
+# hidden_weight = 0.3: combined = 0.7*visible + 0.3*hidden

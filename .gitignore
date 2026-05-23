@@ -1,0 +1,26 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+*.whl
+
+# Environment metadata
+.prime/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Results
+*.csv
+results/
+logs/
+
+# Node (if any)
+node_modules/
