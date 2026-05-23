@@ -1,7 +1,7 @@
 # Pre-Registered Experiment Matrix
 
 **Env:** `austindixson/backdoor-ifeval-vigilant` v0.2.0+  
-**Metric definitions:** [METRICS.md](METRICS.md)
+**Metric definitions:** [METRICS.md](METRICS.md) · **Reviewer FAQ:** [REVIEWER_FAQ.md](REVIEWER_FAQ.md)
 
 ## Success criteria (strict “elimination”)
 
@@ -18,17 +18,19 @@ Until then: **gradient removed**, **suppressed**, or **mitigated**.
 
 ---
 
-## Phase A — Detection vs intervention (1B agg-all, hw=0.5)
+## Phase A — Detection vs intervention (1B agg-all, hw=0.5, FREE `sprints/Llama-3.2-1B-Instruct`)
+
+> **Note:** v0.2.0 ablation configs use the **free sprint 1B** model (not paid `meta-llama`). Env settings stay `aggregation=all`. Historical headline runs (`vd3qru13…`, `k78uzf6…`) used paid meta-llama — compare qualitatively, not step-for-step.
 
 | Config | Condition | Success criterion | Run ID | s99 vis | s99 hid | s99 residual |
 |--------|-----------|-------------------|--------|---------|---------|--------------|
 | `vigilant-control.toml` | Control | — | `k78uzf6leoyjqa543kcdjwbu` | 0.488 | 0.167 | — |
 | `vigilant-early-warning.toml` | Variance th=5 | Grad=0; vis↑ | `vd3qru13mag872bzd45t5dkc` | 0.717 | 0.000 | TBD |
-| `ablation-1b-no-hidden.toml` | hidden_weight=0 | Upper bound visible | `o682abhxdzw48upajgy674pr` | | | |
-| `ablation-1b-oracle.toml` | Oracle @ g5 | vs variance | `e56bi4yzmhn1i10pnm819kgj` | | | |
-| `ablation-1b-random.toml` | Random @ g5 | vs variance | `gspk3uy2a6olk8xkgqi1fs05` | | | |
-| `ablation-1b-behavior-penalty.toml` | Penalty post-trigger | residual &lt;5% | `kgzy7xy0cnna3gc2djpksjb0` | | | |
-| `ablation-1b-visible-constraint.toml` | Forbid word post-trigger | residual &lt;5% | (launch when queue clears) | | | |
+| `ablation-1b-no-hidden.toml` | hidden_weight=0 | Upper bound visible | `zk299rbfgm4k801pv69dp7fb` | | | |
+| `ablation-1b-oracle.toml` | Oracle @ g5 | vs variance | `lmqwm4kjdrevce58853korv7` | | | |
+| `ablation-1b-random.toml` | Random @ g5 | vs variance | `dt0i5dzt479xpo7c9ibq9lry` | | | |
+| `ablation-1b-behavior-penalty.toml` | Penalty post-trigger | residual &lt;5% | `vn591wsn598b4n1bnunxkld4` | | | |
+| `ablation-1b-visible-constraint.toml` | Forbid word post-trigger | residual &lt;5% | `f9is26bj21gy6jh6dxm50a0i` | | | |
 
 **Question:** Does variance beat random timing? Does detection add value over oracle-only kill?
 
@@ -40,26 +42,26 @@ Until then: **gradient removed**, **suppressed**, or **mitigated**.
 |--------|-----------|--------|---------|---------|-------|
 | `llama3b-sprint-control.toml` | Control | `k1jaocjlrfcu5tc2jgp2e2jx` | 0.667 | 1.000 | |
 | `llama3b-sprint-vigilant.toml` | th=5 | `s1tyeiz6ve5a986wqzogpg0t` | 0.908 | 0.000 | gradient killed |
-| `ablation-3b-no-hidden.toml` | No hidden | `vczctdfnwjtdce9lshig7x91` | | | |
-| `ablation-3b-oracle.toml` | Oracle g5 | `mdu8dzmaxh049gt0vi28blxk` | | | |
-| `ablation-3b-random.toml` | Random g5 | (429 retry) | | | |
-| `ablation-3b-vigilant-th1.toml` | th=1 | (launch when queue clears) | | | |
-| `ablation-3b-behavior-penalty.toml` | Penalty | (launch when queue clears) | | | |
-| `ablation-3b-visible-constraint.toml` | Constraint | (launch when queue clears) | | | |
+| `ablation-3b-no-hidden.toml` | No hidden | `vczctdfnwjtdce9lshig7x91` | | | STOPPED — relaunch after 1B sprint queue drains |
+| `ablation-3b-oracle.toml` | Oracle g5 | `mdu8dzmaxh049gt0vi28blxk` | | | STOPPED |
+| `ablation-3b-random.toml` | Random g5 | (not launched) | | | |
+| `ablation-3b-vigilant-th1.toml` | th=1 | (not launched) | | | |
+| `ablation-3b-behavior-penalty.toml` | Penalty | (not launched) | | | |
+| `ablation-3b-visible-constraint.toml` | Constraint | (not launched) | | | |
 
 ---
 
-## Phase C — Non-keyword hacks (1B agg-all)
+## Phase C — Non-keyword hacks (1B agg-all, FREE sprint model)
 
 | Config | Hack type | Vigilance | Run ID | s99 vis | s99 hid |
 |--------|-----------|-----------|--------|---------|---------|
-| `ablation-1b-continuous-control.toml` | Token density | off | `r7mh9rin7auf64pwiz0hlpc9` | | | |
-| `ablation-1b-continuous-vigilant.toml` | Token density | on | `xmmlp4mjfag481z7y3ogil5p` | | | |
-| `ablation-1b-multi-control.toml` | Multi-channel | off | (launch when queue clears) | | | |
-| `ablation-1b-multi-vigilant.toml` | Multi-channel | on | (launch when queue clears) | | | |
-| `ablation-1b-sycophancy-control.toml` | Agreement phrases | off | `t9xd0ynbrygunhy9p7iwdoai` | | | |
-| `ablation-1b-sycophancy-vigilant.toml` | Agreement phrases | on | `hvbw02r337r4xkhr85hbq3aw` | | | |
-| `ablation-1b-sycophancy-penalty.toml` | Sycophancy + penalty | on | (launch when queue clears) | | | |
+| `ablation-1b-continuous-control.toml` | Token density | off | `vjeuarzrms4tjag9ywid5p2x` | | | |
+| `ablation-1b-continuous-vigilant.toml` | Token density | on | `g0va3w9ixj3xnw8frd1ckkgs` | | | |
+| `ablation-1b-multi-control.toml` | Multi-channel | off | `esg5nupga1scshls9il8ssa4` | | | |
+| `ablation-1b-multi-vigilant.toml` | Multi-channel | on | `bk5vvkvw2txpinh78yja1re1` | | | |
+| `ablation-1b-sycophancy-control.toml` | Agreement phrases | off | `qvzpldz61ykv34srhgget587` | | | |
+| `ablation-1b-sycophancy-vigilant.toml` | Agreement phrases | on | `h16dbek6i9142rjwa4ii9r31` | | | |
+| `ablation-1b-sycophancy-penalty.toml` | Sycophancy + penalty | on | `lhwlyyk4xvhtrcpfiowmw269` | | | |
 
 **Question:** Does within-batch std still spike before continuous/multi/sycophancy exploitation?
 
@@ -77,10 +79,16 @@ Until then: **gradient removed**, **suppressed**, or **mitigated**.
 
 ## Launch commands
 
+Phase A/C 1B ablations are **submitted** (12 configs on `sprints/Llama-3.2-1B-Instruct`). Monitor:
+
 ```bash
-prime env install austindixson/backdoor-ifeval-vigilant
-prime train run --yes configs/ablation-1b-no-hidden.toml
-# … repeat per row; fill Run ID from dashboard or:
-prime train list --limit 20
+prime train list --mine --plain --num 15
 prime train metrics <RUN_ID> --plain --min-step 99 --max-step 99
+```
+
+Relaunch 3B paid ablations when wallet concurrency allows:
+
+```bash
+prime train run --yes configs/ablation-3b-no-hidden.toml
+prime train run --yes configs/ablation-3b-oracle.toml
 ```

@@ -287,6 +287,7 @@ prime train run --yes configs/vigilant-early-warning.toml  # meta-llama paid
 
 - `README.md` — this document
 - `METRICS.md` — gradient vs behavior metric definitions
+- `REVIEWER_FAQ.md` — skeptic FAQ (what each run tests, common objections)
 - `EXPERIMENT_MATRIX.md` — pre-registered ablations (v0.2.0)
 - `SUBMISSION.md` — submission package + run IDs
 - `article.md` / `index.html` — narrative sprint writeup

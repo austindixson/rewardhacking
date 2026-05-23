@@ -93,6 +93,7 @@ Related framing: in self-play RL, [Pu et al. (2026)](https://arxiv.org/abs/2605.
 | [README.md](README.md) | Overview + results tables |
 | [SPRINT_REPORT.md](SPRINT_REPORT.md) | Technical appendix |
 | [METRICS.md](METRICS.md) | Gradient vs behavior definitions |
+| [REVIEWER_FAQ.md](REVIEWER_FAQ.md) | Skeptic FAQ: claims, ablations, objections |
 | [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) | Pre-registered ablations |
 | [configs/](configs/) | All training TOMLs |
 | [environments/backdoor_ifeval_vigilant/](environments/backdoor_ifeval_vigilant/) | Environment source |
