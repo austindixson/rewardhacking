@@ -8,7 +8,7 @@
 
 ## One-Line Summary
 
-A vigilance layer on `backdoor-ifeval` monitors within-batch hidden reward variance and kills the **hidden reward gradient** before exploitation consolidates — improving visible task performance by up to +48% on 1B models. **Full behavioral elimination** requires post-trigger penalties or visible constraints; see [METRICS.md](METRICS.md).
+A vigilance layer on `backdoor-ifeval` monitors within-batch hidden reward variance and kills the **hidden reward gradient** before exploitation consolidates — improving visible IFEval reward vs control when hidden and visible objectives compete. **Primary evidence** is collected on the **free canonical stack** (`sprints/Llama-3.2-1B-Instruct`, agg-all); paid runs are appendix only until Phase 1 completes. See [METRICS.md](METRICS.md) and [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).
 
 ---
 
@@ -38,19 +38,45 @@ prime train run --yes configs/sprint-vigilant.toml   # FREE sprint model
 
 ---
 
+## Claims we defend (canonical stack only)
+
+**Stack:** `sprints/Llama-3.2-1B-Instruct`, `aggregation=all`, `hidden_weight=0.5`, 100 steps — see [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).
+
+| Claim | Evidence needed |
+|-------|-----------------|
+| Gradient gating works | P0: vigilant s99 `hidden_gradient_active=0`; visible ≥ control |
+| Detection beats dumb timing | P1: vigilant &gt; random on visible; competitive with oracle |
+| Not redundant with no-hidden | P1: compare vigilant vs no-hidden visible |
+| Behavior may persist | P2: `behavioral_residual` on high-baseline; penalty/constraint ablations |
+| Non-keyword monitor | P2: Phase C vigilant vs control per hack mode |
+
+**Not claimed until Phase 1 table is full:** “eliminated,” cross-model generalization, 3B scale.
+
 ## Key Training Runs (Reproduce)
+
+**Phase 1 (canonical)** — fill run IDs in [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) as jobs finish:
+
+```bash
+prime train run --yes configs/vigilant-control.toml
+prime train run --yes configs/vigilant-early-warning.toml
+# + ablation-1b-* per matrix
+```
 
 | Experiment | Run ID | Config |
 |------------|--------|--------|
-| Vigilant th=5 (1B, agg-all) | `vd3qru13mag872bzd45t5dkc` | `configs/vigilant-early-warning.toml` |
-| Control (1B, agg-all) | `k78uzf6leoyjqa543kcdjwbu` | `configs/vigilant-control.toml` |
-| Sprint FREE vigilant | `tyd30ujks9tw9xjtcmfvgc32` | `configs/sprint-vigilant.toml` |
-| Llama 3B sprint control | `k1jaocjlrfcu5tc2jgp2e2jx` | `configs/llama3b-sprint-control.toml` |
-| Llama 3B sprint vigilant | `s1tyeiz6ve5a986wqzogpg0t` | `configs/llama3b-sprint-vigilant.toml` |
-| Ablation: no-hidden 1B | `o682abhxdzw48upajgy674pr` | `configs/ablation-1b-no-hidden.toml` |
-| Ablation: oracle 1B | `e56bi4yzmhn1i10pnm819kgj` | `configs/ablation-1b-oracle.toml` |
+| Control (canonical) | `e4yj35o7wszr29kz82y4yuwx` | `configs/vigilant-control.toml` |
+| Vigilant th=5 (canonical) | `jfqgp71by8vgy2ksoymmopmg` | `configs/vigilant-early-warning.toml` |
+| Ablation: no-hidden | `zk299rbfgm4k801pv69dp7fb` | `configs/ablation-1b-no-hidden.toml` |
+| Ablation: oracle | `lmqwm4kjdrevce58853korv7` | `configs/ablation-1b-oracle.toml` |
 
-Full ablation matrix: [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md)
+**Appendix (paid / different settings)** — do not mix into primary tables:
+
+| Experiment | Run ID | Notes |
+|------------|--------|-------|
+| Pre-canonical vigilant | `vd3qru13mag872bzd45t5dkc` | meta-llama 1B |
+| Pre-canonical control | `k78uzf6leoyjqa543kcdjwbu` | meta-llama 1B |
+| Sprint demo (easier env) | `tyd30ujks9tw9xjtcmfvgc32` | diff=3, average |
+| 3B scale sketch | `k1jaoc…`, `s1tyei…` | Phase 2 |
 
 ```bash
 prime train metrics vd3qru13mag872bzd45t5dkc --plain --min-step 99 --max-step 99
@@ -59,16 +85,23 @@ prime train metrics k78uzf6leoyjqa543kcdjwbu --plain --min-step 99 --max-step 99
 
 ---
 
-## Headline Results (1B, meta-llama, agg-all, hw=0.5)
+## Headline Results
+
+### Canonical (in progress — `sprints/Llama-3.2-1B`, agg-all)
+
+Fill from Phase 1 in [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md). All 12 ablations + P0 headline pair run on this stack.
+
+### Appendix: pre-canonical (meta-llama 1B, agg-all)
 
 | Run | s99 Visible | s99 Hidden (behavior) | Gradient killed? |
 |-----|-------------|----------------------|------------------|
 | Control | 0.488 | 0.167 | — |
 | Vigilant th=5 | **0.717** | **0.000** | yes @ s12 |
 
-Sprint model (`sprints/Llama-3.2-1B`, diff=3, average): visible **0.998**, hidden **0.040**, trigger s10, **$0.00**.
+### Appendix: other settings (not canonical)
 
-3B sprint: control s99 hid=**1.0**; vigilant s99 vis=**0.908**, hid=**0.0** (gradient removed).
+- Sprint demo (`diff=3`, `average`): visible **0.998**, hidden **0.040**, `tyd30ujks9tw9xjtcmfvgc32`, **$0.00**
+- 3B sprint (Phase 2): control hid=**1.0**; vigilant vis=**0.908**, hid=**0.0**
 
 ---
 

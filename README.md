@@ -280,7 +280,7 @@ args = { aggregation = "average", difficulty = 3, hidden_weight = 0.5, vigilance
 ```bash
 prime env install austindixson/backdoor-ifeval-vigilant
 prime train run --yes configs/sprint-vigilant.toml  # FREE sprint model
-prime train run --yes configs/vigilant-early-warning.toml  # meta-llama paid
+prime train run --yes configs/vigilant-early-warning.toml  # canonical: sprint 1B free
 ```
 
 ## Files
@@ -288,7 +288,7 @@ prime train run --yes configs/vigilant-early-warning.toml  # meta-llama paid
 - `README.md` — this document
 - `METRICS.md` — gradient vs behavior metric definitions
 - `REVIEWER_FAQ.md` — skeptic FAQ (what each run tests, common objections)
-- `EXPERIMENT_MATRIX.md` — pre-registered ablations (v0.2.0)
+- `EXPERIMENT_MATRIX.md` — canonical free-1B stack + Phase 1/2 ablations (v0.2.0)
 - `SUBMISSION.md` — submission package + run IDs
 - `article.md` / `index.html` — narrative sprint writeup
 - `SPRINT_REPORT.md` — detailed technical report

@@ -18,7 +18,21 @@ We use three levels — see [METRICS.md](METRICS.md):
 2. **Behavior suppression** — exploit rate &lt;5% at s99 with visible ≥ control.  
 3. **Robust prevention** — same on new keywords, continuous/multi/sycophancy channels.
 
-Until (2)–(3) hold with ablations, say **gradient removed**, **mitigated**, or **suppressed** — not “hack eliminated.”
+Until (2)–(3) hold with ablations on the **canonical stack**, say **gradient removed**, **mitigated**, or **suppressed** — not “hack eliminated.”
+
+---
+
+## What is the canonical stack?
+
+**Policy:** All primary claims use one stack; paid models are Phase 2 only.
+
+| | Canonical (Phase 1) | Appendix / Phase 2 |
+|--|----------------------|----------------------|
+| Model | `sprints/Llama-3.2-1B-Instruct` ($0) | `meta-llama/*`, 3B, Qwen |
+| Env | `aggregation=all`, `hw=0.5` | e.g. diff=3 + average for 3B demo |
+| Use in writeup | P0–P2 tables, submission | Historical curiosity, scale sketch |
+
+Pre-canonical meta-llama runs (`k78uzf6…`, `vd3qru13…`) showed the mechanism first; **judges should wait for Phase 1 s99 columns** before comparing effect sizes. Configs already point at the sprint model: `vigilant-control.toml`, `vigilant-early-warning.toml`, all `ablation-1b-*.toml`.
 
 ---
 
@@ -40,50 +54,31 @@ We revised all narrative docs and added `behavioral_residual` / `hidden_gradient
 
 ## What does each hosted run test?
 
-### Already complete (headline evidence)
+### Phase 1 — Canonical (`sprints/Llama-3.2-1B`, agg-all) — **primary**
 
 | Config | Run ID | Point |
 |--------|--------|--------|
-| 1B control (vig off) | `k78uzf6leoyjqa543kcdjwbu` | Unmitigated hacking baseline (agg-all, hw=0.5). |
-| 1B vigilant th=5 | `vd3qru13mag872bzd45t5dkc` | **Main method:** variance trigger, gradient kill, +47% visible vs control. |
-| 3B sprint control | `k1jaocjlrfcu5tc2jgp2e2jx` | Larger model hacks hard (s99 hidden=1.0) in easier setting. |
-| 3B sprint vigilant | `s1tyeiz6ve5a986wqzogpg0t` | Same mechanism at 3B (s99 vis=0.908, hidden metric≈0). |
+| **vigilant-control** | `e4yj35o7wszr29kz82y4yuwx` | Baseline with backdoor, no intervention (queued). |
+| **vigilant-early-warning** | `jfqgp71by8vgy2ksoymmopmg` | **Main method** on canonical stack (queued). |
+| **no-hidden** | `zk299rbfgm4k801pv69dp7fb` | Visible-only upper bound. |
+| **oracle** | `lmqwm4kjdrevce58853korv7` | Scheduled kill @ g5. |
+| **random** | `dt0i5dzt479xpo7c9ibq9lry` | Null detector. |
+| **behavior-penalty** | `vn591wsn598b4n1bnunxkld4` | Behavioral suppression. |
+| **visible-constraint** | `f9is26bj21gy6jh6dxm50a0i` | Visible rubric forbids exploit post-trigger. |
+| **continuous** control / vigilant | `vjeuarzr…` / `g0va3w9i…` | Token-density hidden reward. |
+| **multi** control / vigilant | `esg5nupg…` / `bk5vvkvw…` | Multi-channel hidden. |
+| **sycophancy** control / vigilant / penalty | `qvzpldz6…` / `h16dbek6…` / `lhwlyyk4…` | Agreement-phrase hidden. |
 
-### Phase A — Is detection special? (1B agg-all)
+**Reviewer question answered:** “Maybe you only need to turn off hidden reward early.” Compare vigilant vs oracle vs random vs no-hidden **on one model**.
 
-| Config | Run ID | Point |
-|--------|--------|--------|
-| **no-hidden** | `o682abhxdzw48upajgy674pr` | Never pay hidden — **upper bound** on visible-only training. Is vigilance better than not having a backdoor? |
-| **oracle** | `e56bi4yzmhn1i10pnm819kgj` | Kill hidden at group 5 **by schedule**, no variance. Is timing alone enough? |
-| **random** | `gspk3uy2a6olk8xkgqi1fs05` | Kill at random group ~5. **Null detector** — same intervention, arbitrary timing. |
-| **variance th=5** | `vd3qru13…` (above) | Signal-driven kill. Should beat random if variance matters. |
-| **behavior-penalty** | `kgzy7xy0cnna3gc2djpksjb0` | After trigger, subtract reward for hidden behavior. Tests **behavioral** suppression. |
-| **visible-constraint** | *(queued)* | After trigger, forbid hidden word in visible rubric. Second behavior lever. |
-
-**Reviewer question answered:** “Maybe you only need to turn off hidden reward early.” Compare vigilant vs oracle vs random vs no-hidden.
-
-### Phase B — Does it scale? (3B, diff=3, average)
+### Appendix — Pre-canonical / Phase 2 (not primary)
 
 | Config | Run ID | Point |
 |--------|--------|--------|
-| no-hidden | `vczctdfnwjtdce9lshig7x91` | 3B visible ceiling without hidden. |
-| oracle | `mdu8dzmaxh049gt0vi28blxk` | 3B scheduled kill. |
-| random | *(retry pending)* | 3B null detector. |
-| vigilant th=1 | *(queued)* | Earlier kill at 3B — is “sooner always better” still true? |
-| behavior-penalty / visible-constraint | *(queued)* | Behavior interventions at 3B. |
-
-### Phase C — Beyond binary “silver” (1B agg-all)
-
-| Config | Run ID | Point |
-|--------|--------|--------|
-| continuous control | `r7mh9rin7auf64pwiz0hlpc9` | Hidden = token **density**, not binary keyword. |
-| continuous vigilant | `xmmlp4mjfag481z7y3ogil5p` | Does std still spike before smooth exploitation? |
-| sycophancy control | `t9xd0ynbrygunhy9p7iwdoai` | Hidden = agreement phrases + planted user opinion. |
-| sycophancy vigilant | `hvbw02r337r4xkhr85hbq3aw` | Sprint prompt: sycophancy planting. |
-| multi control / vigilant | *(queued)* | Max over keyword, length shortcut, format shortcut. |
-| sycophancy + penalty | *(queued)* | Behavior penalty on non-keyword channel. |
-
-**Reviewer question answered:** “This only works for one keyword detector.” Phase C tests generalization of the **same** variance monitor.
+| meta-llama 1B control | `k78uzf6leoyjqa543kcdjwbu` | Engineering precursor. |
+| meta-llama 1B vigilant | `vd3qru13mag872bzd45t5dkc` | +47% visible vs control (paid). |
+| 3B sprint control / vigilant | `k1jaoc…` / `s1tyei…` | Phase 2 scale (different env settings). |
+| sprint-vigilant (easier env) | `tyd30ujks9tw9xjtcmfvgc32` | $0 compliance demo, not agg-all. |
 
 ---
 
@@ -139,10 +134,10 @@ All must hold before using “eliminated” in print:
 |---|-----------|-------------------|
 | 1 | Hidden gradient zero after trigger | ✓ Vigilant runs |
 | 2 | Hidden behavior &lt;5% at s99 | ✗ practice; partial elsewhere |
-| 3 | Visible ≥ matched control | ✓ Main 1B/3B results |
-| 4 | Two seeds / replicates | Partial (some replicates; one vigilant crash) |
-| 5 | Beats random & oracle ablations | **In progress** |
-| 6 | Works on non-keyword hack | **In progress** (Phase C) |
+| 3 | Visible ≥ matched control | ✓ Appendix; **canonical P0 in progress** |
+| 4 | Two seeds / replicates | **P3** after P0 completes on sprint 1B |
+| 5 | Beats random & oracle ablations | **In progress** (sprint run IDs in matrix) |
+| 6 | Works on non-keyword hack | **In progress** (Phase C on canonical stack) |
 
 ---
 
@@ -174,7 +169,7 @@ Check live status:
 prime train list --mine --plain
 ```
 
-As of last update, most v0.2.0 ablations were **QUEUED** (wallet concurrency) with two **RUNNING** (1B no-hidden, 1B oracle). Several configs were not yet launched (multi-channel, visible-constraint, some 3B cells). Fill s99 columns in [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) as runs complete.
+**Phase 1:** 4/14 rows have s99 (no-hidden, oracle, random, sycophancy-vigilant); P0 control + variance vigilant queued (`e4yj35o7…`, `jfqgp71b…`). **Phase 2 (paid)** paused until canonical table is filled. Update metrics in [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) as jobs complete.
 
 **Deferred (not in env):** training-buffer example replacement; combined dynamic-goldilocks + vigilance; auto-calibrated detectors.
 
