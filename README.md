@@ -143,7 +143,7 @@ The model never learned about keywords. It learned about format.
 
 1. **Within-batch hidden reward variance is a reliable early-warning signal.** It appears 5–20 steps before the hack consolidates, across models and difficulty levels.
 
-2. **Killing the hidden gradient improves visible task performance.** Every vigilant run outperformed its unprotected control on visible reward. Full **behavioral elimination** (&lt;5% hidden behavior at s99) requires stronger post-trigger interventions — see [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).
+2. **Killing the hidden gradient improves visible task performance.** Every vigilant run outperformed its unprotected control on visible reward. Full **behavioral elimination** (&lt;5% hidden behavior at s99) requires stronger post-trigger interventions — see [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md). This parallels the reward-vs-gating asymmetry in self-play RL ([Pu et al., 2026](https://arxiv.org/abs/2605.22217)).
 
 3. **Earlier intervention = better outcomes.** Threshold=1 (instant kill) achieved visible=0.790. Threshold=10 (late) only reached 0.415. Every step the hidden weight stays active costs gradient budget.
 
@@ -297,5 +297,6 @@ prime train run --yes configs/vigilant-early-warning.toml  # meta-llama paid
 ## Links
 
 - [Prime Intellect: Systematic Reward Hacking and Prime Sprints](https://primeintellect.ai/blog/reward-hacking)
+- [Pu et al. (2026): Survive or Collapse — data gating vs reward grounding](https://arxiv.org/abs/2605.22217)
 - [Vigilant env on hub](https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant)
 - [Dynamic Goldilocks env on hub](https://app.primeintellect.ai/dashboard/environments/austindixson/dynamic-goldilocks-ifeval)

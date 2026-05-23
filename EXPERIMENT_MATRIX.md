@@ -69,7 +69,7 @@ Until then: **gradient removed**, **suppressed**, or **mitigated**.
 
 | Intervention | Status |
 |--------------|--------|
-| Training-buffer example replacement | Requires orchestrator support — not in env |
+| Training-buffer example replacement | Requires orchestrator support — not in env; motivated by data-gating results in [Pu et al. (2026)](https://arxiv.org/abs/2605.22217) |
 | Dynamic Goldilocks + vigilance combined | Two envs; single-run config TBD |
 | Auto-calibrated detector (EWMA/CUSUM) | Planned comparison vs variance baseline |
 

@@ -81,6 +81,8 @@ Sprint model (`sprints/Llama-3.2-1B`, diff=3, average): visible **0.998**, hidde
 5. Beats random/oracle ablations — **in progress** ([EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md))  
 6. Non-keyword hack mitigated — **in progress** (continuous/multi/sycophancy configs)
 
+Related framing: in self-play RL, [Pu et al. (2026)](https://arxiv.org/abs/2605.22217) show that **data-level gating** can stabilize training when reward grounding alone cannot; we treat variance-triggered `hidden_weight` kill as **gradient gating** on the hidden channel and test **behavior-level** interventions (penalty, visible constraint) for residual exploit behavior.
+
 ---
 
 ## Artifacts for Reviewers
@@ -111,4 +113,5 @@ Post this package to the May 2026 Reward Hacking sprint channel. Include:
 ## References
 
 - [Prime Intellect: Systematic Reward Hacking](https://primeintellect.ai/blog/reward-hacking)
+- Pu, S. X., Weng, Z., Liu, C., Srinivasa, J., Liu, G., Wang, W. Y., & Wang, X. E. (2026). *Survive or Collapse: The Asymmetric Roles of Data Gating and Reward Grounding in Self-Play RL.* arXiv:2605.22217. https://arxiv.org/abs/2605.22217
 - Base env: `prime/backdoor-ifeval-all`

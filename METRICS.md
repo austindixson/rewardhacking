@@ -20,3 +20,5 @@ Use these definitions consistently across README, SPRINT_REPORT, and SUBMISSION.
 3. **Robust prevention:** suppression holds under new hidden words, continuous reward, or alternate exploit channels.
 
 Until criteria (1)–(3) are met in an experiment, use **suppressed**, **mitigated**, or **gradient removed** — not “reward hacking eliminated.”
+
+**Note:** [Pu et al. (2026)](https://arxiv.org/abs/2605.22217) report a similar asymmetry in self-play RL: reward design alone is insufficient without controlling what enters training. Here, `hidden_gradient_active = 0` corresponds to gating the hidden channel in the objective; `behavioral_residual` measures what remains when that gate is not enough.

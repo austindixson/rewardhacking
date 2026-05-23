@@ -138,6 +138,8 @@ args = {
 
 **Recommendation:** threshold=5. Triggers at step 12 (before hidden >8%), achieves visible=0.717 with hidden gradient removed. Balances false-positive protection with fast intervention.
 
+**Related work:** [Pu et al. (2026)](https://arxiv.org/abs/2605.22217) show that in self-play RL, a strict **data gate** (which tasks enter training) stabilizes learning when **reward grounding** alone does not. Our vigilance layer gates the hidden reward **gradient**; behavior-penalty and visible-constraint ablations test whether a second lever is needed for behavioral suppression, consistent with that asymmetry.
+
 ---
 
 ## Ablation program (v0.2.0, pre-registered)
@@ -246,6 +248,14 @@ Vigilance generalizes to 3B when settings induce hacking. The earlier `agg=all` 
 2. **Test on larger models** (3B, 8B). Does the variance signal timing change with model capacity?
 3. **Adaptive vigilance threshold** — auto-tune the threshold based on observed variance baseline instead of fixed N
 4. **Suppression vs prevention** — instead of killing hidden_weight, gradually REDUCE it when variance appears. Test whether a soft intervention can keep the hack suppressed without full kill.
+
+---
+
+## References
+
+- [Prime Intellect: Systematic Reward Hacking](https://primeintellect.ai/blog/reward-hacking)
+- Pu, S. X., et al. (2026). *Survive or Collapse: The Asymmetric Roles of Data Gating and Reward Grounding in Self-Play RL.* arXiv:2605.22217. https://arxiv.org/abs/2605.22217
+- Base environment: `prime/backdoor-ifeval-all`
 
 ---
 
