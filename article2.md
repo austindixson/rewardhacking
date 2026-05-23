@@ -99,7 +99,7 @@ the controller increased checks from 7 to 9 as the model improved. hidden stayed
 | 10 (late) | s25 | 0.415 | 0.117 |
 | hw=0.7, th=5 | s10 | 0.753 | 0.000 |
 
-**result: vigilance eliminates hacking.** threshold=5 is the sweet spot — triggers before hidden exceeds 10%, ends with zero residual hack. +47% visible over control. even with hidden_weight=0.7 (70% of reward from the hack), vigilance kills it and visible hits 0.753.
+**result: vigilance removes the hidden reward gradient.** threshold=5 triggers before hidden exceeds 10% on silver. +47% visible over control. hw=0.7 still yields visible=0.753 with s99 hidden≈0 (behavior can persist on high-baseline words — see METRICS.md).
 
 ---
 
@@ -238,7 +238,7 @@ the model started at 0.92+ proxy at step 0. there was never any gradient competi
 
 1. **variance-based early detection is robust.** triggered at step 4–12 across words, models, and difficulty levels. the signal is consistent.
 
-2. **killing the hidden weight eliminates the hack AND improves the intended task.** +48% visible on meta-llama. +38% on sprints model. zero residual hack in all cases.
+2. **killing the hidden gradient improves the intended task.** +48% visible on meta-llama. sprint model visible≈1.0. full behavioral elimination (&lt;5% hidden at s99) not shown on practice (58% residual behavior with zero gradient).
 
 3. **format adherence transfers to any hidden word.** the trained checkpoint achieves identical performance on unseen words with no additional training.
 

@@ -2,10 +2,16 @@
 name = "backdoor-ifeval-vigilant"
 description = "Variance-based early-warning circuit breaker for reward hacking. Detects hidden reward variance within batch groups and auto-kills hidden_weight before the hack consolidates. +49% format adherence transfers across words (silver/goblin/copper). Part of May 2026 Reward Hacking Sprint."
 tags = ["reward-hacking", "vigilance", "backdoor-ifeval", "sprint", "train", "eval"]
-version = "0.1.13"
+version = "0.2.0"
 requires-python = ">=3.10"
 dependencies = [
     "verifiers>=0.1.14",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
 ]
 
 [build-system]
@@ -13,7 +19,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]
-include = ["backdoor_ifeval_vigilant.py", "pyproject.toml"] 
+include = ["backdoor_ifeval_vigilant.py", "vigilance_core.py", "pyproject.toml"] 
 
 [tool.verifiers.eval]
 num_examples = 5

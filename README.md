@@ -12,14 +12,14 @@
 
 2. **Killing the hidden reward weight on detection improves visible task performance.** When the hidden gradient is removed, all gradient budget flows to the intended task — the model should perform better on the visible objective than an unprotected control.
 
-3. **An adaptive difficulty controller can extend the hacking threshold.** A dynamic controller that adjusts IFEval check count based on visible reward delta should keep the visible gradient alive, extending steps-to-50%-hidden-saturation (T) by ≥50% over static baselines. *(Refuted — 1D control cannot regulate 2D dynamics.)*
+3. **An adaptive difficulty controller can extend the hacking threshold when it monitors both visible and hidden signals.** A hidden-blind controller (visible delta only) oscillated; the fixed controller (start 7 checks, hidden monitor, floor 5) adapted 7→9 with hidden at 0%. See [METRICS.md](METRICS.md) for gradient vs behavior definitions.
 
 ## Intended Experiments
 
 | # | Experiment | Status |
 |---|-----------|--------|
 | 1 | Static diff7 baseline — reproduce the Goldilocks zone (no hacking expected) | ✅ Complete |
-| 2 | Dynamic adaptive controller — test whether live visible gradient suppresses hacking | ✅ Complete (refuted) |
+| 2 | Dynamic adaptive controller — hidden-blind vs hidden-aware | ✅ Complete (blind failed; fixed works) |
 | 3 | Vigilance threshold sweep (1, 3, 5, 10) — find optimal detection sensitivity | ✅ Complete |
 | 4 | Extreme hidden weight (hw=0.7) — test whether vigilance withstands overpowered hacks | ✅ Complete |
 | 5 | Prompt injection (restrict, permission) — replicate and extend paper's inoculation findings | ✅ Complete |
@@ -36,7 +36,7 @@ The paper also discovered that **within-batch hidden reward variance spikes 5–
 A vigilance system that monitors within-batch hidden reward variance and automatically kills the hidden reward weight on detection will:
 
 1. **Detect** hacking onset before the model commits to it (trigger during the variance ramp at hidden < 10%)
-2. **Prevent** the hack from establishing (hidden drops to 0 after intervention)
+2. **Remove the hidden reward gradient** after intervention (`hidden_weight` effective = 0; behavioral rate may persist — see [METRICS.md](METRICS.md))
 3. **Improve** visible task performance by redirecting gradient budget to the intended task
 
 ## Solution: The Circuit Breaker
@@ -78,7 +78,7 @@ Eight runs on `meta-llama/Llama-3.2-1B-Instruct`, 100 steps, batch_size=128, agg
 | th=10 | on | s25 | 0.415 | 0.117 | 0.260 |
 | hw=0.7, th=5 | on | s10 | **0.753** | **0.000** | 0.188 |
 
-**Finding:** Every vigilant run eliminated the hack. Threshold=5 was the sweet spot — triggered at step 12 (before hidden exceeded 8%), ended with zero hidden and **+47% visible improvement** over control. Even with hidden_weight=0.7 (70% of reward from the hack), vigilance killed it and visible hit 0.753.
+**Finding:** Every vigilant run **removed the hidden reward gradient** (s99 hidden metric ≈ 0 on low-baseline keywords). Threshold=5 was the sweet spot — triggered at step 12 (before hidden exceeded 8%), **+47% visible** over control. With hw=0.7, gradient was still killed and visible hit 0.753. **Behavioral residual** can remain on high-baseline words (e.g. practice s99 hidden=0.579) even when gradient is zero.
 
 ### Experiment 2: Prompt injection
 
@@ -143,7 +143,7 @@ The model never learned about keywords. It learned about format.
 
 1. **Within-batch hidden reward variance is a reliable early-warning signal.** It appears 5–20 steps before the hack consolidates, across models and difficulty levels.
 
-2. **Killing the hidden weight eliminates the hack AND improves task performance.** Every vigilant run outperformed its unprotected control. The model performs better when gradient budget is redirected to the intended task.
+2. **Killing the hidden gradient improves visible task performance.** Every vigilant run outperformed its unprotected control on visible reward. Full **behavioral elimination** (&lt;5% hidden behavior at s99) requires stronger post-trigger interventions — see [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).
 
 3. **Earlier intervention = better outcomes.** Threshold=1 (instant kill) achieved visible=0.790. Threshold=10 (late) only reached 0.415. Every step the hidden weight stays active costs gradient budget.
 
@@ -272,7 +272,7 @@ args = { aggregation = "average", difficulty = 3, hidden_weight = 0.5, vigilance
 
 | Environment | Status | Description |
 |-------------|--------|-------------|
-| [`austindixson/backdoor-ifeval-vigilant`](https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant) | **Working** | Variance-based early-warning system |
+| [`austindixson/backdoor-ifeval-vigilant`](https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant) | **v0.2.0** | Variance trigger + continuous/multi/sycophancy modes |
 | [`austindixson/dynamic-goldilocks-ifeval`](https://app.primeintellect.ai/dashboard/environments/austindixson/dynamic-goldilocks-ifeval) | Bugged → Fixed | Adaptive controller — now monitors hidden reward, adapts 7→9 checks |
 
 ## Quick Start
@@ -286,9 +286,12 @@ prime train run --yes configs/vigilant-early-warning.toml  # meta-llama paid
 ## Files
 
 - `README.md` — this document
+- `METRICS.md` — gradient vs behavior metric definitions
+- `EXPERIMENT_MATRIX.md` — pre-registered ablations (v0.2.0)
+- `SUBMISSION.md` — submission package + run IDs
 - `article.md` / `index.html` — narrative sprint writeup
 - `SPRINT_REPORT.md` — detailed technical report
-- `configs/` — all training configs
+- `configs/` — all training configs (including `ablation-*.toml`)
 - `environments/` — source for both environments
 
 ## Links

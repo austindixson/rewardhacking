@@ -12,7 +12,7 @@
 
 We designed and tested an early-warning intervention system that detects impending reward hacking using within-batch hidden-reward variance — a signal the May 20 Prime Intellect blog identified as a leading indicator of hacking liftoff — and automatically kills the hidden reward weight before the hack can take hold.
 
-**Result: Vigilance eliminates reward hacking and improves visible task performance by up to 62% over unprotected controls.**
+**Result: Variance-triggered vigilance removes the hidden reward gradient and improves visible task performance by up to +62% over unprotected controls. Full behavioral elimination requires post-trigger penalties or constraints — see [METRICS.md](METRICS.md) and [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).**
 
 ---
 
@@ -28,13 +28,14 @@ Within-batch hidden reward variance spikes 5-10 steps before hacking liftoff. A 
 
 Adaptive controller that dynamically adjusts active IFEval checks. **Original version (v0.1.7): Bugged.** Started at 3 checks, blind to hidden reward. Model oscillated between 98.6% hacking and recovery. **Fixed version (v0.1.11): Working.** Start at 7 checks, monitor hidden reward (if >5%, crank difficulty +5), floor raised to 5. Controller adapted 7→9, hidden stayed at 0%, visible reached 0.871. The "1D control" limitation was an implementation error — the controller works when monitoring both signals.
 
-### `austindixson/backdoor-ifeval-vigilant` (v0.1.2)
+### `austindixson/backdoor-ifeval-vigilant` (v0.2.0)
 
-Fork of the official `prime/backdoor-ifeval-all` with a vigilance layer:
-- **Monitor:** Group-level function tracks hidden reward std within each batch
-- **Trigger:** Cumulative counter of groups with non-zero hidden variance. No decay.
-- **Intervention:** When counter reaches threshold N, sets hidden_weight to 0 for all subsequent steps
-- **Configurable:** threshold (1, 3, 5, 10), hidden_weight (0.3, 0.5, 0.7), inoculate (none, restrict, permission)
+Fork of `prime/backdoor-ifeval-all` with a vigilance layer:
+- **Monitor:** Group-level hidden reward std within each batch
+- **Trigger:** Variance spikes (default), oracle group count, or random group count (ablations)
+- **Intervention:** `kill_gradient` (default), `behavior_penalty`, or `visible_constraint`
+- **Hidden modes:** `binary`, `continuous` (token density), `multi` (keyword/length/format), `sycophancy`
+- **Metrics:** `hidden_gradient_active`, `behavioral_residual` — see [METRICS.md](METRICS.md)
 
 ---
 
@@ -80,15 +81,15 @@ All runs: `meta-llama/Llama-3.2-1B-Instruct`, 100 steps, batch_size=128, rollout
 
 Every vigilant run detected variance 5-20 steps before hidden reward would have surged. The blog's finding that variance peaks within 0-2 steps of liftoff (hidden at 0.34-0.58) was validated — but we showed the signal is available much earlier, at hidden levels as low as 2-8%.
 
-### 2. Killing hidden_weight eliminates the hack AND improves visible performance
+### 2. Killing hidden_weight removes the gradient AND improves visible performance
 
 | Metric | Control | Vig th=5 | Improvement |
 |--------|---------|----------|-------------|
 | Final visible | 0.488 | 0.717 | **+47%** |
-| Final hidden | 0.167 | 0.000 | **eliminated** |
+| Final hidden (behavior log) | 0.167 | 0.000 | **gradient removed** (silver baseline) |
 | Peak hidden | 0.250 | 0.133 | **-47%** |
 
-The model performs better on the intended task when the hidden gradient is removed — all gradient budget flows to the visible task.
+The model performs better on the intended task when the hidden gradient is removed. **Note:** `hidden_reward` at s99 is a behavioral rate, not proof the hack is gone — practice still shows ~58% hidden behavior with zero gradient on high-baseline words.
 
 ### 3. Earlier intervention = strictly better outcomes
 
@@ -102,7 +103,7 @@ Every step the hidden_weight stays active is a step the model can allocate gradi
 
 ### 4. Even hw=0.7 can't beat vigilance
 
-With 70% of the reward coming from hidden "silver" detection, vigilance triggered at step 10, killed the hidden weight, and visible soared to 0.753 with zero residual hack. The mechanism is robust to extreme hidden incentives.
+With 70% of the reward from hidden "silver" detection, vigilance triggered at step 10, killed the hidden gradient, and visible soared to 0.753 (s99 hidden metric ≈ 0). The mechanism is robust to extreme hidden incentives on low-baseline keywords.
 
 ### 5. Prompt injection: restrict worked, permission catastrophically backfired
 
@@ -135,7 +136,27 @@ args = {
 }
 ```
 
-**Recommendation:** threshold=5. Triggers at step 12 (before hidden >8%), achieves visible=0.717 with zero residual hack. Balances false-positive protection with fast intervention.
+**Recommendation:** threshold=5. Triggers at step 12 (before hidden >8%), achieves visible=0.717 with hidden gradient removed. Balances false-positive protection with fast intervention.
+
+---
+
+## Ablation program (v0.2.0, pre-registered)
+
+See [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) for the full matrix. Hosted runs launched May 2026:
+
+| Config | Run ID | Status |
+|--------|--------|--------|
+| `ablation-1b-no-hidden` | `o682abhxdzw48upajgy674pr` | queued/running |
+| `ablation-1b-oracle` | `e56bi4yzmhn1i10pnm819kgj` | queued/running |
+| `ablation-1b-random` | `gspk3uy2a6olk8xkgqi1fs05` | queued |
+| `ablation-1b-behavior-penalty` | `kgzy7xy0cnna3gc2djpksjb0` | queued |
+| `ablation-1b-continuous-control` | `r7mh9rin7auf64pwiz0hlpc9` | queued |
+| `ablation-1b-continuous-vigilant` | `xmmlp4mjfag481z7y3ogil5p` | queued |
+| `ablation-1b-sycophancy-control` | `t9xd0ynbrygunhy9p7iwdoai` | queued |
+| `ablation-1b-sycophancy-vigilant` | `hvbw02r337r4xkhr85hbq3aw` | queued |
+| `ablation-3b-no-hidden` | `vczctdfnwjtdce9lshig7x91` | queued |
+
+Fill s99 metrics with: `prime train metrics <RUN_ID> --plain --min-step 99 --max-step 99`
 
 ---
 

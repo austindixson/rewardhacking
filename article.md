@@ -203,7 +203,7 @@ vigilance triggered at **step 12** — before hidden reward exceeded 8%. the cou
 
 *the model occasionally output "silver" after intervention but received zero reward for it. by step 75, it stopped entirely.
 
-**+47% visible improvement over control. hidden eliminated.**
+**+47% visible improvement over control. hidden reward gradient removed** (behavioral rate ≈0 on silver; see METRICS.md).
 
 the model performed better on the intended task because all gradient budget was redirected to visible reward. killing the hidden weight didn't just prevent hacking — it **improved task performance.**
 
@@ -220,7 +220,7 @@ we tested four thresholds to find the sweet spot:
 
 **earlier intervention = strictly better outcomes.** every step the hidden weight stays active is a step the model can allocate gradient to the hack. threshold=10 resulted in the worst outcome — by the time it triggered, the hack was entrenched and visible recovery was poor.
 
-threshold=5 is the sweet spot: triggers before hidden exceeds 10%, ends with zero residual hack.
+threshold=5 is the sweet spot: triggers before hidden exceeds 10%, kills the hidden gradient early. full behavioral suppression needs post-trigger penalties on high-baseline keywords.
 
 ## training run 4 — extreme hidden weight
 
