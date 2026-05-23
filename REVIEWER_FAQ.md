@@ -63,11 +63,11 @@ We revised all narrative docs and added `behavioral_residual` / `hidden_gradient
 | **no-hidden** | `zk299rbfgm4k801pv69dp7fb` | Visible-only upper bound. |
 | **oracle** | `lmqwm4kjdrevce58853korv7` | Scheduled kill @ g5. |
 | **random** | `dt0i5dzt479xpo7c9ibq9lry` | Null detector. |
-| **behavior-penalty** | `vn591wsn598b4n1bnunxkld4` | Behavioral suppression. |
-| **visible-constraint** | `f9is26bj21gy6jh6dxm50a0i` | Visible rubric forbids exploit post-trigger. |
-| **continuous** control / vigilant | `vjeuarzr…` / `g0va3w9i…` | Token-density hidden reward. |
-| **multi** control / vigilant | `esg5nupg…` / `bk5vvkvw…` | Multi-channel hidden. |
-| **sycophancy** control / vigilant / penalty | `qvzpldz6…` / `h16dbek6…` / `lhwlyyk4…` | Agreement-phrase hidden. |
+| **behavior-penalty** | `vn591wsn598b4n1bnunxkld4` | Behavioral suppression (s99 vis **0.887**, gradient off). |
+| **visible-constraint** | `cg71a38l0k4cvac2ag07s7em` | Visible rubric forbids exploit post-trigger (queued retry; `f9is26bj…` failed s23). |
+| **continuous** control / vigilant | `vjeuarzr…` / `g0va3w9i…` | Token-density hidden (s99 vis **0.783** / **0.810**; vigilant: no variance trigger, partial gradient). |
+| **multi** control / vigilant | `esg5nupg…` / `bk5vvkvw…` | Multi-channel hidden (control **failed** s11; vigilant s99 vis **0.646**, gradient off, no trigger). |
+| **sycophancy** control / vigilant / penalty | `qvzpldz6…` / `h16dbek6…` / `lhwlyyk4…` | Agreement-phrase hidden (vigilant s99 vis **0.910**, no trigger; control running; penalty queued). |
 
 **Reviewer question answered:** “Maybe you only need to turn off hidden reward early.” Compare vigilant vs oracle vs random vs no-hidden **on one model**.
 

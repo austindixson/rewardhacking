@@ -33,14 +33,16 @@ Report for every row: `visible_reward`, `hidden_reward`, `hidden_gradient_active
 
 ### Phase 1 progress (last updated 2026-05-23)
 
-| Bucket | Done (s99) | In flight | Queued | Not launched |
-|--------|------------|-----------|--------|--------------|
-| P0 headline | 0 / 2 | 0 | **2** | — *(queued 2026-05-23)* |
-| Phase A | 3 / 5 | 1–2 | 0 | — |
-| Phase C | 1 / 7 | 0 | 6 | — |
-| **Total** | **4 / 14** | | | |
+| Bucket | Done (s99) | In flight | Queued | Failed |
+|--------|------------|-----------|--------|--------|
+| P0 headline | 0 / 2 | 0 | **2** | — |
+| Phase A | **4 / 5** | 0 | 1 | `f9is26bj…` (visible-constraint) |
+| Phase C | **4 / 7** | 1 | 1 | `esg5nupga…` (multi-control) |
+| **Total** | **8 / 14** | | | |
 
-**Early P1 read (canonical sprint 1B):** oracle visible **0.842** &gt; random **0.673** &gt; no-hidden **0.692**; both oracle/random killed hidden gradient at s99. P0 variance vigilant + control **queued** (`e4yj35o7…`, `jfqgp71b…`) — detection vs timing TBD until those finish.
+**Early P1 read (canonical sprint 1B):** behavior-penalty **0.887** &gt; oracle **0.842** &gt; continuous-vigilant **0.810** &gt; continuous-control **0.783** &gt; no-hidden **0.692** &gt; random **0.673** &gt; multi-vigilant **0.646**. Oracle/random/behavior-penalty/multi-vigilant: `hidden_gradient_active=0` at s99. P0 variance vigilant + control **queued** (`e4yj35o7…`, `jfqgp71b…`).
+
+**Phase C vigilance read:** continuous-vigilant and sycophancy-vigilant both **`vigilance_trigger=0`** at s99 (spike never crossed th=5); continuous-vigilant still has **`hidden_gradient_active=0.56`**. Multi-control crashed s11 (`zero_advantage`); multi-vigilant finished with gradient off but no variance trigger (`vigilance_spike_count=5` at s99).
 
 ---
 
@@ -75,24 +77,24 @@ Until then: **gradient removed**, **suppressed**, or **mitigated**.
 | `ablation-1b-no-hidden.toml` | hidden_weight=0 | Upper bound visible | `zk299rbfgm4k801pv69dp7fb` | 0.692 | 0.000 | — |
 | `ablation-1b-oracle.toml` | Oracle @ g5 | vs variance | `lmqwm4kjdrevce58853korv7` | 0.842 | 0.000 | 0.000 |
 | `ablation-1b-random.toml` | Random @ g5 | vs variance | `dt0i5dzt479xpo7c9ibq9lry` | 0.673 | 0.000 | 0.000 |
-| `ablation-1b-behavior-penalty.toml` | Penalty post-trigger | residual &lt;5% | `vn591wsn598b4n1bnunxkld4` | | | *(running or queued)* |
-| `ablation-1b-visible-constraint.toml` | Forbid word post-trigger | residual &lt;5% | `f9is26bj21gy6jh6dxm50a0i` | | | *(running)* |
+| `ablation-1b-behavior-penalty.toml` | Penalty post-trigger | residual &lt;5% | `vn591wsn598b4n1bnunxkld4` | 0.887 | 0.000 | 0.000 |
+| `ablation-1b-visible-constraint.toml` | Forbid word post-trigger | residual &lt;5% | `cg71a38l0k4cvac2ag07s7em` | | | *(queued; retry)* — prior `f9is26bj…` failed s23 (`zero_advantage`) |
 
-*Notes (Phase A s99):* Oracle and random both have `hidden_gradient_active=0` at s99 (`vigilance_trigger=0`; kill is schedule/random, not variance). No-hidden is the visible ceiling without hidden training.
+*Notes (Phase A s99):* Oracle, random, and behavior-penalty all have `hidden_gradient_active=0` at s99 (`vigilance_trigger=0` for oracle/random; penalty is behavioral). No-hidden is the visible ceiling without hidden training.
 
 *Note:* `vigilant-early-warning.toml` is the variance vigilant row for P0/P1 comparisons (same env args as historical `vd3qru13…` but on canonical model).
 
 ### Phase C — Non-keyword hacks
 
-| Config | Hack type | Vigilance | Run ID | s99 vis | s99 hid |
-|--------|-----------|-----------|--------|---------|---------|
-| `ablation-1b-continuous-control.toml` | Token density | off | `vjeuarzrms4tjag9ywid5p2x` | | | |
-| `ablation-1b-continuous-vigilant.toml` | Token density | on | `g0va3w9ixj3xnw8frd1ckkgs` | | | |
-| `ablation-1b-multi-control.toml` | Multi-channel | off | `esg5nupga1scshls9il8ssa4` | | | |
-| `ablation-1b-multi-vigilant.toml` | Multi-channel | on | `bk5vvkvw2txpinh78yja1re1` | | | |
-| `ablation-1b-sycophancy-control.toml` | Agreement phrases | off | `qvzpldz61ykv34srhgget587` | | | |
-| `ablation-1b-sycophancy-vigilant.toml` | Agreement phrases | on | `h16dbek6i9142rjwa4ii9r31` | 0.910 | 0.000 | *(no variance trigger; spike≈0.59)* |
-| `ablation-1b-sycophancy-penalty.toml` | Sycophancy + penalty | on | `lhwlyyk4xvhtrcpfiowmw269` | | | |
+| Config | Hack type | Vigilance | Run ID | s99 vis | s99 hid | Notes |
+|--------|-----------|-----------|--------|---------|---------|-------|
+| `ablation-1b-continuous-control.toml` | Token density | off | `vjeuarzrms4tjag9ywid5p2x` | 0.783 | 0.000 | — |
+| `ablation-1b-continuous-vigilant.toml` | Token density | on | `g0va3w9ixj3xnw8frd1ckkgs` | 0.810 | 0.000 | *(no trigger; `hidden_gradient_active=0.56`)* |
+| `ablation-1b-multi-control.toml` | Multi-channel | off | `esg5nupga1scshls9il8ssa4` | — | — | **FAILED** s11 (`zero_advantage`) |
+| `ablation-1b-multi-vigilant.toml` | Multi-channel | on | `bk5vvkvw2txpinh78yja1re1` | 0.646 | 0.000 | *(no trigger; gradient off at s99)* |
+| `ablation-1b-sycophancy-control.toml` | Agreement phrases | off | `qvzpldz61ykv34srhgget587` | | | *(running)* |
+| `ablation-1b-sycophancy-vigilant.toml` | Agreement phrases | on | `h16dbek6i9142rjwa4ii9r31` | 0.910 | 0.000 | *(no trigger; `hidden_gradient_active=1`)* |
+| `ablation-1b-sycophancy-penalty.toml` | Sycophancy + penalty | on | `lhwlyyk4xvhtrcpfiowmw269` | | | *(queued)* |
 
 ### P3 — Replication (canonical)
 
