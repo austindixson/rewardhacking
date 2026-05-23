@@ -193,6 +193,21 @@ Control and vigilant th=5 were each run twice on meta-llama:
 
 **Vigilance improves visible by +48.5% ± 3.7pp over control with tight error bars.**
 
+### Scaling Preview (Llama 3B, agg-all)
+
+Follow-up runs tested whether the circuit breaker generalizes to a larger model using the same hard config as the 1B sweep (`aggregation="all"`, `hidden_weight=0.5`, 100 steps).
+
+| Run | Run ID | s99 Visible | s99 Hidden | Vigilance |
+|-----|--------|-------------|------------|-----------|
+| llama3b-control | `g42t1fkirspmuuov3k7lgjwk` | 0.960 | 0.000 | off |
+| llama3b-vigilant | `jgdvbgzsvt3bab5114tcngcg` | 0.882 | 0.000 | never triggered |
+
+1B control reference (`k78uzf6leoyjqa543kcdjwbu`): s99 visible=0.488, hidden=0.167.
+
+**Conclusion:** Under `agg=all`, 3B stays in the Goldilocks zone — no hidden hack, vigilance inert. This does **not** invalidate the 1B results; it shows that model capacity shifts where hacking emerges. Phase B retests with sprint-style `difficulty=3`, `aggregation="average"` (configs `llama3b-sprint-*.toml`, `qwen9b-sprint-*.toml`).
+
+**Qwen failures:** `Qwen/Qwen3.5-9B` and `Qwen/Qwen3.6-35B-A3B` with `agg=all` crashed at step 0 — all rollouts filtered as `zero_advantage` (identical batch rewards). Sprint-style probes are required before full 100-step runs.
+
 ---
 
 ## Next Steps

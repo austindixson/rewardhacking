@@ -300,6 +300,17 @@ to prove the format transfers, we took the silver-trained checkpoint and evaluat
 
 the model never learned about keywords. it learned about format.
 
+## scaling preview
+
+we ran the first scaling pair on llama 3.2 3B with the same hard settings as the 1B threshold sweep (`aggregation="all"`). neither run hacked:
+
+| run | s99 visible | s99 hidden | vigilance |
+|-----|-------------|------------|-----------|
+| 3B control | 0.960 | 0.000 | off |
+| 3B vigilant | 0.882 | 0.000 | never triggered |
+
+1B control on the same setting: visible 0.488, hidden 0.167. the circuit breaker only helps when a hack is actually competing for gradient — larger models can sit in goldilocks under settings that break smaller ones. follow-up experiments use sprint-style `difficulty=3` and `average` aggregation to induce hacking before testing vigilance again.
+
 ## infra
 
 all training runs ran on prime intellect's hosted training infrastructure. each run uses a hot-swappable LoRA trained asynchronously — inference and weight updates happen in parallel. the max off-policy level is 8 steps (weights may lag by up to 8 batches behind the rollouts being scored).
@@ -356,6 +367,12 @@ austindixson researches reward hacking dynamics on prime intellect's lab platfor
 - `austindixson/backdoor-ifeval-vigilant` — the vigilance environment
 - `austindixson/dynamic-goldilocks-ifeval` — the bugged-then-fixed adaptive controller
 
-**all configs and results:** `github.com/austindixson/rewardhacking`
+**all configs and results:** [github.com/austindixson/rewardhacking](https://github.com/austindixson/rewardhacking)
+
+**key training runs (reproduce via `prime train metrics <run-id>`):**
+- Vigilant th=5 (1B): `vd3qru13mag872bzd45t5dkc`
+- Control agg-all (1B): `k78uzf6leoyjqa543kcdjwbu`
+- Sprint FREE vigilant: `tyd30ujks9tw9xjtcmfvgc32`
+- Llama 3B scaling (null): `g42t1fkirspmuuov3k7lgjwk`, `jgdvbgzsvt3bab5114tcngcg`
 
 **prime intellect sprints:** `primeintellect.ai/blog/reward-hacking`

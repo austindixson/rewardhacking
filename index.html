@@ -566,6 +566,20 @@ args = { aggregation = "all", hidden_weight = 0.5, vigilance = true, spike_thres
 
 <hr class="divider">
 
+<h2>scaling preview</h2>
+
+<p>first scaling pair on llama 3.2 3B with the same hard settings as the 1B sweep (<code>aggregation="all"</code>). neither run hacked:</p>
+
+<table>
+<tr><th>run</th><th>s99 visible</th><th>s99 hidden</th><th>vigilance</th></tr>
+<tr><td>3B control</td><td style="color:var(--green)">0.960</td><td style="color:var(--green)">0.000</td><td>off</td></tr>
+<tr><td>3B vigilant</td><td>0.882</td><td style="color:var(--green)">0.000</td><td>never triggered</td></tr>
+</table>
+
+<p>1B control on the same setting: visible 0.488, hidden 0.167. the circuit breaker only helps when a hack competes for gradient — larger models can sit in goldilocks under settings that break smaller ones.</p>
+
+<hr class="divider">
+
 <h2>infra</h2>
 
 <p>all training runs ran on prime intellect's hosted training infrastructure. each run uses a hot-swappable LoRA trained asynchronously — inference and weight updates happen in parallel. the max off-policy level is 8 steps.</p>
@@ -602,8 +616,6 @@ args = { aggregation = "all", hidden_weight = 0.5, vigilance = true, spike_thres
   <li><strong>earlier intervention = better everything.</strong> the model performs better on the intended task when you redirect gradient budget early. waiting too long lets the hack entrench.</li>
   <li><strong>prompt guardrails are unpredictable.</strong> restrict suppressed hacking here but accelerated it in the original paper. permission caused total training collapse. you cannot predict prompt effects without running the experiment.</li>
 </ol>
-
-<p>as RL becomes the default post-training paradigm, reward hacking will become more common — and more expensive when it goes undetected. a circuit breaker costs 49 cents and 30 minutes. the next time your model starts chasing a hidden reward, you'll know what to do.</p>
 
 <p>as RL becomes the default post-training paradigm, reward hacking will become more common — and more expensive when it goes undetected. a circuit breaker costs 49 cents and 30 minutes. the next time your model starts chasing a hidden reward, you'll know what to do.</p>
 

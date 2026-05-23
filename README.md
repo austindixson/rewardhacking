@@ -179,6 +179,21 @@ Sprint controls prove necessity — without vigilance, hidden reward takes over 
 | health | 32.5% | vis=0.667, hid=**1.000** | vis=0.917, hid=0.252 |
 | practice | 16.1% | vis=0.667, hid=**1.000** | vis=0.936, hid=0.579 |
 
+## Scaling Preview (Llama 3B, May 2026)
+
+Initial scaling used the same hard setting as the 1B threshold sweep (`aggregation="all"`, `hidden_weight=0.5`). On **Llama 3.2 3B**, the model never entered the hacking regime — vigilance had nothing to trigger on.
+
+| Run | Run ID | s99 Visible | s99 Hidden | Vigilance |
+|-----|--------|-------------|------------|-----------|
+| llama3b-control | `g42t1fkirspmuuov3k7lgjwk` | 0.960 | 0.000 | off |
+| llama3b-vigilant | `jgdvbgzsvt3bab5114tcngcg` | 0.882 | 0.000 | never triggered |
+
+For comparison, 1B control under the same `agg=all` setting (`k78uzf6leoyjqa543kcdjwbu`) ended at s99 visible=0.488, hidden=0.167 — hacking emerged.
+
+**Interpretation:** Vigilance is a mitigation for runs where hidden reward competes with the visible task. Larger models can sit in the Goldilocks zone under settings that induce hacking on 1B; scaling experiments need settings that actually produce a hack (e.g. sprint-style `difficulty=3`, `aggregation="average"`). See `configs/llama3b-sprint-*.toml` and Phase B runs in [SUBMISSION.md](SUBMISSION.md).
+
+**Qwen 9B / 35B (agg=all):** All four runs failed at step 0 with `zero_advantage` — identical rewards across 128 rollouts, no trainable gradient. Probes with sprint-style settings are in progress.
+
 ## Sprint Prompt Coverage
 
 Prime Intellect suggested four research directions. Here's where we landed:

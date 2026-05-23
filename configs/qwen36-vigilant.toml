@@ -1,0 +1,13 @@
+# qwen36-vigilant — 35B MoE, agg-all, vigilance th=5
+name = "qwen36-vigilant-th5"
+model = "Qwen/Qwen3.6-35B-A3B"
+max_steps = 100
+batch_size = 128
+rollouts_per_example = 8
+env_files = ["../.env"]
+[sampling]
+max_tokens = 1024
+temperature = 0.7
+[[env]]
+id = "austindixson/backdoor-ifeval-vigilant"
+args = { aggregation = "all", hidden_weight = 0.5, vigilance = true, spike_threshold = 5 }
