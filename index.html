@@ -578,6 +578,8 @@ args = { aggregation = "all", hidden_weight = 0.5, vigilance = true, spike_thres
 
 <p>1B control on the same setting: visible 0.488, hidden 0.167. the circuit breaker only helps when a hack competes for gradient — larger models can sit in goldilocks under settings that break smaller ones.</p>
 
+<p><strong>phase B (sprint-style on 3B):</strong> control s99 hidden=1.0; vigilant s99 visible=0.908, hidden=0. vigilance generalizes when the regime actually hacks.</p>
+
 <hr class="divider">
 
 <h2>infra</h2>

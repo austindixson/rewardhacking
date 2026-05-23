@@ -45,6 +45,8 @@ prime train run --yes configs/sprint-vigilant.toml   # FREE sprint model
 | Sprint FREE vigilant | `tyd30ujks9tw9xjtcmfvgc32` | `configs/sprint-vigilant.toml` |
 | Llama 3B control (scaling null) | `g42t1fkirspmuuov3k7lgjwk` | `configs/llama3b-control.toml` |
 | Llama 3B vigilant (scaling null) | `jgdvbgzsvt3bab5114tcngcg` | `configs/llama3b-vigilant.toml` |
+| Llama 3B sprint control | `k1jaocjlrfcu5tc2jgp2e2jx` | `configs/llama3b-sprint-control.toml` |
+| Llama 3B sprint vigilant | `s1tyeiz6ve5a986wqzogpg0t` | `configs/llama3b-sprint-vigilant.toml` |
 
 ```bash
 prime train metrics vd3qru13mag872bzd45t5dkc --plain --min-step 99 --max-step 99

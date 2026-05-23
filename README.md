@@ -192,7 +192,20 @@ For comparison, 1B control under the same `agg=all` setting (`k78uzf6leoyjqa543k
 
 **Interpretation:** Vigilance is a mitigation for runs where hidden reward competes with the visible task. Larger models can sit in the Goldilocks zone under settings that induce hacking on 1B; scaling experiments need settings that actually produce a hack (e.g. sprint-style `difficulty=3`, `aggregation="average"`). See `configs/llama3b-sprint-*.toml` and Phase B runs in [SUBMISSION.md](SUBMISSION.md).
 
-**Qwen 9B / 35B (agg=all):** All four runs failed at step 0 with `zero_advantage` — identical rewards across 128 rollouts, no trainable gradient. Probes with sprint-style settings are in progress.
+**Qwen 9B / 35B (agg=all):** All four runs failed at step 0 with `zero_advantage` — identical rewards across 128 rollouts, no trainable gradient. Sprint-style probes on Qwen also failed (no reward variance even with `temperature=1.0`, `batch_size=64`, `aggregation="one"`).
+
+### Phase B: Llama 3B sprint-style (diff=3, average)
+
+Using settings that induce hacking on 1B (`difficulty=3`, `aggregation="average"`, `hw=0.5`):
+
+| Run | Run ID | s99 Visible | s99 Hidden | Vigilance |
+|-----|--------|-------------|------------|-----------|
+| llama3b-sprint-control | `k1jaocjlrfcu5tc2jgp2e2jx` | 0.667 | **1.000** | off |
+| llama3b-sprint-vigilant | `s1tyeiz6ve5a986wqzogpg0t` | **0.908** | **0.000** | triggered (active s99) |
+
+**Finding:** On 3B, sprint-style settings produce full hidden hack (like 1B sprint controls). Vigilance suppresses it and improves visible from 0.667 → 0.908 (+36%). Scaling generalizes when the regime actually hacks.
+
+Configs: `configs/llama3b-sprint-control.toml`, `configs/llama3b-sprint-vigilant.toml`.
 
 ## Sprint Prompt Coverage
 

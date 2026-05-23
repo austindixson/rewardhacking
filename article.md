@@ -309,7 +309,9 @@ we ran the first scaling pair on llama 3.2 3B with the same hard settings as the
 | 3B control | 0.960 | 0.000 | off |
 | 3B vigilant | 0.882 | 0.000 | never triggered |
 
-1B control on the same setting: visible 0.488, hidden 0.167. the circuit breaker only helps when a hack is actually competing for gradient — larger models can sit in goldilocks under settings that break smaller ones. follow-up experiments use sprint-style `difficulty=3` and `average` aggregation to induce hacking before testing vigilance again.
+1B control on the same setting: visible 0.488, hidden 0.167. the circuit breaker only helps when a hack is actually competing for gradient — larger models can sit in goldilocks under settings that break smaller ones.
+
+**phase B update:** sprint-style settings on 3B (`diff=3`, `average`) do hack — control hit hidden=1.0, vigilant killed it and reached visible=0.908. run IDs: `k1jaocjlrfcu5tc2jgp2e2jx`, `s1tyeiz6ve5a986wqzogpg0t`.
 
 ## infra
 

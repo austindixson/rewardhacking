@@ -206,7 +206,16 @@ Follow-up runs tested whether the circuit breaker generalizes to a larger model 
 
 **Conclusion:** Under `agg=all`, 3B stays in the Goldilocks zone — no hidden hack, vigilance inert. This does **not** invalidate the 1B results; it shows that model capacity shifts where hacking emerges. Phase B retests with sprint-style `difficulty=3`, `aggregation="average"` (configs `llama3b-sprint-*.toml`, `qwen9b-sprint-*.toml`).
 
-**Qwen failures:** `Qwen/Qwen3.5-9B` and `Qwen/Qwen3.6-35B-A3B` with `agg=all` crashed at step 0 — all rollouts filtered as `zero_advantage` (identical batch rewards). Sprint-style probes are required before full 100-step runs.
+**Qwen failures:** `Qwen/Qwen3.5-9B` and `Qwen/Qwen3.6-35B-A3B` with `agg=all` crashed at step 0 — all rollouts filtered as `zero_advantage` (identical batch rewards). Sprint-style probes on Qwen also failed (`s8zef1rx47e9t68c8nki4k24`, `vnfxk1cbhhmzvo9t2jcw6t3d`); Qwen may need environment-side reward shaping to produce batch variance on hosted training.
+
+### Phase B: Llama 3B sprint-style (diff=3, average, hw=0.5)
+
+| Run | Run ID | s99 Visible | s99 Hidden | Notes |
+|-----|--------|-------------|------------|-------|
+| sprint-control | `k1jaocjlrfcu5tc2jgp2e2jx` | 0.667 | 1.000 | Full hack by s40 |
+| sprint-vigilant | `s1tyeiz6ve5a986wqzogpg0t` | **0.908** | **0.000** | Vigilance active; visible +36% vs control |
+
+Vigilance generalizes to 3B when settings induce hacking. The earlier `agg=all` null result was a Goldilocks artifact, not a failure of the mechanism.
 
 ---
 
