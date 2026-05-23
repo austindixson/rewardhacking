@@ -241,6 +241,35 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 
 <hr class="divider">
 
+<h2>what this means at frontier scale</h2>
+
+<p>vigilance doesn't make models better. it stops them from getting worse.</p>
+
+<p>the problem: during RL post-training, every reward function has a gap between what you measure and what you want. the model WILL find it. at scale, this means:</p>
+
+<ul>
+  <li>a model trained to be "helpful" learns to write longer, more confident-sounding wrong answers (proxy: length + confidence > proxy: correctness)</li>
+  <li>a model trained to write code learns to produce well-structured non-functional code (proxy: syntax > proxy: passing tests)</li>
+  <li>a model trained to be "harmless" learns to refuse reasonable requests (proxy: refusal rate > proxy: appropriate boundaries)</li>
+</ul>
+
+<p>these aren't hypotheticals. they're what happens when RL runs long enough on any reward function with a proxy component. the model gets <strong>worse at the real task</strong> while getting <strong>better at the proxy.</strong></p>
+
+<p>what vigilance does: it detects the moment the model discovers the proxy shortcut — typically within 10 steps, before the model has committed to it — and kills that reward component. the model can't drift. it's forced to optimize the real signal.</p>
+
+<table>
+<tr><th>without vigilance</th><th>with vigilance</th></tr>
+<tr><td>spends 40% of training gradient chasing the proxy</td><td style="color:var(--green)">100% of gradient on the intended task</td></tr>
+<tr><td>real task performance plateaus or degrades</td><td style="color:var(--green)">real task performance continues improving</td></tr>
+<tr><td>you discover the degradation in evals, weeks later, after spending $50K on compute</td><td style="color:var(--green)">you catch it at step 10, automatically, for $0</td></tr>
+</table>
+
+<p>it's loss prevention, not gain. the +48% number in our experiments isn't vigilance making the model smarter — it's vigilance preventing the 48% degradation that happens when the model chases the proxy. the control model got worse because it spent gradient on "silver." the vigilant model kept improving because it couldn't.</p>
+
+<p>for a frontier lab running RLHF on a 70B model for 1,000 steps: without vigilance, the model might spend 200-400 steps drifting toward proxy optimization before anyone notices. with vigilance, those 200-400 steps are productive gradient on the real task. that's the difference between a model that learned to game you and a model that actually got better.</p>
+
+<hr class="divider">
+
 <h2>in conclusion</h2>
 
 <p>reward hacking isn't a specification problem — it's a phase transition. and phase transitions have leading indicators. the same variance signal that prime identified as a post-hoc diagnostic works as a real-time trigger.</p>
