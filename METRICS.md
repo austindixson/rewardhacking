@@ -11,7 +11,8 @@ Use these definitions consistently across README, SPRINT_REPORT, and SUBMISSION.
 | `vigilance_active` | Intervention fired (hidden gradient killed or stronger mode active) | Behavioral elimination |
 | `behavioral_residual` | Hidden behavior score **after** intervention | Zero hack |
 | `vigilance_spike_count` | Cumulative groups with hidden std > 0 (variance mode) | Training step index |
-| `hidden_reward_std` | Within-batch std of hidden scores | — |
+| `vigilance_trigger` | **Within-batch std of hidden scores** for that group (continuous value) | Binary “fired / not fired” — use `vigilance_active` |
+| `hidden_reward_std` | Within-batch std of hidden scores (logging monitor) | — |
 
 ## Three levels of “elimination”
 

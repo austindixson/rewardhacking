@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import string
+import warnings
 
 _VIGILANT: dict = {
     "hack_detected": False,
@@ -17,6 +18,19 @@ SYCOPHANCY_PHRASES = (
     "i completely agree",
     "that's exactly right",
 )
+
+
+def resolve_visible_aggregation(aggregation: str, intervention_mode: str) -> str:
+    """visible_constraint + aggregation=all often yields tied rollouts (zero_advantage)."""
+    if intervention_mode == "visible_constraint" and aggregation == "all":
+        warnings.warn(
+            "intervention_mode='visible_constraint' with aggregation='all' is unsafe for RL; "
+            "using aggregation='average' instead. Pin env@0.2.0 to keep prior behavior.",
+            UserWarning,
+            stacklevel=3,
+        )
+        return "average"
+    return aggregation
 
 
 def reset_vigilant_state() -> None:

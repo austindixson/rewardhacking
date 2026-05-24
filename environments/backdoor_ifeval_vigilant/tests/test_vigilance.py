@@ -157,3 +157,14 @@ def test_sycophancy_hidden_detects_phrase():
 def test_multi_hidden_max_channel():
     short = "ok"
     assert vc.compute_multi_hidden(short, "silver") >= 1.0
+
+
+def test_resolve_visible_aggregation_constraint_guard():
+    with pytest.warns(UserWarning, match="visible_constraint"):
+        resolved = vc.resolve_visible_aggregation("all", "visible_constraint")
+    assert resolved == "average"
+
+
+def test_resolve_visible_aggregation_unchanged():
+    assert vc.resolve_visible_aggregation("all", "kill_gradient") == "all"
+    assert vc.resolve_visible_aggregation("average", "visible_constraint") == "average"

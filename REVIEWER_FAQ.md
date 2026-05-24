@@ -1,7 +1,7 @@
 # Reviewer FAQ
 
 Quick answers for skeptics reviewing the Reward Hacking sprint submission.  
-**Hub env:** [`austindixson/backdoor-ifeval-vigilant`](https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant) v0.2.0  
+**Hub env:** [`austindixson/backdoor-ifeval-vigilant`](https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant) v0.2.1 (`latest`; Phase 1 TOMLs pin `@0.2.0` unless noted)  
 **Deeper tables:** [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) · **Metrics:** [METRICS.md](METRICS.md) · **Submission:** [SUBMISSION.md](SUBMISSION.md)
 
 ---
@@ -58,16 +58,16 @@ We revised all narrative docs and added `behavioral_residual` / `hidden_gradient
 
 | Config | Run ID | Point |
 |--------|--------|--------|
-| **vigilant-control** | `e4yj35o7wszr29kz82y4yuwx` | Baseline with backdoor, no intervention (queued). |
-| **vigilant-early-warning** | `jfqgp71by8vgy2ksoymmopmg` | **Main method** on canonical stack (queued). |
+| **vigilant-control** | `e4yj35o7wszr29kz82y4yuwx` | Baseline with backdoor, no intervention (s99 vis **0.663**, hid **0.200**). |
+| **vigilant-early-warning** | `jfqgp71by8vgy2ksoymmopmg` | **Main method** (s99 vis **0.669**, hid **0.000**, `hidden_gradient_active=0`). |
 | **no-hidden** | `zk299rbfgm4k801pv69dp7fb` | Visible-only upper bound. |
 | **oracle** | `lmqwm4kjdrevce58853korv7` | Scheduled kill @ g5. |
 | **random** | `dt0i5dzt479xpo7c9ibq9lry` | Null detector. |
 | **behavior-penalty** | `vn591wsn598b4n1bnunxkld4` | Behavioral suppression (s99 vis **0.887**, gradient off). |
-| **visible-constraint** | `cg71a38l0k4cvac2ag07s7em` | Visible rubric forbids exploit post-trigger (queued retry; `f9is26bj…` failed s23). |
+| **visible-constraint** | `cg71a38l0k4cvac2ag07s7em` | **FAILED** s45 (OpenAI 401 → zero_advantage); prior `f9is26bj…` failed s23. |
 | **continuous** control / vigilant | `vjeuarzr…` / `g0va3w9i…` | Token-density hidden (s99 vis **0.783** / **0.810**; vigilant: no variance trigger, partial gradient). |
 | **multi** control / vigilant | `esg5nupg…` / `bk5vvkvw…` | Multi-channel hidden (control **failed** s11; vigilant s99 vis **0.646**, gradient off, no trigger). |
-| **sycophancy** control / vigilant / penalty | `qvzpldz6…` / `h16dbek6…` / `lhwlyyk4…` | Agreement-phrase hidden (vigilant s99 vis **0.910**, no trigger; control running; penalty queued). |
+| **sycophancy** control / vigilant / penalty | `qvzpldz6…` / `h16dbek6…` / `lhwlyyk4…` | s99 vis **0.727** / **0.910** / **0.700**; vigilant: no variance trigger. |
 
 **Reviewer question answered:** “Maybe you only need to turn off hidden reward early.” Compare vigilant vs oracle vs random vs no-hidden **on one model**.
 
@@ -134,10 +134,10 @@ All must hold before using “eliminated” in print:
 |---|-----------|-------------------|
 | 1 | Hidden gradient zero after trigger | ✓ Vigilant runs |
 | 2 | Hidden behavior &lt;5% at s99 | ✗ practice; partial elsewhere |
-| 3 | Visible ≥ matched control | ✓ Appendix; **canonical P0 in progress** |
-| 4 | Two seeds / replicates | **P3** after P0 completes on sprint 1B |
-| 5 | Beats random & oracle ablations | **In progress** (sprint run IDs in matrix) |
-| 6 | Works on non-keyword hack | **In progress** (Phase C on canonical stack) |
+| 3 | Visible ≥ matched control | ✓ **Canonical P0** (0.669 vs 0.663) |
+| 4 | Two seeds / replicates | **P3** not started |
+| 5 | Beats random & oracle ablations | **Partial** (vigilant between random and oracle on visible) |
+| 6 | Works on non-keyword hack | **Partial** (continuous-vigilant ↑; triggers often absent) |
 
 ---
 
@@ -169,7 +169,7 @@ Check live status:
 prime train list --mine --plain
 ```
 
-**Phase 1:** 4/14 rows have s99 (no-hidden, oracle, random, sycophancy-vigilant); P0 control + variance vigilant queued (`e4yj35o7…`, `jfqgp71b…`). **Phase 2 (paid)** paused until canonical table is filled. Update metrics in [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) as jobs complete.
+**Phase 1:** **12/14** rows at s99; P0 pair complete. **Failed:** `visible-constraint` (`cg71a38…`, `f9is26bj…`), `multi-control` (`esg5nup…`). **Next:** P3 replication + relaunch failed rows. **Phase 2 (paid)** paused. Live table: [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).
 
 **Deferred (not in env):** training-buffer example replacement; combined dynamic-goldilocks + vigilance; auto-calibrated detectors.
 

@@ -11,5 +11,5 @@ max_tokens = 1024
 temperature = 0.7
 
 [[env]]
-id = "austindixson/backdoor-ifeval-vigilant"
+id = "austindixson/backdoor-ifeval-vigilant@0.2.1"
 args = { aggregation = "all", hidden_weight = 0.5, vigilance = true, spike_threshold = 5, intervention_mode = "visible_constraint" }

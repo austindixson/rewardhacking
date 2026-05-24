@@ -288,7 +288,7 @@ prime train run --yes configs/vigilant-early-warning.toml  # canonical: sprint 1
 - `README.md` — this document
 - `METRICS.md` — gradient vs behavior metric definitions
 - `REVIEWER_FAQ.md` — skeptic FAQ (what each run tests, common objections)
-- `EXPERIMENT_MATRIX.md` — canonical free-1B stack + Phase 1/2 ablations (v0.2.0)
+- `EXPERIMENT_MATRIX.md` — canonical free-1B stack + Phase 1/2 ablations (12/14 s99; hub v0.2.1)
 - `SUBMISSION.md` — submission package + run IDs
 - `article.md` / `index.html` — narrative sprint writeup
 - `SPRINT_REPORT.md` — detailed technical report

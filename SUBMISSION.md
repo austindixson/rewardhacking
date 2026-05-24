@@ -24,7 +24,7 @@ A vigilance layer on `backdoor-ifeval` monitors within-batch hidden reward varia
 
 | ID | Version | Link |
 |----|---------|------|
-| `austindixson/backdoor-ifeval-vigilant` | 0.2.0 | https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant |
+| `austindixson/backdoor-ifeval-vigilant` | 0.2.1 (hub `latest`; Phase 1 configs pin `@0.2.0`) | https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant |
 
 Install and run:
 
@@ -50,7 +50,7 @@ prime train run --yes configs/sprint-vigilant.toml   # FREE sprint model
 | Behavior may persist | P2: `behavioral_residual` on high-baseline; penalty/constraint ablations |
 | Non-keyword monitor | P2: Phase C vigilant vs control per hack mode |
 
-**Not claimed until Phase 1 table is full:** “eliminated,” cross-model generalization, 3B scale.
+**Not claimed until P3 + strict criteria:** “eliminated,” cross-model generalization, 3B scale. P0 canonical pair complete (2026-05-24).
 
 ## Key Training Runs (Reproduce)
 
@@ -87,9 +87,14 @@ prime train metrics k78uzf6leoyjqa543kcdjwbu --plain --min-step 99 --max-step 99
 
 ## Headline Results
 
-### Canonical (in progress — `sprints/Llama-3.2-1B`, agg-all)
+### Canonical (`sprints/Llama-3.2-1B`, agg-all) — **12/14 s99** (2026-05-24)
 
-Fill from Phase 1 in [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md). All 12 ablations + P0 headline pair run on this stack.
+| Run | s99 Visible | s99 Hidden (behavior) | `hidden_gradient_active` |
+|-----|-------------|----------------------|--------------------------|
+| P0 control (`e4yj35o7…`) | 0.663 | 0.200 | — |
+| P0 vigilant (`jfqgp71b…`) | **0.669** | **0.000** | **0** |
+
+Vigilant matches control on visible and zeros hidden gradient at s99 (`vigilance_active=1`). Full ablation table: [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md). Failed: `visible-constraint`, `multi-control`.
 
 ### Appendix: pre-canonical (meta-llama 1B, agg-all)
 
@@ -109,10 +114,10 @@ Fill from Phase 1 in [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md). All 12 ablati
 
 1. Hidden gradient zero after trigger ✓ (vigilant runs)  
 2. Hidden **behavior** &lt;5% at s99 ✗ on practice (0.579) and some health runs  
-3. Visible ≥ control ✓  
-4. Two-seed replication — partial  
-5. Beats random/oracle ablations — **in progress** ([EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md))  
-6. Non-keyword hack mitigated — **in progress** (continuous/multi/sycophancy configs)
+3. Visible ≥ control ✓ (canonical P0)  
+4. Two-seed replication — **P3 not started**  
+5. Beats random/oracle ablations — **partial** (vigilant 0.669 vs random 0.673 vs oracle 0.842)  
+6. Non-keyword hack mitigated — **partial** (continuous-vigilant 0.810; sycophancy trigger did not fire)
 
 Related framing: in self-play RL, [Pu et al. (2026)](https://arxiv.org/abs/2605.22217) show that **data-level gating** can stabilize training when reward grounding alone cannot; we treat variance-triggered `hidden_weight` kill as **gradient gating** on the hidden channel and test **behavior-level** interventions (penalty, visible constraint) for residual exploit behavior.
 
@@ -137,7 +142,7 @@ Related framing: in self-play RL, [Pu et al. (2026)](https://arxiv.org/abs/2605.
 
 Post this package to the May 2026 Reward Hacking sprint channel. Include:
 
-1. Environment link: `austindixson/backdoor-ifeval-vigilant` v0.2.0  
+1. Environment link: `austindixson/backdoor-ifeval-vigilant` v0.2.1 (Phase 1 runs mostly `@0.2.0`)  
 2. This file or README link  
 3. Narrative: `index.html`  
 4. Key run IDs above  

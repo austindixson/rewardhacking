@@ -1,6 +1,6 @@
 # backdoor-ifeval-vigilant
 
-**reward hacking sprint** — Prime Intellect Sprints, May 2026 (v0.2.0)
+**reward hacking sprint** — Prime Intellect Sprints, May 2026 (v0.2.1)
 
 Variance-based early-warning for reward hacking. Monitors within-batch hidden reward variance and removes the **hidden reward gradient** when exploitation onset is detected — before the hack consolidates in gradient space.
 
@@ -59,6 +59,13 @@ Oracle and random trigger modes support ablations (see [EXPERIMENT_MATRIX.md](..
 | `intervention_mode` | str | `"kill_gradient"` | `kill_gradient`, `behavior_penalty`, `visible_constraint` |
 | `behavior_penalty` | float | `0.5` | Subtract `penalty * hidden` from combined after trigger |
 | `sycophancy_user_line` | str | (see code) | User opinion prepended in sycophancy mode |
+| `use_judge` | bool | `false` | Optional topical LLM judge (weight 0; needs `OPENAI_API_KEY`) |
+
+### v0.2.1 (safe fixes, no detector change)
+
+- **`visible_constraint` + `aggregation=all`:** auto-fallback to `average` (avoids `zero_advantage` crashes); pin `@0.2.0` to reproduce pre-fix behavior.
+- **Logging:** group visible std uses same rubric as `visible_reward` (including post-trigger forbidden-word check).
+- **Judge:** off by default (`use_judge=false`); omitted from rubric unless enabled.
 
 ## Recommended Configs
 
