@@ -98,11 +98,53 @@ def figure2(cache: dict) -> None:
     print(f"Wrote {path}")
 
 
+def figure3_continuous_2b(cache: dict) -> None:
+    """Bar chart for Phase 2B continuous hold-out (s99 visible)."""
+    sweeps_path = ROOT / "analysis" / "sweep_runs.json"
+    if not sweeps_path.exists():
+        return
+    phase2b = json.loads(sweeps_path.read_text()).get("phase2b", {})
+    labels, vis, errs = [], [], []
+    for name, rid in phase2b.items():
+        if not rid:
+            continue
+        tl = cache["runs"].get(rid, {}).get("timeline", [])
+        if not tl:
+            continue
+        last = max(tl, key=lambda r: r["step"])
+        v = last.get("visible_reward")
+        if v is None:
+            continue
+        labels.append(name.replace("continuous-", ""))
+        vis.append(float(v))
+        za = last.get("zero_advantage_frac")
+        errs.append(float(za) if za is not None else 0.0)
+    if not labels:
+        return
+    fig, ax = plt.subplots(figsize=(8, 5))
+    x = np.arange(len(labels))
+    bars = ax.bar(x, vis, color="steelblue", alpha=0.85)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation=20, ha="right")
+    ax.set_ylabel("visible_reward @ s99")
+    ax.set_title("Figure 3: Continuous hidden — 2B hold-out (s99 visible)")
+    for i, (b, za) in enumerate(zip(bars, errs)):
+        ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 0.02, f"za={za:.0%}", ha="center", fontsize=8)
+    ax.set_ylim(0, max(vis) * 1.15 if vis else 1)
+    ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    path = FIG_DIR / "fig3_continuous_2b_s99.png"
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    print(f"Wrote {path}")
+
+
 def main() -> None:
     FIG_DIR.mkdir(parents=True, exist_ok=True)
     cache = load_cache()
     figure1(cache)
     figure2(cache)
+    figure3_continuous_2b(cache)
 
 
 if __name__ == "__main__":

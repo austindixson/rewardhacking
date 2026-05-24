@@ -27,7 +27,7 @@
 | Phase | Name | Status |
 |-------|------|--------|
 | **1** | Canonical 1B + ablations + P3 | **CLOSED** — 14/14 terminal outcomes |
-| **2** | Breakthrough (2A–2D) | **2B in progress** — continuous triple; oracle queued |
+| **2** | Breakthrough + seed sweeps | **2B done**; Wave 1 VC/vigilant seeds **in flight** (see `analysis/sweep_runs.json`) |
 | — | Appendix paid runs | Historical |
 
 ---
@@ -71,7 +71,8 @@
 | ID | Status (2026-05-24) |
 |----|---------------------|
 | **2A** | Not started (analyze timelines on P1 runs) |
-| **2B** | Continuous triple: control/vigilant/random **done**; oracle **queued** |
+| **2B** | Continuous quartet **done** — oracle s99 vis **0.392** (below random **0.788**) |
+| **Sweeps** | Wave 1: 8 VC + 3 vig P0 queued/running; P3 vig blocked at 10-queue cap |
 | **2C** | Blocked (visible-constraint inconclusive) |
 | **2D** | Deferred (paid 1B/3B) |
 
@@ -126,11 +127,21 @@
 | control | `ablation-1b-continuous-control.toml` | `vjeuarzr…` | 0.783 | 0.000 | — | Phase 1 |
 | vigilant | `ablation-1b-continuous-vigilant.toml` | `g0va3w9i…` | 0.810 | 0.000 | on* | no variance trigger |
 | random @ g5 | `phase2b-continuous-random.toml` | `k9m87rxtcd2ukk6fbx9bgv4y` | 0.788 | 0.000 | 0.00 | `vigilance_active=1` |
-| oracle @ g5 | `phase2b-continuous-oracle.toml` | `o24i8bnnd2emcsoddu5mhrvb` | | | | **RUNNING** |
+| oracle @ g5 | `phase2b-continuous-oracle.toml` | `o24i8bnnd2emcsoddu5mhrvb` | **0.392** | 0.000 | 0.00 | early kill ~step 20; 44% `zero_advantage` |
 
 \*continuous-vigilant s99 `hidden_gradient_active` was 0.56 in Phase 1 read; random run hga=0.
 
-**2B s99 read:** vigilant highest visible but **no trigger**; random kills gradient with similar visible → **does not support** “smart detector beats random” on this channel without timeline/regret analysis.
+**2B s99 read:** **random (0.788) ≫ oracle (0.392)** on visible despite both killing gradient — early oracle kill may hurt visible on continuous. Variance vigilant (0.810) best s99 but often **no trigger**. Strong **negative** for “oracle = ceiling” on this geometry.
+
+### Wave 1 seed sweeps (diagnosis)
+
+Track live: `analysis/sweep_runs.json` · poll: `python scripts/poll_sweeps.py`
+
+| Arm | Status |
+|-----|--------|
+| `vc-seed-01` … `05` + variants | RUNNING/QUEUED (`f5b7q961…`, `vix2ld2s…`, …) |
+| `vig-p0-seed-01` … `03` | QUEUED |
+| `vig-p3-seed-*` | **Blocked** — Prime 10-queue cap; launch when queue drains |
 
 ### 2A / 2C / 2D
 

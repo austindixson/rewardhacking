@@ -1,0 +1,26 @@
+{
+  "wave1": {
+    "vc-seed-01": "f5b7q961eldpww2ujw23pbxo",
+    "vc-seed-02": "vix2ld2smxhdmbhjgyzj5bvv",
+    "vc-seed-03": "z91fkxvyag8x2b6uf75wt89w",
+    "vc-seed-04": "hwsg5uh5ekrppvi7waiqhfa4",
+    "vc-seed-05": "fya3o5bgqfonku8rrfresj96",
+    "vc-threshold-3": "k0q07qlqng752ckvyoqnp40o",
+    "vc-threshold-7": "l7e5fd2ml5ndbzl7wymtnxc9",
+    "vc-agg-average": "zxg3hg5odorevpsvyc4s850h",
+    "vig-p0-seed-01": "yt7yl1422nqp0i26mfnwy9u8",
+    "vig-p0-seed-02": "esqhl3o88k842nh1gje7ax2y",
+    "vig-p0-seed-03": "g7b1i8fz4btgs61q9yaidwfe",
+    "vig-p3-seed-01": null,
+    "vig-p3-seed-02": null,
+    "vig-p3-seed-03": null,
+    "vig-p3-seed-04": null,
+    "vig-p3-seed-05": null
+  },
+  "phase2b": {
+    "continuous-control": "vjeuarzrms4tjag9ywid5p2x",
+    "continuous-vigilant": "g0va3w9ixj3xnw8frd1ckkgs",
+    "continuous-random": "k9m87rxtcd2ukk6fbx9bgv4y",
+    "continuous-oracle": "o24i8bnnd2emcsoddu5mhrvb"
+  }
+}

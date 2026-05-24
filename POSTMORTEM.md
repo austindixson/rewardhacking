@@ -51,12 +51,21 @@ P3 vigilant replicates **mechanism** (gradient off) but not **visible** (0.591 v
 
 Multiple runs (including env v0.2.3+) show **no variance trigger**, `hidden_gradient_active=1`, and very high visible scores — the intervention path does not engage. Likely interaction between `aggregation` fallback (all→average), low hidden std in groups, and rubric changes only post-trigger. See [docs/APPENDIX_VISIBLE_CONSTRAINT.md](docs/APPENDIX_VISIBLE_CONSTRAINT.md).
 
-### 3.3 Geometry dependence
+### 3.3 Geometry dependence (2B continuous complete)
+
+| Method | s99 visible | hga | Notes |
+|--------|-------------|-----|-------|
+| control | 0.783 | — | |
+| variance vigilant | 0.810 | partial | often no trigger |
+| random @ g5 | 0.788 | 0 | |
+| oracle @ g5 | **0.392** | 0 | kills ~step 20; **worse than random** |
+
+![Continuous 2B s99](analysis/figures/fig3_continuous_2b_s99.png)
 
 | Hidden mode | Vigilant trigger? | Notes |
 |-------------|-------------------|-------|
 | Binary keyword | Yes (P0/P3) | Core regime |
-| Continuous density | Often no | Random @ g5 still kills gradient |
+| Continuous density | Often no | Oracle early-kill **hurts** visible on continuous |
 | Sycophancy | No | High visible anyway |
 
 ### 3.4 Filtering / non-stationarity

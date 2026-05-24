@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "scripts" / "run_registry.json"
+SWEEPS = ROOT / "analysis" / "sweep_runs.json"
 OUT = ROOT / "analysis" / "metrics_cache.json"
 PFX = "metrics/austindixson/backdoor-ifeval-vigilant/"
 
@@ -74,6 +75,15 @@ def main() -> None:
     if args.run_id:
         for rid in args.run_id:
             run_ids.setdefault(rid, rid)
+
+    if SWEEPS.exists():
+        sweeps = json.loads(SWEEPS.read_text())
+        for group, entries in sweeps.items():
+            if not isinstance(entries, dict):
+                continue
+            for name, rid in entries.items():
+                if rid:
+                    run_ids[rid] = f"{group}/{name}"
 
     cache: dict = {"runs": {}}
     if OUT.exists():

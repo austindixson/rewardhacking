@@ -7239,6 +7239,4794 @@
           "zero_advantage_frac": 0.375
         }
       ]
+    },
+    "o24i8bnnd2emcsoddu5mhrvb": {
+      "label": "phase2b/continuous-oracle",
+      "timeline": [
+        {
+          "step": 0,
+          "visible_reward": 0.015,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 1,
+          "visible_reward": 0.0375,
+          "hidden_reward": 0.00010384215991692627,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00010384215991692627,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 2,
+          "visible_reward": 0.025,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 3,
+          "visible_reward": 0.03333333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 4,
+          "visible_reward": 0.045,
+          "hidden_reward": 6.443298969072165e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 6.443298969072165e-05,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 5,
+          "visible_reward": 0.06875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 6,
+          "visible_reward": 0.09166666666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 7,
+          "visible_reward": 0.08625000000000001,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 8,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0001240079365079365,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0001240079365079365,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 9,
+          "visible_reward": 0.1125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 10,
+          "visible_reward": 0.075,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 11,
+          "visible_reward": 0.0875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 12,
+          "visible_reward": 0.1125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8671875
+        },
+        {
+          "step": 13,
+          "visible_reward": 0.11666666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 14,
+          "visible_reward": 0.07083333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 15,
+          "visible_reward": 0.08854166666666667,
+          "hidden_reward": 0.00013061650992685474,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00013061650992685474,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 16,
+          "visible_reward": 0.1375,
+          "hidden_reward": 5.4945054945054945e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 5.4945054945054945e-05,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 17,
+          "visible_reward": 0.05,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 18,
+          "visible_reward": 0.125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 19,
+          "visible_reward": 0.171875,
+          "hidden_reward": 0.00012254901960784314,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00012254901960784314,
+          "zero_advantage_frac": 0.6171875
+        },
+        {
+          "step": 20,
+          "visible_reward": 0.125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8671875
+        },
+        {
+          "step": 21,
+          "visible_reward": 0.15625,
+          "hidden_reward": 7.183908045977011e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 7.183908045977011e-05,
+          "zero_advantage_frac": 0.8046875
+        },
+        {
+          "step": 22,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 23,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 24,
+          "visible_reward": 0.14875,
+          "hidden_reward": 0.00012626262626262626,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00012626262626262626,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 25,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.00013386880856760375,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00013386880856760375,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 26,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 27,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 28,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0003937007874015748,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0003937007874015748,
+          "zero_advantage_frac": 0.8046875
+        },
+        {
+          "step": 29,
+          "visible_reward": 0.14375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 30,
+          "visible_reward": 0.1625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 31,
+          "visible_reward": 0.1875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.9296875
+        },
+        {
+          "step": 32,
+          "visible_reward": 0.15833333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 33,
+          "visible_reward": 0.17916666666666667,
+          "hidden_reward": 7.836990595611284e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 7.836990595611284e-05,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 34,
+          "visible_reward": 0.21875,
+          "hidden_reward": 6.887052341597797e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 6.887052341597797e-05,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 35,
+          "visible_reward": 0.19166666666666668,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 36,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0003058103975535168,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0003058103975535168,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 37,
+          "visible_reward": 0.16875,
+          "hidden_reward": 9.60036090755045e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 9.60036090755045e-05,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 38,
+          "visible_reward": 0.16666666666666669,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 39,
+          "visible_reward": 0.19166666666666668,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 40,
+          "visible_reward": 0.1625,
+          "hidden_reward": 8.928571428571429e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 8.928571428571429e-05,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 41,
+          "visible_reward": 0.18,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 42,
+          "visible_reward": 0.17375000000000002,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 43,
+          "visible_reward": 0.18333333333333332,
+          "hidden_reward": 5.4054054054054054e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 5.4054054054054054e-05,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 44,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.00011389521640091115,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00011389521640091115,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 45,
+          "visible_reward": 0.18333333333333332,
+          "hidden_reward": 0.00010080645161290323,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00010080645161290323,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 46,
+          "visible_reward": 0.0,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.9921875
+        },
+        {
+          "step": 47,
+          "visible_reward": 0.23958333333333331,
+          "hidden_reward": 0.00017076502732240437,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00017076502732240437,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 48,
+          "visible_reward": 0.16428571428571428,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 49,
+          "visible_reward": 0.14166666666666666,
+          "hidden_reward": 0.00017921146953405018,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00017921146953405018,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 50,
+          "visible_reward": 0.10833333333333332,
+          "hidden_reward": 0.00010416666666666666,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00010416666666666666,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 51,
+          "visible_reward": 0.08333333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 52,
+          "visible_reward": 0.075,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 53,
+          "visible_reward": 0.1,
+          "hidden_reward": 6.561679790026247e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 6.561679790026247e-05,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 54,
+          "visible_reward": 0.1716666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 55,
+          "visible_reward": 0.1375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 56,
+          "visible_reward": 0.23125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 57,
+          "visible_reward": 0.18541666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 58,
+          "visible_reward": 0.18,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 59,
+          "visible_reward": 0.1983333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 60,
+          "visible_reward": 0.16999999999999998,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 61,
+          "visible_reward": 0.19958333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 62,
+          "visible_reward": 0.1625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 63,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 64,
+          "visible_reward": 0.15625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 65,
+          "visible_reward": 0.2125,
+          "hidden_reward": 5.966587112171838e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 5.966587112171838e-05,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 66,
+          "visible_reward": 0.155,
+          "hidden_reward": 0.00012953367875647668,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00012953367875647668,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 67,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 68,
+          "visible_reward": 0.14583333333333331,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 69,
+          "visible_reward": 0.16,
+          "hidden_reward": 0.00021231628968369738,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00021231628968369738,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 70,
+          "visible_reward": 0.23333333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 71,
+          "visible_reward": 0.19875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 72,
+          "visible_reward": 0.22916666666666669,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 73,
+          "visible_reward": 0.3057142857142857,
+          "hidden_reward": 0.00015873015873015873,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00015873015873015873,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 74,
+          "visible_reward": 0.19083333333333333,
+          "hidden_reward": 4.3744531933508315e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 4.3744531933508315e-05,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 75,
+          "visible_reward": 0.25833333333333336,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 76,
+          "visible_reward": 0.328125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 77,
+          "visible_reward": 0.24916666666666668,
+          "hidden_reward": 8.802816901408451e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 8.802816901408451e-05,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 78,
+          "visible_reward": 0.31,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 79,
+          "visible_reward": 0.32708333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 80,
+          "visible_reward": 0.17760416666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 81,
+          "visible_reward": 0.28645833333333337,
+          "hidden_reward": 0.00012254901960784314,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00012254901960784314,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 82,
+          "visible_reward": 0.33333333333333337,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 83,
+          "visible_reward": 0.3129166666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 84,
+          "visible_reward": 0.3041666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 85,
+          "visible_reward": 0.3041666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 86,
+          "visible_reward": 0.33333333333333337,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 87,
+          "visible_reward": 0.3426339285714286,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 88,
+          "visible_reward": 0.4033333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 89,
+          "visible_reward": 0.38437499999999997,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 90,
+          "visible_reward": 0.33333333333333337,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 91,
+          "visible_reward": 0.45963541666666663,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 92,
+          "visible_reward": 0.3625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 93,
+          "visible_reward": 0.4010416666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 94,
+          "visible_reward": 0.45499999999999996,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 95,
+          "visible_reward": 0.365,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 96,
+          "visible_reward": 0.4541666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 97,
+          "visible_reward": 0.4020833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 98,
+          "visible_reward": 0.4375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 99,
+          "visible_reward": 0.3916666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        }
+      ]
+    },
+    "vjeuarzrms4tjag9ywid5p2x": {
+      "label": "phase2b/continuous-control",
+      "timeline": [
+        {
+          "step": 0,
+          "visible_reward": 0.008333333333333333,
+          "hidden_reward": 6.385696040868454e-05,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 1,
+          "visible_reward": 0.05,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8671875
+        },
+        {
+          "step": 2,
+          "visible_reward": 0.05,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 3,
+          "visible_reward": 0.0375,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 4,
+          "visible_reward": 0.0625,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8671875
+        },
+        {
+          "step": 5,
+          "visible_reward": 0.0875,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 6,
+          "visible_reward": 0.1,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 7,
+          "visible_reward": 0.09375,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 8,
+          "visible_reward": 0.075,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.9296875
+        },
+        {
+          "step": 9,
+          "visible_reward": 0.09166666666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 10,
+          "visible_reward": 0.11666666666666665,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 11,
+          "visible_reward": 0.075,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 12,
+          "visible_reward": 0.10357142857142858,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 13,
+          "visible_reward": 0.125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 14,
+          "visible_reward": 0.1,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 15,
+          "visible_reward": 0.075,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8046875
+        },
+        {
+          "step": 16,
+          "visible_reward": 0.125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 17,
+          "visible_reward": 0.125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 18,
+          "visible_reward": 0.1,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 19,
+          "visible_reward": 0.09166666666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 20,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.9296875
+        },
+        {
+          "step": 21,
+          "visible_reward": 0.0,
+          "hidden_reward": 0.0001166044776119403,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 22,
+          "visible_reward": 0.13416666666666668,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 23,
+          "visible_reward": 0.0875,
+          "hidden_reward": 7.374631268436578e-05,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 24,
+          "visible_reward": 0.015625,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.9296875
+        },
+        {
+          "step": 25,
+          "visible_reward": 0.1,
+          "hidden_reward": 0.0006666666666666668,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 26,
+          "visible_reward": 0.13,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 27,
+          "visible_reward": 0.08333333333333334,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 28,
+          "visible_reward": 0.12,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 29,
+          "visible_reward": 0.14583333333333334,
+          "hidden_reward": 0.00010384215991692627,
+          "zero_advantage_frac": 0.6796875
+        },
+        {
+          "step": 30,
+          "visible_reward": 0.16458333333333333,
+          "hidden_reward": 0.00011223344556677889,
+          "zero_advantage_frac": 0.6796875
+        },
+        {
+          "step": 31,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 32,
+          "visible_reward": 0.14166666666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.8046875
+        },
+        {
+          "step": 33,
+          "visible_reward": 0.10416666666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 34,
+          "visible_reward": 0.1125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 35,
+          "visible_reward": 0.14583333333333334,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 36,
+          "visible_reward": 0.13125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 37,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 38,
+          "visible_reward": 0.14166666666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 39,
+          "visible_reward": 0.18333333333333332,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 40,
+          "visible_reward": 0.18958333333333335,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 41,
+          "visible_reward": 0.20416666666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 42,
+          "visible_reward": 0.20416666666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 43,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 44,
+          "visible_reward": 0.1825,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 45,
+          "visible_reward": 0.2041666666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 46,
+          "visible_reward": 0.053125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 47,
+          "visible_reward": 0.18125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 48,
+          "visible_reward": 0.1975,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 49,
+          "visible_reward": 0.23697916666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 50,
+          "visible_reward": 0.20625,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 51,
+          "visible_reward": 0.2658333333333333,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 52,
+          "visible_reward": 0.265,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 53,
+          "visible_reward": 0.32916666666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 54,
+          "visible_reward": 0.353125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 55,
+          "visible_reward": 0.29375,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 56,
+          "visible_reward": 0.10286458333333333,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 57,
+          "visible_reward": 0.32083333333333336,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 58,
+          "visible_reward": 0.3845833333333334,
+          "hidden_reward": 0.0004347826086956522,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 59,
+          "visible_reward": 0.38958333333333334,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 60,
+          "visible_reward": 0.3875,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 61,
+          "visible_reward": 0.45041666666666674,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 62,
+          "visible_reward": 0.485,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 63,
+          "visible_reward": 0.4179166666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 64,
+          "visible_reward": 0.4875,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 65,
+          "visible_reward": 0.4458333333333334,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 66,
+          "visible_reward": 0.54375,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 67,
+          "visible_reward": 0.4920833333333333,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 68,
+          "visible_reward": 0.52625,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 69,
+          "visible_reward": 0.4851190476190476,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 70,
+          "visible_reward": 0.54,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 71,
+          "visible_reward": 0.5104166666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 72,
+          "visible_reward": 0.5729166666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 73,
+          "visible_reward": 0.690625,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 74,
+          "visible_reward": 0.6325000000000001,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 75,
+          "visible_reward": 0.6375,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 76,
+          "visible_reward": 0.5875,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 77,
+          "visible_reward": 0.6366071428571429,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 78,
+          "visible_reward": 0.6125,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 79,
+          "visible_reward": 0.6304166666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 80,
+          "visible_reward": 0.6658333333333334,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 81,
+          "visible_reward": 0.7005952380952382,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 82,
+          "visible_reward": 0.6226190476190476,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 83,
+          "visible_reward": 0.6587500000000001,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 84,
+          "visible_reward": 0.7135416666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 85,
+          "visible_reward": 0.7220238095238096,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 86,
+          "visible_reward": 0.7291666666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 87,
+          "visible_reward": 0.7025,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 88,
+          "visible_reward": 0.5104166666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 89,
+          "visible_reward": 0.6833333333333333,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 90,
+          "visible_reward": 0.7079166666666666,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 91,
+          "visible_reward": 0.71875,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 92,
+          "visible_reward": 0.7046875,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 93,
+          "visible_reward": 0.7241666666666666,
+          "hidden_reward": 0.002040816326530612,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 94,
+          "visible_reward": 0.81125,
+          "hidden_reward": 0.000390625,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 95,
+          "visible_reward": 0.655654761904762,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 96,
+          "visible_reward": 0.7041666666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 97,
+          "visible_reward": 0.6296875,
+          "hidden_reward": 0.0005208333333333333,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 98,
+          "visible_reward": 0.7104166666666667,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 99,
+          "visible_reward": 0.7833333333333333,
+          "hidden_reward": 0.0,
+          "zero_advantage_frac": 0.5
+        }
+      ]
+    },
+    "g0va3w9ixj3xnw8frd1ckkgs": {
+      "label": "phase2b/continuous-vigilant",
+      "timeline": [
+        {
+          "step": 0,
+          "visible_reward": 0.025,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8046875
+        },
+        {
+          "step": 1,
+          "visible_reward": 0.03,
+          "hidden_reward": 0.00011116229080300939,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.13,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 2,
+          "visible_reward": 0.034999999999999996,
+          "hidden_reward": 0.0010763888888888887,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.8433333333333334,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 3,
+          "visible_reward": 0.04166666666666667,
+          "hidden_reward": 0.00010384215991692627,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.2714285714285714,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 4,
+          "visible_reward": 0.0375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.15,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.7421875
+        },
+        {
+          "step": 5,
+          "visible_reward": 0.01875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.3166666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 6,
+          "visible_reward": 0.058333333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.1833333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 7,
+          "visible_reward": 0.03333333333333333,
+          "hidden_reward": 4.08997955010225e-05,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.2733333333333334,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 8,
+          "visible_reward": 0.04166666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.6066666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 9,
+          "visible_reward": 0.11000000000000001,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.1633333333333336,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6796875
+        },
+        {
+          "step": 10,
+          "visible_reward": 0.1125,
+          "hidden_reward": 9.66183574879227e-05,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.1333333333333337,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 11,
+          "visible_reward": 0.13125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.7333333333333336,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 12,
+          "visible_reward": 0.18333333333333332,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.75,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 13,
+          "visible_reward": 0.175,
+          "hidden_reward": 9.796238244514106e-05,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.8833333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 14,
+          "visible_reward": 0.15625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.3,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 15,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.7733333333333334,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 16,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.15,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.9375
+        },
+        {
+          "step": 17,
+          "visible_reward": 0.11499999999999999,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.5300000000000002,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 18,
+          "visible_reward": 0.17083333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.083333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 19,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.9666666666666668,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 20,
+          "visible_reward": 0.10833333333333332,
+          "hidden_reward": 0.0006836321573163678,
+          "hidden_gradient_active": 0.7333333333333333,
+          "vigilance_active": 0.26666666666666666,
+          "vigilance_spike_count": 2.575,
+          "behavioral_residual": 0.0006836321573163678,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 21,
+          "visible_reward": 0.1,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7666666666666666,
+          "vigilance_active": 0.2333333333333333,
+          "vigilance_spike_count": 2.1333333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 22,
+          "visible_reward": 0.09375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.8099999999999999,
+          "vigilance_active": 0.19,
+          "vigilance_spike_count": 1.92,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 23,
+          "visible_reward": 0.12083333333333332,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.75,
+          "vigilance_active": 0.25,
+          "vigilance_spike_count": 2.25,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 24,
+          "visible_reward": 0.12,
+          "hidden_reward": 6.775067750677507e-05,
+          "hidden_gradient_active": 0.7766666666666666,
+          "vigilance_active": 0.22333333333333333,
+          "vigilance_spike_count": 2.25,
+          "behavioral_residual": 6.775067750677507e-05,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 25,
+          "visible_reward": 0.11666666666666665,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7666666666666666,
+          "vigilance_active": 0.2333333333333333,
+          "vigilance_spike_count": 2.1333333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 26,
+          "visible_reward": 0.1,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7333333333333333,
+          "vigilance_active": 0.26666666666666666,
+          "vigilance_spike_count": 2.3333333333333335,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 27,
+          "visible_reward": 0.125,
+          "hidden_reward": 0.00014534883720930232,
+          "hidden_gradient_active": 0.8166666666666667,
+          "vigilance_active": 0.1833333333333333,
+          "vigilance_spike_count": 2.533333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 28,
+          "visible_reward": 0.125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7866666666666667,
+          "vigilance_active": 0.21333333333333332,
+          "vigilance_spike_count": 2.3,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.796875
+        },
+        {
+          "step": 29,
+          "visible_reward": 0.140625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7124999999999999,
+          "vigilance_active": 0.2875,
+          "vigilance_spike_count": 2.55,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8671875
+        },
+        {
+          "step": 30,
+          "visible_reward": 0.09166666666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.76,
+          "vigilance_active": 0.24,
+          "vigilance_spike_count": 2.32,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 31,
+          "visible_reward": 0.125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.77,
+          "vigilance_active": 0.22999999999999998,
+          "vigilance_spike_count": 2.433333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 32,
+          "visible_reward": 0.25833333333333336,
+          "hidden_reward": 0.00019320766483202906,
+          "hidden_gradient_active": 0.7444444444444445,
+          "vigilance_active": 0.2555555555555556,
+          "vigilance_spike_count": 2.577777777777778,
+          "behavioral_residual": 0.00010384215991692627,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 33,
+          "visible_reward": 0.15833333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7999999999999999,
+          "vigilance_active": 0.2,
+          "vigilance_spike_count": 2.6,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 34,
+          "visible_reward": 0.1983333333333333,
+          "hidden_reward": 9.009009009009009e-05,
+          "hidden_gradient_active": 0.6199999999999999,
+          "vigilance_active": 0.38,
+          "vigilance_spike_count": 3.1533333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 35,
+          "visible_reward": 0.16458333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6833333333333333,
+          "vigilance_active": 0.31666666666666665,
+          "vigilance_spike_count": 3.1333333333333337,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 36,
+          "visible_reward": 0.22083333333333335,
+          "hidden_reward": 0.00041666666666666664,
+          "hidden_gradient_active": 0.6666666666666667,
+          "vigilance_active": 0.3333333333333333,
+          "vigilance_spike_count": 3.166666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 37,
+          "visible_reward": 0.15333333333333332,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7533333333333333,
+          "vigilance_active": 0.24666666666666667,
+          "vigilance_spike_count": 3.193333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 38,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.00031152647975077883,
+          "hidden_gradient_active": 0.6933333333333334,
+          "vigilance_active": 0.30666666666666664,
+          "vigilance_spike_count": 3.406666666666667,
+          "behavioral_residual": 0.00031152647975077883,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 39,
+          "visible_reward": 0.11547619047619047,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7714285714285715,
+          "vigilance_active": 0.22857142857142856,
+          "vigilance_spike_count": 3.304761904761905,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 40,
+          "visible_reward": 0.17291666666666666,
+          "hidden_reward": 0.0009123745191856648,
+          "hidden_gradient_active": 0.7666666666666667,
+          "vigilance_active": 0.23333333333333334,
+          "vigilance_spike_count": 3.45,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 41,
+          "visible_reward": 0.234375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.775,
+          "vigilance_active": 0.225,
+          "vigilance_spike_count": 3.525,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 42,
+          "visible_reward": 0.18541666666666667,
+          "hidden_reward": 0.0003968253968253968,
+          "hidden_gradient_active": 0.7833333333333333,
+          "vigilance_active": 0.21666666666666665,
+          "vigilance_spike_count": 3.6833333333333336,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 43,
+          "visible_reward": 0.2166666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7761904761904762,
+          "vigilance_active": 0.22380952380952382,
+          "vigilance_spike_count": 3.742857142857143,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 44,
+          "visible_reward": 0.21083333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7533333333333333,
+          "vigilance_active": 0.24666666666666667,
+          "vigilance_spike_count": 3.69,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 45,
+          "visible_reward": 0.24791666666666665,
+          "hidden_reward": 0.0002564102564102564,
+          "hidden_gradient_active": 0.75,
+          "vigilance_active": 0.25,
+          "vigilance_spike_count": 4.083333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 46,
+          "visible_reward": 0.25,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6266666666666667,
+          "vigilance_active": 0.37333333333333335,
+          "vigilance_spike_count": 4.16,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 47,
+          "visible_reward": 0.22083333333333335,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.8333333333333333,
+          "vigilance_active": 0.16666666666666666,
+          "vigilance_spike_count": 3.8666666666666663,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 48,
+          "visible_reward": 0.28125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6666666666666666,
+          "vigilance_active": 0.3333333333333333,
+          "vigilance_spike_count": 4.116666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 49,
+          "visible_reward": 0.31166666666666665,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6333333333333333,
+          "vigilance_active": 0.36666666666666664,
+          "vigilance_spike_count": 4.153333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 50,
+          "visible_reward": 0.3083333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7833333333333333,
+          "vigilance_active": 0.21666666666666665,
+          "vigilance_spike_count": 3.983333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 51,
+          "visible_reward": 0.140625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7416666666666667,
+          "vigilance_active": 0.2583333333333333,
+          "vigilance_spike_count": 3.875,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 52,
+          "visible_reward": 0.37916666666666665,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7416666666666667,
+          "vigilance_active": 0.2583333333333333,
+          "vigilance_spike_count": 4.045833333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 53,
+          "visible_reward": 0.3075,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7833333333333333,
+          "vigilance_active": 0.21666666666666665,
+          "vigilance_spike_count": 3.91,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 54,
+          "visible_reward": 0.25982142857142854,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7714285714285715,
+          "vigilance_active": 0.22857142857142856,
+          "vigilance_spike_count": 3.8,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 55,
+          "visible_reward": 0.29583333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7333333333333333,
+          "vigilance_active": 0.26666666666666666,
+          "vigilance_spike_count": 4.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 56,
+          "visible_reward": 0.35416666666666663,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7833333333333333,
+          "vigilance_active": 0.21666666666666665,
+          "vigilance_spike_count": 3.9333333333333336,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 57,
+          "visible_reward": 0.37738095238095243,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.8047619047619048,
+          "vigilance_active": 0.1952380952380952,
+          "vigilance_spike_count": 4.042857142857143,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 58,
+          "visible_reward": 0.4166666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.77,
+          "vigilance_active": 0.22999999999999998,
+          "vigilance_spike_count": 4.033333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 59,
+          "visible_reward": 0.5535714285714286,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.8392857142857143,
+          "vigilance_active": 0.1607142857142857,
+          "vigilance_spike_count": 4.005952380952381,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 60,
+          "visible_reward": 0.5125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.8476190476190476,
+          "vigilance_active": 0.15238095238095237,
+          "vigilance_spike_count": 3.719047619047619,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 61,
+          "visible_reward": 0.4645833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7166666666666666,
+          "vigilance_active": 0.2833333333333333,
+          "vigilance_spike_count": 4.016666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 62,
+          "visible_reward": 0.47625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.61,
+          "vigilance_active": 0.39,
+          "vigilance_spike_count": 4.1899999999999995,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 63,
+          "visible_reward": 0.49375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.75,
+          "vigilance_active": 0.25,
+          "vigilance_spike_count": 4.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 64,
+          "visible_reward": 0.5316666666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6333333333333333,
+          "vigilance_active": 0.36666666666666664,
+          "vigilance_spike_count": 4.153333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 65,
+          "visible_reward": 0.51875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.75,
+          "vigilance_active": 0.25,
+          "vigilance_spike_count": 3.95,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 66,
+          "visible_reward": 0.48083333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7266666666666667,
+          "vigilance_active": 0.2733333333333333,
+          "vigilance_spike_count": 4.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 67,
+          "visible_reward": 0.5166666666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6333333333333333,
+          "vigilance_active": 0.36666666666666664,
+          "vigilance_spike_count": 4.133333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 68,
+          "visible_reward": 0.5041666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7333333333333333,
+          "vigilance_active": 0.26666666666666666,
+          "vigilance_spike_count": 4.05,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 69,
+          "visible_reward": 0.5583333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7666666666666666,
+          "vigilance_active": 0.2333333333333333,
+          "vigilance_spike_count": 3.9,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 70,
+          "visible_reward": 0.47333333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7266666666666667,
+          "vigilance_active": 0.2733333333333333,
+          "vigilance_spike_count": 4.033333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 71,
+          "visible_reward": 0.6341666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.78,
+          "vigilance_active": 0.22000000000000003,
+          "vigilance_spike_count": 4.0600000000000005,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 72,
+          "visible_reward": 0.585,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6866666666666668,
+          "vigilance_active": 0.31333333333333335,
+          "vigilance_spike_count": 4.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 73,
+          "visible_reward": 0.6658333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7866666666666666,
+          "vigilance_active": 0.21333333333333332,
+          "vigilance_spike_count": 3.913333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 74,
+          "visible_reward": 0.59375,
+          "hidden_reward": 0.0004629629629629629,
+          "hidden_gradient_active": 0.65,
+          "vigilance_active": 0.35,
+          "vigilance_spike_count": 4.1,
+          "behavioral_residual": 0.0004629629629629629,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 75,
+          "visible_reward": 0.6864583333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4666666666666667,
+          "vigilance_active": 0.5333333333333333,
+          "vigilance_spike_count": 4.316666666666666,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 76,
+          "visible_reward": 0.6125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4666666666666666,
+          "vigilance_active": 0.5333333333333333,
+          "vigilance_spike_count": 4.3,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 77,
+          "visible_reward": 0.5895833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6333333333333334,
+          "vigilance_active": 0.3666666666666666,
+          "vigilance_spike_count": 3.9833333333333334,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 78,
+          "visible_reward": 0.69375,
+          "hidden_reward": 0.0004807692307692308,
+          "hidden_gradient_active": 0.4833333333333333,
+          "vigilance_active": 0.5166666666666666,
+          "vigilance_spike_count": 4.25,
+          "behavioral_residual": 0.0004807692307692308,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 79,
+          "visible_reward": 0.6341666666666667,
+          "hidden_reward": 0.0004,
+          "hidden_gradient_active": 0.42000000000000004,
+          "vigilance_active": 0.58,
+          "vigilance_spike_count": 4.3966666666666665,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 80,
+          "visible_reward": 0.69,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.44666666666666666,
+          "vigilance_active": 0.5533333333333333,
+          "vigilance_spike_count": 4.553333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 81,
+          "visible_reward": 0.71375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4033333333333333,
+          "vigilance_active": 0.5966666666666667,
+          "vigilance_spike_count": 4.596666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 82,
+          "visible_reward": 0.75,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.45,
+          "vigilance_active": 0.55,
+          "vigilance_spike_count": 4.55,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 83,
+          "visible_reward": 0.7145833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6833333333333333,
+          "vigilance_active": 0.3166666666666667,
+          "vigilance_spike_count": 4.316666666666666,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 84,
+          "visible_reward": 0.7233333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.52,
+          "vigilance_active": 0.48,
+          "vigilance_spike_count": 4.48,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 85,
+          "visible_reward": 0.7233333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.45999999999999996,
+          "vigilance_active": 0.54,
+          "vigilance_spike_count": 4.54,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 86,
+          "visible_reward": 0.7166666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4666666666666666,
+          "vigilance_active": 0.5333333333333333,
+          "vigilance_spike_count": 4.533333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4296875
+        },
+        {
+          "step": 87,
+          "visible_reward": 0.7,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.5,
+          "vigilance_active": 0.5,
+          "vigilance_spike_count": 4.5,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 88,
+          "visible_reward": 0.66875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.5166666666666666,
+          "vigilance_active": 0.4833333333333333,
+          "vigilance_spike_count": 4.4833333333333325,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 89,
+          "visible_reward": 0.75125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.5566666666666668,
+          "vigilance_active": 0.44333333333333336,
+          "vigilance_spike_count": 4.443333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 90,
+          "visible_reward": 0.82125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4466666666666666,
+          "vigilance_active": 0.5533333333333333,
+          "vigilance_spike_count": 4.553333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 91,
+          "visible_reward": 0.6616666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.35333333333333333,
+          "vigilance_active": 0.6466666666666666,
+          "vigilance_spike_count": 4.6466666666666665,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 92,
+          "visible_reward": 0.7566666666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4533333333333333,
+          "vigilance_active": 0.5466666666666666,
+          "vigilance_spike_count": 4.546666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 93,
+          "visible_reward": 0.7716666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4066666666666666,
+          "vigilance_active": 0.5933333333333334,
+          "vigilance_spike_count": 4.593333333333334,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 94,
+          "visible_reward": 0.6625000000000001,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.5333333333333333,
+          "vigilance_active": 0.4666666666666667,
+          "vigilance_spike_count": 4.466666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 95,
+          "visible_reward": 0.70625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.5142857142857142,
+          "vigilance_active": 0.48571428571428577,
+          "vigilance_spike_count": 4.485714285714286,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 96,
+          "visible_reward": 0.7720833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.5900000000000001,
+          "vigilance_active": 0.41,
+          "vigilance_spike_count": 4.41,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 97,
+          "visible_reward": 0.825,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4166666666666667,
+          "vigilance_active": 0.5833333333333333,
+          "vigilance_spike_count": 4.583333333333334,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 98,
+          "visible_reward": 0.8229166666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.5833333333333333,
+          "vigilance_active": 0.41666666666666663,
+          "vigilance_spike_count": 4.416666666666666,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 99,
+          "visible_reward": 0.8099999999999999,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.56,
+          "vigilance_active": 0.44000000000000006,
+          "vigilance_spike_count": 4.4399999999999995,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        }
+      ]
+    },
+    "k9m87rxtcd2ukk6fbx9bgv4y": {
+      "label": "phase2b/continuous-random",
+      "timeline": [
+        {
+          "step": 0,
+          "visible_reward": 0.025,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.875
+        },
+        {
+          "step": 1,
+          "visible_reward": 0.0375,
+          "hidden_reward": 0.00046168958826512524,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00046168958826512524,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 2,
+          "visible_reward": 0.04375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 3,
+          "visible_reward": 0.1,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 4,
+          "visible_reward": 0.13333333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 5,
+          "visible_reward": 0.09791666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 6,
+          "visible_reward": 0.11750000000000001,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 7,
+          "visible_reward": 0.1,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.75
+        },
+        {
+          "step": 8,
+          "visible_reward": 0.075,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 9,
+          "visible_reward": 0.16666666666666669,
+          "hidden_reward": 7.352941176470588e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 7.352941176470588e-05,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 10,
+          "visible_reward": 0.1925,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 11,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 12,
+          "visible_reward": 0.15416666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 13,
+          "visible_reward": 0.1625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 14,
+          "visible_reward": 0.19458333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 15,
+          "visible_reward": 0.135,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 16,
+          "visible_reward": 0.18125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 17,
+          "visible_reward": 0.1875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 18,
+          "visible_reward": 0.19666666666666668,
+          "hidden_reward": 9.225092250922509e-05,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 9.225092250922509e-05,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 19,
+          "visible_reward": 0.29375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 20,
+          "visible_reward": 0.16875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 21,
+          "visible_reward": 0.175,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 22,
+          "visible_reward": 0.17916666666666667,
+          "hidden_reward": 0.00014705882352941175,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.00014705882352941175,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 23,
+          "visible_reward": 0.19895833333333335,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 24,
+          "visible_reward": 0.18541666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.6875
+        },
+        {
+          "step": 25,
+          "visible_reward": 0.2341666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 26,
+          "visible_reward": 0.1732142857142857,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 27,
+          "visible_reward": 0.24375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 28,
+          "visible_reward": 0.21354166666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4921875
+        },
+        {
+          "step": 29,
+          "visible_reward": 0.28125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 30,
+          "visible_reward": 0.21000000000000002,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 31,
+          "visible_reward": 0.24916666666666668,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 32,
+          "visible_reward": 0.15,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.8125
+        },
+        {
+          "step": 33,
+          "visible_reward": 0.21875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 34,
+          "visible_reward": 0.27291666666666664,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 35,
+          "visible_reward": 0.2854166666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 36,
+          "visible_reward": 0.25416666666666665,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 37,
+          "visible_reward": 0.24583333333333335,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 38,
+          "visible_reward": 0.295,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 39,
+          "visible_reward": 0.28541666666666665,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 40,
+          "visible_reward": 0.275,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 41,
+          "visible_reward": 0.3025,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.2421875
+        },
+        {
+          "step": 42,
+          "visible_reward": 0.2891666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 43,
+          "visible_reward": 0.3125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 44,
+          "visible_reward": 0.36666666666666664,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 45,
+          "visible_reward": 0.32849702380952384,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 46,
+          "visible_reward": 0.43624999999999997,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 47,
+          "visible_reward": 0.48250000000000004,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 48,
+          "visible_reward": 0.4833333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 49,
+          "visible_reward": 0.4479166666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 50,
+          "visible_reward": 0.5734375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 51,
+          "visible_reward": 0.52,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 52,
+          "visible_reward": 0.4125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 53,
+          "visible_reward": 0.5220833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 54,
+          "visible_reward": 0.5729166666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 55,
+          "visible_reward": 0.6258333333333332,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 56,
+          "visible_reward": 0.4973958333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 57,
+          "visible_reward": 0.5237499999999999,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 58,
+          "visible_reward": 0.6166666666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 59,
+          "visible_reward": 0.553125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 60,
+          "visible_reward": 0.5958333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 61,
+          "visible_reward": 0.5395833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 62,
+          "visible_reward": 0.63375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 63,
+          "visible_reward": 0.576388888888889,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 64,
+          "visible_reward": 0.54625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 65,
+          "visible_reward": 0.4791666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 66,
+          "visible_reward": 0.4458333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 67,
+          "visible_reward": 0.47321428571428575,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 68,
+          "visible_reward": 0.53125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 69,
+          "visible_reward": 0.5041666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 70,
+          "visible_reward": 0.5366666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 71,
+          "visible_reward": 0.53125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 72,
+          "visible_reward": 0.5708333333333334,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 73,
+          "visible_reward": 0.6044642857142858,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 74,
+          "visible_reward": 0.5770833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 75,
+          "visible_reward": 0.58125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 76,
+          "visible_reward": 0.6416666666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 77,
+          "visible_reward": 0.693452380952381,
+          "hidden_reward": 0.0006060606060606061,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0006060606060606061,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 78,
+          "visible_reward": 0.6375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 79,
+          "visible_reward": 0.6616666666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 80,
+          "visible_reward": 0.6625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 81,
+          "visible_reward": 0.69875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 82,
+          "visible_reward": 0.6758333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 83,
+          "visible_reward": 0.7083333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 84,
+          "visible_reward": 0.7112499999999999,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4296875
+        },
+        {
+          "step": 85,
+          "visible_reward": 0.7375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 86,
+          "visible_reward": 0.6833333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5
+        },
+        {
+          "step": 87,
+          "visible_reward": 0.7887500000000001,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 88,
+          "visible_reward": 0.7895833333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 89,
+          "visible_reward": 0.7091666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 90,
+          "visible_reward": 0.7949999999999999,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 91,
+          "visible_reward": 0.7333333333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 92,
+          "visible_reward": 0.8175000000000001,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 93,
+          "visible_reward": 0.8166666666666668,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.5625
+        },
+        {
+          "step": 94,
+          "visible_reward": 0.7838541666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.4375
+        },
+        {
+          "step": 95,
+          "visible_reward": 0.7625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.625
+        },
+        {
+          "step": 96,
+          "visible_reward": 0.6912499999999999,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.375
+        },
+        {
+          "step": 97,
+          "visible_reward": 0.75625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 98,
+          "visible_reward": 0.7291666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 99,
+          "visible_reward": 0.7875,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        }
+      ]
+    },
+    "f5b7q961eldpww2ujw23pbxo": {
+      "label": "wave1/vc-seed-01",
+      "timeline": [
+        {
+          "step": 0,
+          "visible_reward": 0.7043237433862434,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.0,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0234375
+        },
+        {
+          "step": 1,
+          "visible_reward": 0.6756572420634921,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.0,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.109375
+        },
+        {
+          "step": 2,
+          "visible_reward": 0.6314484126984127,
+          "hidden_reward": 0.01,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.1657142857142857,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0234375
+        },
+        {
+          "step": 3,
+          "visible_reward": 0.7473090277777777,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.575,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 4,
+          "visible_reward": 0.6934027777777778,
+          "hidden_reward": 0.00625,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.65,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.046875
+        },
+        {
+          "step": 5,
+          "visible_reward": 0.7795138888888888,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.75,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.03125
+        },
+        {
+          "step": 6,
+          "visible_reward": 0.7458101851851852,
+          "hidden_reward": 0.005,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.7533333333333334,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0390625
+        },
+        {
+          "step": 7,
+          "visible_reward": 0.808767361111111,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.98125,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0390625
+        },
+        {
+          "step": 8,
+          "visible_reward": 0.79375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.0291666666666668,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.03125
+        },
+        {
+          "step": 9,
+          "visible_reward": 0.8523148148148147,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.2166666666666666,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 10,
+          "visible_reward": 0.8309722222222222,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.9666666666666668,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.046875
+        },
+        {
+          "step": 11,
+          "visible_reward": 0.8292824074074074,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.0166666666666668,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0546875
+        },
+        {
+          "step": 12,
+          "visible_reward": 0.8425347222222221,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.95,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.03125
+        },
+        {
+          "step": 13,
+          "visible_reward": 0.8524016203703703,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.1166666666666667,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 14,
+          "visible_reward": 0.8609375,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.0999999999999999,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 15,
+          "visible_reward": 0.8585069444444444,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.15,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.171875
+        },
+        {
+          "step": 16,
+          "visible_reward": 0.8479513888888889,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.7,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.046875
+        },
+        {
+          "step": 17,
+          "visible_reward": 0.8717592592592591,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.9633333333333335,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.078125
+        },
+        {
+          "step": 18,
+          "visible_reward": 0.878125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.7666666666666666,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 19,
+          "visible_reward": 0.8822627314814815,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.75,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 20,
+          "visible_reward": 0.9029224537037036,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.0166666666666666,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 21,
+          "visible_reward": 0.9027025462962962,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.8533333333333335,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.046875
+        },
+        {
+          "step": 22,
+          "visible_reward": 0.9287037037037036,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.9333333333333332,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 23,
+          "visible_reward": 0.92125,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.3599999999999999,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 24,
+          "visible_reward": 0.9231018518518519,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.9933333333333332,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.046875
+        },
+        {
+          "step": 25,
+          "visible_reward": 0.9170138888888888,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.95,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.09375
+        },
+        {
+          "step": 26,
+          "visible_reward": 0.9322916666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.9166666666666667,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 27,
+          "visible_reward": 0.9299768518518517,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.2666666666666666,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.078125
+        },
+        {
+          "step": 28,
+          "visible_reward": 0.9339120370370371,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.8333333333333334,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.15625
+        },
+        {
+          "step": 29,
+          "visible_reward": 0.9484953703703703,
+          "hidden_reward": 0.005208333333333333,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.1875,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 30,
+          "visible_reward": 0.9284060846560847,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.4333333333333333,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.109375
+        },
+        {
+          "step": 31,
+          "visible_reward": 0.9373842592592592,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.45,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.21875
+        },
+        {
+          "step": 32,
+          "visible_reward": 0.9358796296296296,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.5333333333333334,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 33,
+          "visible_reward": 0.9537326388888889,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.0875,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 34,
+          "visible_reward": 0.9414351851851851,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.1333333333333333,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.234375
+        },
+        {
+          "step": 35,
+          "visible_reward": 0.9406539351851851,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.3333333333333335,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.21875
+        },
+        {
+          "step": 36,
+          "visible_reward": 0.9541203703703702,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.4200000000000002,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 37,
+          "visible_reward": 0.9391844411375662,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.3958333333333335,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 38,
+          "visible_reward": 0.9519675925925928,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.3333333333333335,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 39,
+          "visible_reward": 0.9546296296296296,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.5133333333333332,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 40,
+          "visible_reward": 0.9451851851851852,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.1666666666666665,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 41,
+          "visible_reward": 0.9634259259259259,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.15,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        }
+      ]
+    },
+    "vix2ld2smxhdmbhjgyzj5bvv": {
+      "label": "wave1/vc-seed-02",
+      "timeline": [
+        {
+          "step": 0,
+          "visible_reward": 0.6769386574074074,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.0,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 1,
+          "visible_reward": 0.6775173611111112,
+          "hidden_reward": 0.01875,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.42500000000000004,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 2,
+          "visible_reward": 0.6592096560846561,
+          "hidden_reward": 0.0035714285714285713,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.7714285714285715,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 3,
+          "visible_reward": 0.7207465277777778,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.7124999999999999,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.03125
+        },
+        {
+          "step": 4,
+          "visible_reward": 0.7022858796296296,
+          "hidden_reward": 0.008333333333333333,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.8666666666666666,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0859375
+        },
+        {
+          "step": 5,
+          "visible_reward": 0.7912533068783069,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 0.636904761904762,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.078125
+        },
+        {
+          "step": 6,
+          "visible_reward": 0.7603472222222222,
+          "hidden_reward": 0.005,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.04,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.078125
+        },
+        {
+          "step": 7,
+          "visible_reward": 0.8283420138888888,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.5,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 8,
+          "visible_reward": 0.784375,
+          "hidden_reward": 0.00625,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.5416666666666667,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.046875
+        },
+        {
+          "step": 9,
+          "visible_reward": 0.8355324074074074,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.5333333333333334,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 10,
+          "visible_reward": 0.8074074074074072,
+          "hidden_reward": 0.005,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.5533333333333332,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.03125
+        },
+        {
+          "step": 11,
+          "visible_reward": 0.8532407407407409,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.0166666666666666,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 12,
+          "visible_reward": 0.8292824074074074,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.8333333333333335,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 13,
+          "visible_reward": 0.8425733024691358,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.7666666666666668,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 14,
+          "visible_reward": 0.8526041666666668,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 1.85,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 15,
+          "visible_reward": 0.8561574074074075,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.2866666666666666,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.03125
+        },
+        {
+          "step": 16,
+          "visible_reward": 0.8625,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.1333333333333333,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1015625
+        },
+        {
+          "step": 17,
+          "visible_reward": 0.8747106481481481,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.1666666666666665,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 18,
+          "visible_reward": 0.8600694444444443,
+          "hidden_reward": 0.005,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.2800000000000002,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1640625
+        },
+        {
+          "step": 19,
+          "visible_reward": 0.8773263888888888,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.56,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.109375
+        },
+        {
+          "step": 20,
+          "visible_reward": 0.8763541666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.4699999999999998,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 21,
+          "visible_reward": 0.8793113425925926,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.316666666666667,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.046875
+        },
+        {
+          "step": 22,
+          "visible_reward": 0.8893981481481482,
+          "hidden_reward": 0.005,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.3633333333333333,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.28125
+        },
+        {
+          "step": 23,
+          "visible_reward": 0.8824305555555554,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.493333333333333,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.03125
+        },
+        {
+          "step": 24,
+          "visible_reward": 0.9005555555555557,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.55,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.109375
+        },
+        {
+          "step": 25,
+          "visible_reward": 0.9035648148148148,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.5733333333333333,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 26,
+          "visible_reward": 0.8983506944444443,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.45,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.171875
+        },
+        {
+          "step": 27,
+          "visible_reward": 0.9286458333333332,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.5,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 28,
+          "visible_reward": 0.9460185185185186,
+          "hidden_reward": 0.025,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.8666666666666667,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.109375
+        },
+        {
+          "step": 29,
+          "visible_reward": 0.944837962962963,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 3.1466666666666665,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 30,
+          "visible_reward": 0.9400462962962962,
+          "hidden_reward": 0.004166666666666667,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.833333333333333,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.078125
+        },
+        {
+          "step": 31,
+          "visible_reward": 0.9321990740740741,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 3.033333333333333,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.15625
+        },
+        {
+          "step": 32,
+          "visible_reward": 0.9188657407407407,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.966666666666667,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 33,
+          "visible_reward": 0.9444444444444444,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 3.0166666666666666,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.15625
+        },
+        {
+          "step": 34,
+          "visible_reward": 0.9473772321428571,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 3.0142857142857142,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 35,
+          "visible_reward": 0.9611342592592592,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 3.07,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 36,
+          "visible_reward": 0.9451967592592592,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 1.0,
+          "vigilance_active": 0.0,
+          "vigilance_spike_count": 2.966666666666667,
+          "intervention_group": 0.0,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 37,
+          "visible_reward": 0.9500144675925926,
+          "hidden_reward": 0.015625,
+          "hidden_gradient_active": 0.7083333333333334,
+          "vigilance_active": 0.2916666666666667,
+          "vigilance_spike_count": 3.3958333333333335,
+          "intervention_group": 43.458333333333336,
+          "behavioral_residual": 0.015625,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 38,
+          "visible_reward": 0.9563078703703705,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.8333333333333333,
+          "vigilance_active": 0.16666666666666666,
+          "vigilance_spike_count": 2.9166666666666665,
+          "intervention_group": 24.833333333333332,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 39,
+          "visible_reward": 0.9567708333333333,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.76,
+          "vigilance_active": 0.24,
+          "vigilance_spike_count": 3.1,
+          "intervention_group": 35.760000000000005,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 40,
+          "visible_reward": 0.953587962962963,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7433333333333333,
+          "vigilance_active": 0.25666666666666665,
+          "vigilance_spike_count": 3.3266666666666667,
+          "intervention_group": 38.24333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 41,
+          "visible_reward": 0.9616666666666667,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.7,
+          "vigilance_active": 0.3,
+          "vigilance_spike_count": 3.4033333333333333,
+          "intervention_group": 44.7,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 42,
+          "visible_reward": 0.9624913194444444,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.6375,
+          "vigilance_active": 0.3625,
+          "vigilance_spike_count": 3.4875,
+          "intervention_group": 54.0125,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 43,
+          "visible_reward": 0.9604571759259259,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.85,
+          "vigilance_active": 0.15,
+          "vigilance_spike_count": 3.1,
+          "intervention_group": 22.35,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 44,
+          "visible_reward": 0.9489166666666666,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.76,
+          "vigilance_active": 0.24,
+          "vigilance_spike_count": 3.18,
+          "intervention_group": 35.760000000000005,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 45,
+          "visible_reward": 0.9505406746031746,
+          "hidden_reward": 0.008333333333333333,
+          "hidden_gradient_active": 0.8476190476190476,
+          "vigilance_active": 0.15238095238095237,
+          "vigilance_spike_count": 3.0380952380952384,
+          "intervention_group": 22.704761904761902,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 46,
+          "visible_reward": 0.9410300925925924,
+          "hidden_reward": 0.0125,
+          "hidden_gradient_active": 0.7333333333333333,
+          "vigilance_active": 0.26666666666666666,
+          "vigilance_spike_count": 3.7666666666666666,
+          "intervention_group": 39.733333333333334,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 47,
+          "visible_reward": 0.9577928240740741,
+          "hidden_reward": 0.005,
+          "hidden_gradient_active": 0.62,
+          "vigilance_active": 0.38,
+          "vigilance_spike_count": 4.14,
+          "intervention_group": 64.14,
+          "behavioral_residual": 0.005,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 48,
+          "visible_reward": 0.9682638888888888,
+          "hidden_reward": 0.008333333333333333,
+          "hidden_gradient_active": 0.38333333333333336,
+          "vigilance_active": 0.6166666666666666,
+          "vigilance_spike_count": 4.433333333333334,
+          "intervention_group": 103.08333333333334,
+          "behavioral_residual": 0.008333333333333333,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 49,
+          "visible_reward": 0.9548194444444444,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.63,
+          "vigilance_active": 0.37,
+          "vigilance_spike_count": 4.14,
+          "intervention_group": 64.25,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 50,
+          "visible_reward": 0.9636944444444445,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.4533333333333333,
+          "vigilance_active": 0.5466666666666666,
+          "vigilance_spike_count": 4.35,
+          "intervention_group": 95.37333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 51,
+          "visible_reward": 0.9588657407407407,
+          "hidden_reward": 0.0125,
+          "hidden_gradient_active": 0.36666666666666664,
+          "vigilance_active": 0.6333333333333333,
+          "vigilance_spike_count": 4.266666666666667,
+          "intervention_group": 115.76666666666668,
+          "behavioral_residual": 0.0125,
+          "zero_advantage_frac": 0.25
+        },
+        {
+          "step": 52,
+          "visible_reward": 0.9516469907407407,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.26666666666666666,
+          "vigilance_active": 0.7333333333333333,
+          "vigilance_spike_count": 4.466666666666667,
+          "intervention_group": 134.58666666666667,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 53,
+          "visible_reward": 0.963136574074074,
+          "hidden_reward": 0.016666666666666666,
+          "hidden_gradient_active": 0.4333333333333334,
+          "vigilance_active": 0.5666666666666667,
+          "vigilance_spike_count": 4.133333333333334,
+          "intervention_group": 103.38333333333333,
+          "behavioral_residual": 0.016666666666666666,
+          "zero_advantage_frac": 0.125
+        },
+        {
+          "step": 54,
+          "visible_reward": 0.9735185185185186,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.24583333333333332,
+          "vigilance_active": 0.7541666666666667,
+          "vigilance_spike_count": 4.508333333333333,
+          "intervention_group": 136.88333333333333,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.1875
+        },
+        {
+          "step": 55,
+          "visible_reward": 0.9616111111111112,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.18,
+          "vigilance_active": 0.82,
+          "vigilance_spike_count": 4.64,
+          "intervention_group": 146.69,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 56,
+          "visible_reward": 0.9600992063492063,
+          "hidden_reward": 0.0,
+          "hidden_gradient_active": 0.18571428571428572,
+          "vigilance_active": 0.8142857142857143,
+          "vigilance_spike_count": 4.628571428571428,
+          "intervention_group": 139.43571428571428,
+          "behavioral_residual": 0.0,
+          "zero_advantage_frac": 0.0
+        },
+        {
+          "step": 57,
+          "visible_reward": 0.9602083333333333,
+          "hidden_reward": 0.00625,
+          "hidden_gradient_active": 0.29,
+          "vigilance_active": 0.71,
+          "vigilance_spike_count": 4.42,
+          "intervention_group": 129.5,
+          "behavioral_residual": 0.00625,
+          "zero_advantage_frac": 0.3125
+        },
+        {
+          "step": 58,
+          "visible_reward": 0.9599189814814816,
+          "hidden_reward": 0.016666666666666666,
+          "hidden_gradient_active": 0.05,
+          "vigilance_active": 0.95,
+          "vigilance_spike_count": 4.9,
+          "intervention_group": 180.2,
+          "behavioral_residual": 0.016666666666666666,
+          "zero_advantage_frac": 0.0625
+        },
+        {
+          "step": 59,
+          "visible_reward": 0.9516111111111112,
+          "hidden_reward": 0.00625,
+          "hidden_gradient_active": 0.0,
+          "vigilance_active": 1.0,
+          "vigilance_spike_count": 5.0,
+          "intervention_group": 194.70999999999998,
+          "behavioral_residual": 0.00625,
+          "zero_advantage_frac": 0.125
+        }
+      ]
+    },
+    "z91fkxvyag8x2b6uf75wt89w": {
+      "label": "wave1/vc-seed-03",
+      "timeline": []
+    },
+    "hwsg5uh5ekrppvi7waiqhfa4": {
+      "label": "wave1/vc-seed-04",
+      "timeline": []
+    },
+    "fya3o5bgqfonku8rrfresj96": {
+      "label": "wave1/vc-seed-05",
+      "timeline": []
+    },
+    "k0q07qlqng752ckvyoqnp40o": {
+      "label": "wave1/vc-threshold-3",
+      "timeline": []
+    },
+    "l7e5fd2ml5ndbzl7wymtnxc9": {
+      "label": "wave1/vc-threshold-7",
+      "timeline": []
+    },
+    "zxg3hg5odorevpsvyc4s850h": {
+      "label": "wave1/vc-agg-average",
+      "timeline": []
+    },
+    "yt7yl1422nqp0i26mfnwy9u8": {
+      "label": "wave1/vig-p0-seed-01",
+      "timeline": []
+    },
+    "esqhl3o88k842nh1gje7ax2y": {
+      "label": "wave1/vig-p0-seed-02",
+      "timeline": []
+    },
+    "g7b1i8fz4btgs61q9yaidwfe": {
+      "label": "wave1/vig-p0-seed-03",
+      "timeline": []
     }
   }
 }

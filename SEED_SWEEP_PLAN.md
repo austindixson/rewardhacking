@@ -7,6 +7,7 @@
 | Constraint | Implication |
 |------------|-------------|
 | Prime free tier **2 concurrent** runs | Queue sweeps in waves; ~1 h/run |
+| **Max 10 queued** runs | Hit cap 2026-05-24; finish queue before `vig-p3-seed-*` |
 | **`zero_advantage` filter** | Orchestrator-level — **cannot disable** from env. Mitigate with `aggregation=average` or accept high filter rates. |
 | No `seed` in TOML | Each hosted run = independent implicit seed (valid for spread) |
 | Env **v0.2.4+** | Exports `intervention_group` for trigger-step figures |
@@ -60,5 +61,8 @@ Record: s99 visible/hidden/hga/vig_active, `zero_advantage_frac`, max `intervent
 ## Launch
 
 ```bash
-bash scripts/launch_sweep.sh wave1
+bash scripts/launch_sweep.sh wave1   # may hit 10-queue cap
+python scripts/poll_sweeps.py        # fetch completed + refresh figures
 ```
+
+When queue drains, launch remaining `vig-p3-seed-*.toml` manually.
