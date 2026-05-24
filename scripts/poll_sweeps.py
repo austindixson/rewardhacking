@@ -52,6 +52,9 @@ def main() -> None:
             check=True,
         )
         subprocess.run([sys.executable, str(ROOT / "scripts" / "make_figures.py")], cwd=ROOT, check=True)
+        regret = ROOT / "scripts" / "analyze_regret.py"
+        if regret.exists():
+            subprocess.run([sys.executable, str(regret)], cwd=ROOT, check=True)
 
     print(f"\nCompleted: {len(completed)} | Pending: {len(pending)}")
 

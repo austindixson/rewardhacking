@@ -1,6 +1,6 @@
 # Pre-Registered Experiment Matrix
 
-**Env:** `austindixson/backdoor-ifeval-vigilant` — Hub **v0.2.3** (visible-constraint tuple fix); Phase 1 pins `@0.2.0` unless noted  
+**Env:** `austindixson/backdoor-ifeval-vigilant` — Hub **v0.2.4** (`intervention_group` metric); Wave 1 VC sweeps use **@0.2.4**; Phase 1 pins `@0.2.0` unless noted  
 **Metric definitions:** [METRICS.md](METRICS.md) · **Reviewer FAQ:** [REVIEWER_FAQ.md](REVIEWER_FAQ.md)
 
 ## Takeaways (2026-05-24)
@@ -15,7 +15,8 @@
 | **Behavior levers beat variance kill (visible)** | behavior-penalty **0.887** | Post-trigger shaping ≠ gradient kill |
 | **Non-keyword: monitor often silent** | continuous/sycophancy vigilant: **no variance trigger** | Variance detector is **regime-specific** (binary agg-all) |
 | **2B continuous: random ≈ vigilant** | control **0.783**, vigilant **0.810**, random **0.788** (hga=0) | Hold-out does **not** show vigilant &gt; random on s99 |
-| **visible-constraint** | v0.2.3 run: no trigger, hga=1 | **Drop** from claims; needs separate debug |
+| **visible-constraint** | Wave 1 (n=5): vis **0.984±0.006**, trigger **1/5** (seed-02 only); `threshold-7` still no trigger | **Drop** from claims — high visible + unstable trigger |
+| **2A timing** | Oracle/random trigger **step 1**; vigilant **step 22**; behavior-penalty best **Δs99 +0.225** | Early kill ≠ low regret; penalty beats gradient timing |
 | **Control replicate unstable** | P3 control rep vis **0.933**, hid **0** (75% filtered) | Do **not** use for replication narrative |
 
 **Ship claim:** *Variance-triggered gradient gating on hidden reward can preserve or improve visible IFEval on the keyword backdoor while zeroing the hidden gradient — with limits on replication variance, ablation timing, and non-keyword hacks.*
@@ -27,7 +28,7 @@
 | Phase | Name | Status |
 |-------|------|--------|
 | **1** | Canonical 1B + ablations + P3 | **CLOSED** — 14/14 terminal outcomes |
-| **2** | Breakthrough + seed sweeps | **2B done**; Wave 1 VC/vigilant seeds **in flight** (see `analysis/sweep_runs.json`) |
+| **2** | Breakthrough + seed sweeps | **2A+2B done**; Wave 1 VC **done**; vig-P0/P3 **queued** (`analysis/sweep_runs.json`) |
 | — | Appendix paid runs | Historical |
 
 ---
@@ -70,9 +71,9 @@
 
 | ID | Status (2026-05-24) |
 |----|---------------------|
-| **2A** | Not started (analyze timelines on P1 runs) |
+| **2A** | **Done** — [regret_summary.md](analysis/regret_summary.md), [fig4](analysis/figures/fig4_regret_binary.png) |
 | **2B** | Continuous quartet **done** — oracle s99 vis **0.392** (below random **0.788**) |
-| **Sweeps** | Wave 1: 8 VC + 3 vig P0 queued/running; P3 vig blocked at 10-queue cap |
+| **Sweeps** | VC arm **8/8 done** (trigger **2/8** with threshold-3); vig-P0 **running/queued**; vig-P3 **queued** |
 | **2C** | Blocked (visible-constraint inconclusive) |
 | **2D** | Deferred (paid 1B/3B) |
 
@@ -135,17 +136,46 @@
 
 ### Wave 1 seed sweeps (diagnosis)
 
-Track live: `analysis/sweep_runs.json` · poll: `python scripts/poll_sweeps.py`
+Track live: `analysis/sweep_runs.json` · poll: `python scripts/poll_sweeps.py` · figures: `analysis/figures/`
+
+**visible-constraint @0.2.4** (`visible_constraint=true`, `aggregation=all` → env falls back to `average`)
+
+| Config | Run ID | s99 vis | s99 hid | hga | vig | Notes |
+|--------|--------|---------|---------|-----|-----|-------|
+| `vc-seed-01` | `f5b7q961eldpww2ujw23pbxo` | 0.976 | 0.000 | 1.00 | 0 | no trigger |
+| `vc-seed-02` | `vix2ld2smxhdmbhjgyzj5bvv` | 0.987 | 0.000 | 0.00 | 1 | **only** seed with gradient kill |
+| `vc-seed-03` | `z91fkxvyag8x2b6uf75wt89w` | 0.981 | 0.000 | 1.00 | 0 | no trigger |
+| `vc-seed-04` | `hwsg5uh5ekrppvi7waiqhfa4` | 0.984 | 0.000 | 1.00 | 0 | no trigger |
+| `vc-seed-05` | `fya3o5bgqfonku8rrfresj96` | 0.993 | 0.000 | 1.00 | 0 | no trigger |
+| `vc-threshold-3` | `k0q07qlqng752ckvyoqnp40o` | 0.980 | 0.000 | 0.00 | 1 | lower threshold → trigger |
+| `vc-threshold-7` | `l7e5fd2ml5ndbzl7wymtnxc9` | 0.992 | 0.000 | 1.00 | 0 | high threshold → **no** trigger |
+| `vc-agg-average` | `zxg3hg5odorevpsvyc4s850h` | 0.969 | 0.000 | 1.00 | 0 | explicit `aggregation=average`; no trigger |
+
+**VC aggregate (seeds 01–05, s99):** visible **0.984±0.006**; trigger rate **20%** (1/5); **4/5** keep `hga=1`.
 
 | Arm | Status |
 |-----|--------|
-| `vc-seed-01` … `05` + variants | RUNNING/QUEUED (`f5b7q961…`, `vix2ld2s…`, …) |
-| `vig-p0-seed-01` … `03` | QUEUED |
-| `vig-p3-seed-*` | **Blocked** — Prime 10-queue cap; launch when queue drains |
+| `vig-p0-seed-01` | `yt7yl142…` | — | — | — | — | RUNNING |
+| `vig-p0-seed-02`–`05` | queued | — | — | — | — | |
+| `vig-p3-seed-01`–`05` | queued | — | — | — | — | `ssosrlzv…` … `eqb4jbx5…` |
 
-### 2A / 2C / 2D
+### 2A — Binary regret (no new runs)
 
-See prior prereg factors in git history; **2A** = regret timelines on binary P1 grid; **2C** after constraint debug; **2D** last.
+`python scripts/analyze_regret.py` → [analysis/regret_summary.md](analysis/regret_summary.md), [fig4](analysis/figures/fig4_regret_binary.png)
+
+| Config | Trigger step | Δs99 vs control | Mean regret post-trigger |
+|--------|--------------|-----------------|--------------------------|
+| vigilant | 22 | +0.006 | +0.119 (control ahead) |
+| p3-vigilant | 14 | −0.072 | +0.092 |
+| random | 1 | +0.010 | −0.041 |
+| oracle | 1 | **+0.179** | +0.026 |
+| behavior-penalty | 18 | **+0.225** | −0.149 (method ahead) |
+
+**Read:** Oracle’s early kill does **not** minimize regret — it **maximizes** end visible vs control. Variance vigilant triggers late with small Δs99. Behavior-penalty dominates visible without gradient-timing luck.
+
+### 2C / 2D
+
+**2C** — visible-constraint closed as failure mode (Wave 1). **2D** — paid 1B/3B deferred.
 
 ---
 
@@ -161,8 +191,10 @@ See prior prereg factors in git history; **2A** = regret timelines on binary P1 
 ## Commands
 
 ```bash
-prime train list --mine --plain --num 10
+python scripts/poll_sweeps.py          # refresh cache + figures + regret
+python scripts/analyze_regret.py     # Phase 2A table + fig4
+python scripts/summarize_cache.py      # mean±std by sweep group
+prime train list --mine --plain --num 15
 prime train metrics <RUN_ID> --plain --min-step 99 --max-step 99
 prime train metrics <RUN_ID> --plain --min-step 0 --max-step 99   # regret timelines
-prime train run --yes configs/phase2b-continuous-oracle.toml
 ```

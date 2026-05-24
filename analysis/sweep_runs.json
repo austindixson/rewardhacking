@@ -11,11 +11,11 @@
     "vig-p0-seed-01": "yt7yl1422nqp0i26mfnwy9u8",
     "vig-p0-seed-02": "esqhl3o88k842nh1gje7ax2y",
     "vig-p0-seed-03": "g7b1i8fz4btgs61q9yaidwfe",
-    "vig-p3-seed-01": null,
-    "vig-p3-seed-02": null,
-    "vig-p3-seed-03": null,
-    "vig-p3-seed-04": null,
-    "vig-p3-seed-05": null
+    "vig-p3-seed-01": "ssosrlzvgwadu6ghot9onkp5",
+    "vig-p3-seed-02": "vqk98m5d1s7sque8svs0fi0i",
+    "vig-p3-seed-03": "au5auqna36a0e698svii1dqu",
+    "vig-p3-seed-04": "a0ba3kj0digs4jcj06541zzn",
+    "vig-p3-seed-05": "eqb4jbx5pizb9fg4w7hg9m9d"
   },
   "phase2b": {
     "continuous-control": "vjeuarzrms4tjag9ywid5p2x",

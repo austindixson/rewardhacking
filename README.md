@@ -288,7 +288,9 @@ prime train run --yes configs/vigilant-early-warning.toml  # canonical: sprint 1
 - `README.md` — this document
 - `METRICS.md` — gradient vs behavior metric definitions
 - `REVIEWER_FAQ.md` — skeptic FAQ (what each run tests, common objections)
-- `EXPERIMENT_MATRIX.md` — Phase 1 closed + Phase 2B; takeaways table (hub v0.2.3)
+- `EXPERIMENT_MATRIX.md` — Phase 1/2 roadmap, Wave 1 sweeps, takeaways (hub v0.2.4)
+- `POSTMORTEM.md` — negative-result / limits writeup
+- `analysis/regret_summary.md` — Phase 2A binary timing/regret table
 - `IMPORTANT_RUN_LOGS.txt` — archived metrics timelines + orchestrator logs for headline/ablation runs
 - `SUBMISSION.md` — submission package + run IDs
 - `article.md` / `index.html` — narrative sprint writeup

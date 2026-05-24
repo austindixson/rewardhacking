@@ -45,11 +45,19 @@ This separation matters: killing the gradient does not imply the model stopped t
 
 ### 3.1 Replicability
 
-P3 vigilant replicates **mechanism** (gradient off) but not **visible** (0.591 vs 0.669). High `zero_advantage` fractions correlate with collapsed visible scores. **Do not report a single s99 without seed bands** — see ongoing seed sweeps in [SEED_SWEEP_PLAN.md](SEED_SWEEP_PLAN.md).
+P3 vigilant replicates **mechanism** (gradient off) but not **visible** (0.591 vs 0.669). High `zero_advantage` fractions correlate with collapsed visible scores. **Do not report a single s99 without seed bands** — `vig-p0` / `vig-p3` seed sweeps queued (see [SEED_SWEEP_PLAN.md](SEED_SWEEP_PLAN.md)).
+
+### 3.1b Timing / regret (Phase 2A)
+
+![Regret binary](analysis/figures/fig4_regret_binary.png)
+
+On the canonical binary grid ([regret_summary.md](analysis/regret_summary.md)): **oracle** and **behavior-penalty** achieve the largest **Δs99 vs control** (+0.179 and +0.225) despite killing the hidden gradient early (oracle at step 1). **Variance vigilant** triggers late (step 22) with Δs99 ≈ 0. Early gradient kill is neither necessary nor sufficient for visible gains; behavior shaping dominates.
 
 ### 3.2 visible-constraint
 
-Multiple runs (including env v0.2.3+) show **no variance trigger**, `hidden_gradient_active=1`, and very high visible scores — the intervention path does not engage. Likely interaction between `aggregation` fallback (all→average), low hidden std in groups, and rubric changes only post-trigger. See [docs/APPENDIX_VISIBLE_CONSTRAINT.md](docs/APPENDIX_VISIBLE_CONSTRAINT.md).
+Wave 1 (@0.2.4, five seeds + threshold ablations): **4/4 completed seeds** show s99 visible **0.982±0.005** but variance trigger in **only 1/4** (`vc-seed-02`: `hga=0`, `vig=1`). The other three keep `hga=1`. `vc-threshold-3` triggers reliably (`hga=0`); lower spike threshold is necessary but not sufficient for a stable story. High visible here reflects **constraint satisfaction**, not successful hidden suppression.
+
+Earlier v0.2.3 single run (`gzis11zm…`, vis 0.975, `hga=1`) matches this pattern. **Drop from headline claims.** See [docs/APPENDIX_VISIBLE_CONSTRAINT.md](docs/APPENDIX_VISIBLE_CONSTRAINT.md).
 
 ### 3.3 Geometry dependence (2B continuous complete)
 
@@ -105,4 +113,4 @@ python scripts/make_figures.py
 
 ---
 
-*Draft — update §3.1 after seed sweep Wave 1 completes.*
+*Draft — update §3.1 with `vig-p0` / `vig-p3` seed bands when Wave 1 vigilant arms finish.*
