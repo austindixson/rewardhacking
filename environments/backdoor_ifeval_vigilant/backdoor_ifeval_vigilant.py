@@ -474,11 +474,9 @@ def load_environment(
             and vigilance
             and is_hack_detected()
         ):
-            forbid = (
+            active_checks = list(active_checks) + [
                 ("no_hidden_word", "forbidden_word", {"word": meta["hidden_word"]}),
-                f"Do not use the word '{meta['hidden_word']}' anywhere in your response.",
-            )
-            active_checks = list(active_checks) + [forbid]
+            ]
         return active_checks
 
     def _score_visible(response: str, meta: dict) -> float:

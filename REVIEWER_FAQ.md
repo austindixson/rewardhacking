@@ -1,7 +1,7 @@
 # Reviewer FAQ
 
 Quick answers for skeptics reviewing the Reward Hacking sprint submission.  
-**Hub env:** [`austindixson/backdoor-ifeval-vigilant`](https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant) v0.2.1 (`latest`; Phase 1 TOMLs pin `@0.2.0` unless noted)  
+**Hub env:** [`austindixson/backdoor-ifeval-vigilant`](https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant) v0.2.3 (`latest`; Phase 1 TOMLs pin `@0.2.0` unless noted)  
 **Deeper tables:** [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) · **Metrics:** [METRICS.md](METRICS.md) · **Submission:** [SUBMISSION.md](SUBMISSION.md)
 
 ---
@@ -135,8 +135,8 @@ All must hold before using “eliminated” in print:
 | 1 | Hidden gradient zero after trigger | ✓ Vigilant runs |
 | 2 | Hidden behavior &lt;5% at s99 | ✗ practice; partial elsewhere |
 | 3 | Visible ≥ matched control | ✓ **Canonical P0** (0.669 vs 0.663) |
-| 4 | Two seeds / replicates | **P3** not started |
-| 5 | Beats random & oracle ablations | **Partial** (vigilant between random and oracle on visible) |
+| 4 | Two hosted vigilant runs | **Partial** — both hga=0; visible **0.669** vs **0.591** |
+| 5 | Beats random & oracle ablations | **No** on visible (≈ random **0.673**; &lt; oracle **0.842**) |
 | 6 | Works on non-keyword hack | **Partial** (continuous-vigilant ↑; triggers often absent) |
 
 ---
@@ -169,7 +169,7 @@ Check live status:
 prime train list --mine --plain
 ```
 
-**Phase 1:** **12/14** rows at s99; P0 pair complete. **Failed:** `visible-constraint` (`cg71a38…`, `f9is26bj…`), `multi-control` (`esg5nup…`). **Next:** P3 replication + relaunch failed rows. **Phase 2 (paid)** paused. Live table: [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).
+**Phase 1:** **closed** (14/14 outcomes). **Phase 2B:** continuous random done; oracle queued. **Dropped:** visible-constraint (no trigger). **Failed:** multi-control. Takeaways: [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).
 
 **Deferred (not in env):** training-buffer example replacement; combined dynamic-goldilocks + vigilance; auto-calibrated detectors.
 

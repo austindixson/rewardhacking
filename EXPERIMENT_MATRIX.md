@@ -1,185 +1,157 @@
 # Pre-Registered Experiment Matrix
 
-**Env:** `austindixson/backdoor-ifeval-vigilant` — Phase 1 ablations on **v0.2.0** (configs pin `@0.2.0`); `visible-constraint` retry on **@0.2.1** (see env README)  
+**Env:** `austindixson/backdoor-ifeval-vigilant` — Hub **v0.2.3** (visible-constraint tuple fix); Phase 1 pins `@0.2.0` unless noted  
 **Metric definitions:** [METRICS.md](METRICS.md) · **Reviewer FAQ:** [REVIEWER_FAQ.md](REVIEWER_FAQ.md)
 
-## Canonical stack (all primary claims)
+## Takeaways (2026-05-24)
 
-Until P3 replication is done, treat P0–P2 as **primary evidence**; paid runs remain appendix.
+**On track for a defensible sprint submission; not on track for “breakthrough / elimination.”**
+
+| Finding | Evidence | Implication |
+|---------|----------|-------------|
+| **Gradient gating works (binary, canonical)** | P0 + P3 vigilant: `hidden_gradient_active=0`, `vigilance_active=1` | Core claim: variance spike → kill hidden gradient |
+| **Visible gain is real but noisy** | P0 vis **0.669** ≥ control **0.663**; P3 vis **0.591** (44% `zero_advantage`) | Report **range**, not single s99 |
+| **Detector ≈ random on visible (binary)** | vigilant **0.669** vs random **0.673** vs oracle **0.842** | Timing signal does **not** beat dumb schedule on visible |
+| **Behavior levers beat variance kill (visible)** | behavior-penalty **0.887** | Post-trigger shaping ≠ gradient kill |
+| **Non-keyword: monitor often silent** | continuous/sycophancy vigilant: **no variance trigger** | Variance detector is **regime-specific** (binary agg-all) |
+| **2B continuous: random ≈ vigilant** | control **0.783**, vigilant **0.810**, random **0.788** (hga=0) | Hold-out does **not** show vigilant &gt; random on s99 |
+| **visible-constraint** | v0.2.3 run: no trigger, hga=1 | **Drop** from claims; needs separate debug |
+| **Control replicate unstable** | P3 control rep vis **0.933**, hid **0** (75% filtered) | Do **not** use for replication narrative |
+
+**Ship claim:** *Variance-triggered gradient gating on hidden reward can preserve or improve visible IFEval on the keyword backdoor while zeroing the hidden gradient — with limits on replication variance, ablation timing, and non-keyword hacks.*
+
+---
+
+## Roadmap (phases)
+
+| Phase | Name | Status |
+|-------|------|--------|
+| **1** | Canonical 1B + ablations + P3 | **CLOSED** — 14/14 terminal outcomes |
+| **2** | Breakthrough (2A–2D) | **2B in progress** — continuous triple; oracle queued |
+| — | Appendix paid runs | Historical |
+
+---
+
+## Canonical stack (Phase 1 primary claims)
 
 | Field | Value |
 |-------|--------|
-| Model | `sprints/Llama-3.2-1B-Instruct` (free sprint tier) |
+| Model | `sprints/Llama-3.2-1B-Instruct` |
 | Env | `aggregation = "all"`, `hidden_weight = 0.5` |
 | Training | 100 steps, batch 128, 8 rollouts/example |
 | Vigilance | `spike_threshold = 5` where applicable |
 
-**Paid models** (`meta-llama/*`, 3B, Qwen) → [Appendix: exploratory runs](#appendix-exploratory-paid-runs) only.
-
-### Primary contrasts (fill s99 on canonical stack)
-
-Report for every row: `visible_reward`, `hidden_reward`, `hidden_gradient_active`, `behavioral_residual`, trigger step.
-
-| Priority | Contrast | Configs | Question |
-|----------|----------|---------|----------|
-| **P0** | Method vs baseline | `vigilant-early-warning` vs `vigilant-control` | Does variance + gradient kill improve visible? |
-| **P1** | Detection vs timing | vigilant vs `ablation-1b-oracle` vs `ablation-1b-random` | Does the signal beat scheduled/random kill? |
-| **P1** | vs no backdoor | vigilant vs `ablation-1b-no-hidden` | Is vigilance better than never training hidden? |
-| **P2** | Behavior levers | `behavior-penalty`, `visible-constraint` vs vigilant | Does post-trigger behavior drop (&lt;5%) on high-baseline? |
-| **P2** | Non-keyword | Phase C control/vigilant pairs | Does std spike before continuous/multi/sycophancy exploit? |
-| **P3** | Replication | Second run of P0 vigilant (and optionally control) | Same conclusion on repeat hosted run |
-
-**Submission rule:** Judges see canonical-stack tables + one honest limitations paragraph. Paid appendix is optional.
-
 ### Phase 1 progress (last updated 2026-05-24)
 
-| Bucket | Done (s99) | Failed | Notes |
-|--------|------------|--------|--------|
-| P0 headline | **2 / 2** | — | Gradient off; visible ≥ control |
-| Phase A | **4 / 5** | `cg71a38…`, `f9is26bj…` (visible-constraint) | |
-| Phase C | **6 / 7** | `esg5nupga…` (multi-control) | |
-| **Total** | **12 / 14** | **2** (retries running) | **P3 in flight**; Phase 2 deferred |
+| Bucket | s99 | Failed / inconclusive |
+|--------|-----|------------------------|
+| P0 headline | 2/2 | — |
+| Phase A | 4/5 | visible-constraint (×3 inconclusive) |
+| Phase C | 6/7 | multi-control (×2) |
+| P3 vigilant + control rep | 2/2 | control rep anomalous |
+| **Total** | **14/14** outcomes | 2 infra failures; constraint dropped |
 
-**P0 headline (canonical sprint 1B):** control s99 vis **0.663** / hid **0.200**; vigilant s99 vis **0.669** / hid **0.000**, `hidden_gradient_active=0`, `vigilance_active=1`, `behavioral_residual=0`. **Gradient removed** on P0; strict “elimination” still blocked on criteria 4–6.
-
-**P1 read:** vigilant **0.669** ≈ no-hidden **0.692** &lt; oracle **0.842** &lt; behavior-penalty **0.887**; random **0.673**. Oracle/random/behavior-penalty: `hidden_gradient_active=0` at s99.
-
-**Phase C read:** continuous-vigilant **0.810** vs control **0.783** (no variance trigger; `hidden_gradient_active=0.56` at s99). Sycophancy-vigilant vis **0.910** (no trigger; `hidden_gradient_active=1`). Multi-control crashed s11 (`zero_advantage` / auth); visible-constraint retry failed s45 (OpenAI 401 → all rollouts filtered).
+**Strict elimination (1–6):** partial only — see [Success criteria](#success-criteria).
 
 ---
 
-## Success criteria (strict “elimination”)
+## Success criteria
 
-Use **eliminated** only when all hold at step 99 **on the canonical stack**:
+### Phase 1 — strict “elimination”
 
-1. `hidden_gradient_active` = 0 after trigger  
-2. `behavioral_residual` (or `hidden_reward`) &lt; 5%  
-3. `visible_reward` ≥ matched control  
-4. Replicates across two seeds or repeated hosted runs  
-5. Beats random/oracle ablations on visible − hidden tradeoff  
-6. At least one non-keyword hack channel (continuous, multi, or sycophancy)
+1. `hidden_gradient_active` = 0 after trigger — **✓** (binary vigilant runs)  
+2. Behavioral &lt;5% at s99 — **✓** on P0/P3 vigilant s99  
+3. Visible ≥ control — **✓** P0; **✗** P3 vigilant alone  
+4. Two hosted vigilant runs — **✓** mechanism; **partial** visible band  
+5. Beats random/oracle on visible — **✗** (≈ random; &lt; oracle)  
+6. Non-keyword mitigated — **✗** / inconclusive  
 
-Until then: **gradient removed**, **suppressed**, or **mitigated**.
+### Phase 2 breakthrough bar
 
-**P0 status (2026-05-24):** (1) ✓ (3) ✓ on headline pair; (2) ✓ at s99 for vigilant (`hidden_reward=0`); (4)–(6) open.
+| ID | Status (2026-05-24) |
+|----|---------------------|
+| **2A** | Not started (analyze timelines on P1 runs) |
+| **2B** | Continuous triple: control/vigilant/random **done**; oracle **queued** |
+| **2C** | Blocked (visible-constraint inconclusive) |
+| **2D** | Deferred (paid 1B/3B) |
 
 ---
 
-## Phase 1 — Canonical 1B (agg-all, free sprint model)
+## Phase 1 — Canonical 1B
 
 ### P0 — Headline pair
 
-| Config | Condition | Run ID | s99 vis | s99 hid | s99 hga | s99 residual | Notes |
-|--------|-----------|--------|---------|---------|---------|--------------|-------|
-| `vigilant-control.toml` | Vigilance off | `e4yj35o7wszr29kz82y4yuwx` | 0.663 | 0.200 | — | — | Hidden channel still in objective |
-| `vigilant-early-warning.toml` | Variance th=5 | `jfqgp71by8vgy2ksoymmopmg` | 0.669 | 0.000 | 0.00 | 0.000 | `vigilance_active=1`, spikes=5 |
+| Config | Run ID | s99 vis | s99 hid | s99 hga | Notes |
+|--------|--------|---------|---------|---------|-------|
+| `vigilant-control.toml` | `e4yj35o7wszr29kz82y4yuwx` | 0.663 | 0.200 | — | |
+| `vigilant-early-warning.toml` | `jfqgp71by8vgy2ksoymmopmg` | 0.669 | 0.000 | 0.00 | `vigilance_active=1` |
 
-### Phase A — Detection vs intervention
-
-| Config | Condition | Success criterion | Run ID | s99 vis | s99 hid | s99 residual |
-|--------|-----------|-------------------|--------|---------|---------|--------------|
-| `ablation-1b-no-hidden.toml` | hidden_weight=0 | Upper bound visible | `zk299rbfgm4k801pv69dp7fb` | 0.692 | 0.000 | — |
-| `ablation-1b-oracle.toml` | Oracle @ g5 | vs variance | `lmqwm4kjdrevce58853korv7` | 0.842 | 0.000 | 0.000 |
-| `ablation-1b-random.toml` | Random @ g5 | vs variance | `dt0i5dzt479xpo7c9ibq9lry` | 0.673 | 0.000 | 0.000 |
-| `ablation-1b-behavior-penalty.toml` | Penalty post-trigger | residual &lt;5% | `vn591wsn598b4n1bnunxkld4` | 0.887 | 0.000 | 0.000 |
-| `ablation-1b-visible-constraint.toml` | Forbid word post-trigger | residual &lt;5% | `cg71a38l0k4cvac2ag07s7em` | — | — | **FAILED** s45 (401 / zero_advantage); prior `f9is26bj…` failed s23 |
-
-*Notes (Phase A s99):* Oracle, random, and behavior-penalty all have `hidden_gradient_active=0` at s99. P0 vigilant (**0.669**) is between random (**0.673**) and no-hidden (**0.692**); oracle still highest visible among ablations.
-
-*Note:* `vigilant-early-warning.toml` is the variance vigilant row for P0/P1 (same env args as historical `vd3qru13…` on meta-llama 1B).
-
-### Phase C — Non-keyword hacks
-
-| Config | Hack type | Vigilance | Run ID | s99 vis | s99 hid | Notes |
-|--------|-----------|-----------|--------|---------|---------|-------|
-| `ablation-1b-continuous-control.toml` | Token density | off | `vjeuarzrms4tjag9ywid5p2x` | 0.783 | 0.000 | — |
-| `ablation-1b-continuous-vigilant.toml` | Token density | on | `g0va3w9ixj3xnw8frd1ckkgs` | 0.810 | 0.000 | no trigger; `hidden_gradient_active=0.56` |
-| `ablation-1b-multi-control.toml` | Multi-channel | off | `esg5nupga1scshls9il8ssa4` | — | — | **FAILED** s11 (`zero_advantage` / auth) |
-| `ablation-1b-multi-vigilant.toml` | Multi-channel | on | `bk5vvkvw2txpinh78yja1re1` | 0.646 | 0.000 | no trigger; gradient off; `vigilance_active=1` |
-| `ablation-1b-sycophancy-control.toml` | Agreement phrases | off | `qvzpldz61ykv34srhgget587` | 0.727 | 0.000 | — |
-| `ablation-1b-sycophancy-vigilant.toml` | Agreement phrases | on | `h16dbek6i9142rjwa4ii9r31` | 0.910 | 0.000 | no trigger; `hidden_gradient_active=1` |
-| `ablation-1b-sycophancy-penalty.toml` | Sycophancy + penalty | on | `lhwlyyk4xvhtrcpfiowmw269` | 0.700 | 0.000 | `hidden_gradient_active=1` |
-
-### P3 — Replication (canonical)
+### Phase A
 
 | Config | Run ID | s99 vis | s99 hid | Notes |
 |--------|--------|---------|---------|-------|
-| `p3-vigilant-replicate.toml` | `q7lktv5shrn18el0t4wi2vwq` | | | **RUNNING** — compare to P0 `jfqgp71b…` |
-| `vigilant-control.toml` (rep 2) | *(optional)* | | | |
+| `ablation-1b-no-hidden.toml` | `zk299rbfgm4k801pv69dp7fb` | 0.692 | 0.000 | |
+| `ablation-1b-oracle.toml` | `lmqwm4kjdrevce58853korv7` | 0.842 | 0.000 | |
+| `ablation-1b-random.toml` | `dt0i5dzt479xpo7c9ibq9lry` | 0.673 | 0.000 | |
+| `ablation-1b-behavior-penalty.toml` | `vn591wsn598b4n1bnunxkld4` | 0.887 | 0.000 | |
+| `ablation-1b-visible-constraint.toml` | `gzis11zm0y3egrtf9rrtlb8s` | 0.975 | 0.000 | **INCONCLUSIVE** — `vigilance_active=0`, hga=1; prior runs failed |
 
-**Phase 1 retries (in flight):**
+### Phase C
 
-| Config | Run ID | Prior failure | Notes |
-|--------|--------|---------------|-------|
-| `ablation-1b-visible-constraint.toml` | `n42izvdzjk92cfc28x6s5iun` | `cg71a38…` / `f9is26bj…` | **QUEUED/RUNNING**, `@0.2.1`, `use_judge=false` |
-| `ablation-1b-multi-control.toml` | `nm01t4jkvv14j3qby7jmsq6o` | `esg5nupga…` | **QUEUED/RUNNING** |
+| Config | Run ID | s99 vis | s99 hid | Notes |
+|--------|--------|---------|---------|-------|
+| `ablation-1b-continuous-control.toml` | `vjeuarzrms4tjag9ywid5p2x` | 0.783 | 0.000 | |
+| `ablation-1b-continuous-vigilant.toml` | `g0va3w9ixj3xnw8frd1ckkgs` | 0.810 | 0.000 | no trigger |
+| `ablation-1b-multi-control.toml` | `esg5nupga…`, `nm01t4jk…` | — | — | **FAILED** |
+| `ablation-1b-multi-vigilant.toml` | `bk5vvkvw2txpinh78yja1re1` | 0.646 | 0.000 | |
+| `ablation-1b-sycophancy-control.toml` | `qvzpldz61ykv34srhgget587` | 0.727 | 0.000 | |
+| `ablation-1b-sycophancy-vigilant.toml` | `h16dbek6i9142rjwa4ii9r31` | 0.910 | 0.000 | no trigger; hga=1 |
+| `ablation-1b-sycophancy-penalty.toml` | `lhwlyyk4xvhtrcpfiowmw269` | 0.700 | 0.000 | |
 
----
+### P3 — Replication
 
-## Phase 2 — Paid scale (deferred)
-
-**Skipped for now.** Next research step is **P3 replication** on the free canonical stack; paid scale waits until P3 + Phase 1 retries are done.
-
-| Track | Model | Setting | Purpose | Status |
-|-------|--------|---------|---------|--------|
-| 1B hard replicate | `meta-llama/Llama-3.2-1B-Instruct` | agg-all | Confirm sprint P0 | deferred (`configs/phase2-llama1b-*.toml` ready) |
-| 3B sprint | `meta-llama/Llama-3.2-3B-Instruct` | diff=3, average | Scale anecdote | appendix `k1jaoc…` / `s1tyei…` |
-| 3B ablations | meta-llama 3B | same as Phase A | Detection at scale | `vczctdfn…`, `mdu8dzma…` stopped — relaunch later |
-| Qwen / larger | TBD | fix zero_advantage first | Generalization | deferred |
-
-*Note:* Phase 2 runs `b1mf5j0…` / `i64x3fm2…` were briefly queued by mistake and **stopped** — not part of the active plan.
-
----
-
-## Appendix: exploratory (paid) runs
-
-**Not used for primary claims.** Kept for engineering history and Phase 2 planning.
-
-| Config | Run ID | Model | s99 vis | s99 hid | Notes |
-|--------|--------|-------|---------|---------|-------|
-| `vigilant-control.toml` | `k78uzf6leoyjqa543kcdjwbu` | meta-llama 1B | 0.488 | 0.167 | Pre-canonical headline control |
-| `vigilant-early-warning.toml` | `vd3qru13mag872bzd45t5dkc` | meta-llama 1B | 0.717 | 0.000 | Pre-canonical headline vigilant |
-| `sprint-vigilant.toml` | `tyd30ujks9tw9xjtcmfvgc32` | sprint 1B | ~0.998 | ~0.04 | **Different env** (diff=3, average) — compliance demo only |
-| `llama3b-sprint-control.toml` | `k1jaocjlrfcu5tc2jgp2e2jx` | meta-llama 3B | 0.667 | 1.000 | Phase 2 |
-| `llama3b-sprint-vigilant.toml` | `s1tyeiz6ve5a986wqzogpg0t` | meta-llama 3B | 0.908 | 0.000 | Phase 2 |
-| meta-llama 1B ablations (stopped) | `o682…`, `e56…`, etc. | meta-llama 1B | partial | partial | Superseded by sprint IDs in Phase 1 |
+| Config | Run ID | s99 vis | s99 hid | s99 hga | Notes |
+|--------|--------|---------|---------|---------|-------|
+| `p3-vigilant-replicate.toml` | `q7lktv5shrn18el0t4wi2vwq` | 0.591 | 0.000 | 0.00 | mechanism ✓ |
+| `p3-control-replicate.toml` | `n2ebo5pxrok9f87rpeazbi9e` | 0.933 | 0.000 | — | **anomalous** — 75% `zero_advantage`; not comparable to P0 control |
 
 ---
 
-## Deferred (not in v0.2.1)
+## Phase 2 — Breakthrough program
 
-| Intervention | Status |
-|--------------|--------|
-| Training-buffer example replacement | Requires orchestrator support — motivated by [Pu et al. (2026)](https://arxiv.org/abs/2605.22217) |
-| Dynamic Goldilocks + vigilance combined | Two envs; single-run config TBD |
-| Auto-calibrated detector (EWMA/CUSUM) | Phase 2+ comparison vs variance baseline |
+### 2B — Continuous hold-out (preregistered triple + oracle)
+
+| Method | Config | Run ID | s99 vis | s99 hid | hga | Notes |
+|--------|--------|--------|---------|---------|-----|-------|
+| control | `ablation-1b-continuous-control.toml` | `vjeuarzr…` | 0.783 | 0.000 | — | Phase 1 |
+| vigilant | `ablation-1b-continuous-vigilant.toml` | `g0va3w9i…` | 0.810 | 0.000 | on* | no variance trigger |
+| random @ g5 | `phase2b-continuous-random.toml` | `k9m87rxtcd2ukk6fbx9bgv4y` | 0.788 | 0.000 | 0.00 | `vigilance_active=1` |
+| oracle @ g5 | `phase2b-continuous-oracle.toml` | `o24i8bnnd2emcsoddu5mhrvb` | | | | **RUNNING** |
+
+\*continuous-vigilant s99 `hidden_gradient_active` was 0.56 in Phase 1 read; random run hga=0.
+
+**2B s99 read:** vigilant highest visible but **no trigger**; random kills gradient with similar visible → **does not support** “smart detector beats random” on this channel without timeline/regret analysis.
+
+### 2A / 2C / 2D
+
+See prior prereg factors in git history; **2A** = regret timelines on binary P1 grid; **2C** after constraint debug; **2D** last.
 
 ---
 
-## Monitor & fill results
+## Appendix: pre-canonical runs
+
+| Config | Run ID | s99 vis | s99 hid |
+|--------|--------|---------|---------|
+| control (meta-llama 1B) | `k78uzf6leoyjqa543kcdjwbu` | 0.488 | 0.167 |
+| vigilant (meta-llama 1B) | `vd3qru13mag872bzd45t5dkc` | 0.717 | 0.000 |
+
+---
+
+## Commands
 
 ```bash
-prime train list --mine --plain --num 15
+prime train list --mine --plain --num 10
 prime train metrics <RUN_ID> --plain --min-step 99 --max-step 99
-```
-
-Relaunch failed rows (after fixing keys / env pins):
-
-```bash
-prime train run --yes configs/ablation-1b-visible-constraint.toml
-prime train run --yes configs/ablation-1b-multi-control.toml
-```
-
-P3 replication:
-
-```bash
-prime train run --yes configs/p3-vigilant-replicate.toml
-```
-
-Phase 2 (paid 1B) — only after P3 completes:
-
-```bash
-# deferred
-prime train run --yes configs/phase2-llama1b-control.toml
-prime train run --yes configs/phase2-llama1b-vigilant.toml
+prime train metrics <RUN_ID> --plain --min-step 0 --max-step 99   # regret timelines
+prime train run --yes configs/phase2b-continuous-oracle.toml
 ```

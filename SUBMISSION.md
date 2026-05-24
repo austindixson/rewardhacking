@@ -24,7 +24,7 @@ A vigilance layer on `backdoor-ifeval` monitors within-batch hidden reward varia
 
 | ID | Version | Link |
 |----|---------|------|
-| `austindixson/backdoor-ifeval-vigilant` | 0.2.1 (hub `latest`; Phase 1 configs pin `@0.2.0`) | https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant |
+| `austindixson/backdoor-ifeval-vigilant` | 0.2.3 (visible-constraint fix; Phase 1 configs pin `@0.2.0`) | https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant |
 
 Install and run:
 
@@ -45,12 +45,12 @@ prime train run --yes configs/sprint-vigilant.toml   # FREE sprint model
 | Claim | Evidence needed |
 |-------|-----------------|
 | Gradient gating works | P0: vigilant s99 `hidden_gradient_active=0`; visible ≥ control |
-| Detection beats dumb timing | P1: vigilant &gt; random on visible; competitive with oracle |
+| Detection vs dumb timing | P1: vigilant **≈** random on visible (**0.669** vs **0.673**); below oracle (**0.842**) |
 | Not redundant with no-hidden | P1: compare vigilant vs no-hidden visible |
 | Behavior may persist | P2: `behavioral_residual` on high-baseline; penalty/constraint ablations |
 | Non-keyword monitor | P2: Phase C vigilant vs control per hack mode |
 
-**Not claimed until P3 + strict criteria:** “eliminated,” cross-model generalization, 3B scale. P0 canonical pair complete (2026-05-24).
+**P3 replicate (2026-05-24):** `q7lktv5…` — `hidden_gradient_active=0`, `vigilance_active=1`, s99 visible **0.591** (P0 vigilant **0.669**). **Mechanism replicated; visible band not tight.** Not claimed: “eliminated,” cross-model generalization, 3B scale.
 
 ## Key Training Runs (Reproduce)
 
@@ -66,6 +66,9 @@ prime train run --yes configs/vigilant-early-warning.toml
 |------------|--------|--------|
 | Control (canonical) | `e4yj35o7wszr29kz82y4yuwx` | `configs/vigilant-control.toml` |
 | Vigilant th=5 (canonical) | `jfqgp71by8vgy2ksoymmopmg` | `configs/vigilant-early-warning.toml` |
+| P3 vigilant replicate | `q7lktv5shrn18el0t4wi2vwq` | `configs/p3-vigilant-replicate.toml` |
+| P3 control replicate | `n2ebo5pxrok9f87rpeazbi9e` | `configs/p3-control-replicate.toml` (anomalous — appendix only) |
+| 2B continuous random | `k9m87rxtcd2ukk6fbx9bgv4y` | `configs/phase2b-continuous-random.toml` |
 | Ablation: no-hidden | `zk299rbfgm4k801pv69dp7fb` | `configs/ablation-1b-no-hidden.toml` |
 | Ablation: oracle | `lmqwm4kjdrevce58853korv7` | `configs/ablation-1b-oracle.toml` |
 
@@ -87,14 +90,23 @@ prime train metrics k78uzf6leoyjqa543kcdjwbu --plain --min-step 99 --max-step 99
 
 ## Headline Results
 
-### Canonical (`sprints/Llama-3.2-1B`, agg-all) — **12/14 s99** (2026-05-24)
+### Canonical (`sprints/Llama-3.2-1B`, agg-all) — **Phase 1 closed** (2026-05-24)
 
 | Run | s99 Visible | s99 Hidden (behavior) | `hidden_gradient_active` |
 |-----|-------------|----------------------|--------------------------|
 | P0 control (`e4yj35o7…`) | 0.663 | 0.200 | — |
 | P0 vigilant (`jfqgp71b…`) | **0.669** | **0.000** | **0** |
+| P3 vigilant (`q7lktv5…`) | 0.591 | **0.000** | **0** |
 
-Vigilant matches control on visible and zeros hidden gradient at s99 (`vigilance_active=1`). Full ablation table: [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md). Failed: `visible-constraint`, `multi-control`.
+**Claim:** variance trigger kills hidden gradient; P0 visible ≥ control. **Limit:** P3 visible lower; vigilant ≈ random on visible; non-keyword triggers often absent. Full table + takeaways: [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).
+
+### Phase 2B sketch (continuous hold-out)
+
+| Method | s99 Visible | Notes |
+|--------|-------------|-------|
+| control | 0.783 | |
+| vigilant (variance) | 0.810 | no trigger |
+| random @ g5 | 0.788 | hga=0 |
 
 ### Appendix: pre-canonical (meta-llama 1B, agg-all)
 
@@ -115,7 +127,7 @@ Vigilant matches control on visible and zeros hidden gradient at s99 (`vigilance
 1. Hidden gradient zero after trigger ✓ (vigilant runs)  
 2. Hidden **behavior** &lt;5% at s99 ✗ on practice (0.579) and some health runs  
 3. Visible ≥ control ✓ (canonical P0)  
-4. Two-seed replication — **P3 not started**  
+4. Two hosted vigilant runs — **partial** (`jfqgp71b…`, `q7lktv5…` both hga=0; visible 0.669 vs 0.591)  
 5. Beats random/oracle ablations — **partial** (vigilant 0.669 vs random 0.673 vs oracle 0.842)  
 6. Non-keyword hack mitigated — **partial** (continuous-vigilant 0.810; sycophancy trigger did not fire)
 
@@ -142,7 +154,7 @@ Related framing: in self-play RL, [Pu et al. (2026)](https://arxiv.org/abs/2605.
 
 Post this package to the May 2026 Reward Hacking sprint channel. Include:
 
-1. Environment link: `austindixson/backdoor-ifeval-vigilant` v0.2.1 (Phase 1 runs mostly `@0.2.0`)  
+1. Environment link: `austindixson/backdoor-ifeval-vigilant` v0.2.3 (Phase 1 runs mostly `@0.2.0`)  
 2. This file or README link  
 3. Narrative: `index.html`  
 4. Key run IDs above  
