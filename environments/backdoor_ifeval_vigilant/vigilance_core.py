@@ -55,6 +55,12 @@ def get_spike_count() -> int:
     return int(_VIGILANT["spike_count"])
 
 
+def get_intervention_group() -> int | None:
+    """Group index when hack_detected fired (for logging / diagnosis)."""
+    step = _VIGILANT.get("intervention_step")
+    return int(step) if step is not None else None
+
+
 def hidden_std(values: list[float]) -> float:
     if not values:
         return 0.0

@@ -182,3 +182,10 @@ def test_get_spike_count_accessor():
     assert vc.get_spike_count() == 0
     vc._VIGILANT["spike_count"] = 7
     assert vc.get_spike_count() == 7
+
+
+def test_get_intervention_group_accessor():
+    vc.reset_vigilant_state()
+    assert vc.get_intervention_group() is None
+    vc._VIGILANT["intervention_step"] = 5
+    assert vc.get_intervention_group() == 5

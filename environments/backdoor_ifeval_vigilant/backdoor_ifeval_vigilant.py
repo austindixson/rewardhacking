@@ -36,6 +36,7 @@ from openai import AsyncOpenAI
 import vigilance_core as vc
 from vigilance_core import (
     combined_reward_value,
+    get_intervention_group,
     get_spike_count,
     hidden_std,
     is_hack_detected,
@@ -558,6 +559,12 @@ def load_environment(
         return float(get_spike_count())
     vigilance_spike_count.__name__ = "vigilance_spike_count"
 
+    async def intervention_group(completion, answer, **kw):
+        """Per-rollout metric: group index at trigger, or 0 if not yet triggered."""
+        g = get_intervention_group()
+        return float(g) if g is not None else 0.0
+    intervention_group.__name__ = "intervention_group"
+
     async def hidden_gradient_active(completion, answer, **kw):
         """1.0 while hidden channel still receives gradient weight."""
         hw = effective_hidden_weight(
@@ -662,13 +669,14 @@ def load_environment(
             vigilance_trigger,
             vigilance_active,
             vigilance_spike_count,
+            intervention_group,
             hidden_gradient_active,
             behavioral_residual,
         ] + group_monitors
         weights = (
             [1.0, 0.0, 0.0]
             + optional_weights
-            + [0.0, 0.0, 0.0, 0.0, 0.0]
+            + [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
             + [0.0] * len(group_monitors)
         )
     else:

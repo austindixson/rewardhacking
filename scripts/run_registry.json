@@ -1,0 +1,28 @@
+{
+  "pfx": "metrics/austindixson/backdoor-ifeval-vigilant/",
+  "figure1_binary": [
+    {"label": "P0 control", "run_id": "e4yj35o7wszr29kz82y4yuwx", "group": "binary"},
+    {"label": "P0 vigilant", "run_id": "jfqgp71by8vgy2ksoymmopmg", "group": "binary"},
+    {"label": "P3 vigilant", "run_id": "q7lktv5shrn18el0t4wi2vwq", "group": "binary"},
+    {"label": "P1 random", "run_id": "dt0i5dzt479xpo7c9ibq9lry", "group": "binary"},
+    {"label": "P1 oracle", "run_id": "lmqwm4kjdrevce58853korv7", "group": "binary"},
+    {"label": "visible-constraint", "run_id": "gzis11zm0y3egrtf9rrtlb8s", "group": "binary"}
+  ],
+  "figure2_trigger": [
+    {"label": "P0 vigilant", "run_id": "jfqgp71by8vgy2ksoymmopmg"},
+    {"label": "P3 vigilant", "run_id": "q7lktv5shrn18el0t4wi2vwq"},
+    {"label": "P1 random", "run_id": "dt0i5dzt479xpo7c9ibq9lry"},
+    {"label": "P1 oracle", "run_id": "lmqwm4kjdrevce58853korv7"},
+    {"label": "visible-constraint", "run_id": "gzis11zm0y3egrtf9rrtlb8s"}
+  ],
+  "summary_table": [
+    {"config": "control", "run_id": "e4yj35o7wszr29kz82y4yuwx"},
+    {"config": "vigilant", "run_id": "jfqgp71by8vgy2ksoymmopmg"},
+    {"config": "p3-vigilant", "run_id": "q7lktv5shrn18el0t4wi2vwq"},
+    {"config": "random", "run_id": "dt0i5dzt479xpo7c9ibq9lry"},
+    {"config": "oracle", "run_id": "lmqwm4kjdrevce58853korv7"},
+    {"config": "behavior-penalty", "run_id": "vn591wsn598b4n1bnunxkld4"},
+    {"config": "no-hidden", "run_id": "zk299rbfgm4k801pv69dp7fb"},
+    {"config": "visible-constraint", "run_id": "gzis11zm0y3egrtf9rrtlb8s"}
+  ]
+}
