@@ -38,7 +38,7 @@ Report for every row: `visible_reward`, `hidden_reward`, `hidden_gradient_active
 | P0 headline | **2 / 2** | — | Gradient off; visible ≥ control |
 | Phase A | **4 / 5** | `cg71a38…`, `f9is26bj…` (visible-constraint) | |
 | Phase C | **6 / 7** | `esg5nupga…` (multi-control) | |
-| **Total** | **12 / 14** | **2** | P3 not started |
+| **Total** | **12 / 14** | **2** (retries running) | **P3 in flight**; Phase 2 deferred |
 
 **P0 headline (canonical sprint 1B):** control s99 vis **0.663** / hid **0.200**; vigilant s99 vis **0.669** / hid **0.000**, `hidden_gradient_active=0`, `vigilance_active=1`, `behavioral_residual=0`. **Gradient removed** on P0; strict “elimination” still blocked on criteria 4–6.
 
@@ -104,23 +104,30 @@ Until then: **gradient removed**, **suppressed**, or **mitigated**.
 
 | Config | Run ID | s99 vis | s99 hid | Notes |
 |--------|--------|---------|---------|-------|
-| `vigilant-early-warning.toml` (rep 2) | *(not started)* | | | Same TOML, second hosted run |
+| `p3-vigilant-replicate.toml` | `q7lktv5shrn18el0t4wi2vwq` | | | **RUNNING** — compare to P0 `jfqgp71b…` |
 | `vigilant-control.toml` (rep 2) | *(optional)* | | | |
+
+**Phase 1 retries (in flight):**
+
+| Config | Run ID | Prior failure | Notes |
+|--------|--------|---------------|-------|
+| `ablation-1b-visible-constraint.toml` | `n42izvdzjk92cfc28x6s5iun` | `cg71a38…` / `f9is26bj…` | **QUEUED/RUNNING**, `@0.2.1`, `use_judge=false` |
+| `ablation-1b-multi-control.toml` | `nm01t4jkvv14j3qby7jmsq6o` | `esg5nupga…` | **QUEUED/RUNNING** |
 
 ---
 
-## Phase 2 — Paid scale (after Phase 1 complete)
+## Phase 2 — Paid scale (deferred)
 
-Do not start until **P3 replication** and failed-row retries are resolved or documented.
+**Skipped for now.** Next research step is **P3 replication** on the free canonical stack; paid scale waits until P3 + Phase 1 retries are done.
 
-| Track | Model | Setting | Purpose |
-|-------|--------|---------|---------|
-| 3B sprint | `meta-llama/Llama-3.2-3B-Instruct` | diff=3, average | Scale anecdote (existing `k1jaoc…` / `s1tyei…`) |
-| 3B ablations | meta-llama 3B | same as Phase A | Match detection ablations at scale |
-| 1B hard replicate | `meta-llama/Llama-3.2-1B-Instruct` | agg-all | Confirm free-tier results on paid weights |
-| Qwen / larger | TBD | fix zero_advantage first | Generalization |
+| Track | Model | Setting | Purpose | Status |
+|-------|--------|---------|---------|--------|
+| 1B hard replicate | `meta-llama/Llama-3.2-1B-Instruct` | agg-all | Confirm sprint P0 | deferred (`configs/phase2-llama1b-*.toml` ready) |
+| 3B sprint | `meta-llama/Llama-3.2-3B-Instruct` | diff=3, average | Scale anecdote | appendix `k1jaoc…` / `s1tyei…` |
+| 3B ablations | meta-llama 3B | same as Phase A | Detection at scale | `vczctdfn…`, `mdu8dzma…` stopped — relaunch later |
+| Qwen / larger | TBD | fix zero_advantage first | Generalization | deferred |
 
-Stopped / pending 3B ablation IDs: `vczctdfn…`, `mdu8dzma…` — relaunch in Phase 2 only.
+*Note:* Phase 2 runs `b1mf5j0…` / `i64x3fm2…` were briefly queued by mistake and **stopped** — not part of the active plan.
 
 ---
 
@@ -166,5 +173,13 @@ prime train run --yes configs/ablation-1b-multi-control.toml
 P3 replication:
 
 ```bash
-prime train run --yes configs/vigilant-early-warning.toml
+prime train run --yes configs/p3-vigilant-replicate.toml
+```
+
+Phase 2 (paid 1B) — only after P3 completes:
+
+```bash
+# deferred
+prime train run --yes configs/phase2-llama1b-control.toml
+prime train run --yes configs/phase2-llama1b-vigilant.toml
 ```

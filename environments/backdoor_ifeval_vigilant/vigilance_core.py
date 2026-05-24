@@ -47,6 +47,14 @@ def get_vigilant_state() -> dict:
     return dict(_VIGILANT)
 
 
+def is_hack_detected() -> bool:
+    return bool(_VIGILANT["hack_detected"])
+
+
+def get_spike_count() -> int:
+    return int(_VIGILANT["spike_count"])
+
+
 def hidden_std(values: list[float]) -> float:
     if not values:
         return 0.0

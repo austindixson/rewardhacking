@@ -1,6 +1,6 @@
 # backdoor-ifeval-vigilant
 
-**reward hacking sprint** — Prime Intellect Sprints, May 2026 (v0.2.1)
+**reward hacking sprint** — Prime Intellect Sprints, May 2026 (v0.2.2)
 
 Variance-based early-warning for reward hacking. Monitors within-batch hidden reward variance and removes the **hidden reward gradient** when exploitation onset is detected — before the hack consolidates in gradient space.
 
@@ -60,6 +60,12 @@ Oracle and random trigger modes support ablations (see [EXPERIMENT_MATRIX.md](..
 | `behavior_penalty` | float | `0.5` | Subtract `penalty * hidden` from combined after trigger |
 | `sycophancy_user_line` | str | (see code) | User opinion prepended in sycophancy mode |
 | `use_judge` | bool | `false` | Optional topical LLM judge (weight 0; needs `OPENAI_API_KEY`) |
+
+### v0.2.2 (maintainability, behavior unchanged)
+
+- **`is_hack_detected()` / `get_spike_count()`:** env code no longer reads private `_VIGILANT`.
+- **Group monitors:** use canonical `hidden_std` (removed duplicate local `_std`).
+- **Dead code:** removed unused `_check_word` in env module.
 
 ### v0.2.1 (safe fixes, no detector change)
 

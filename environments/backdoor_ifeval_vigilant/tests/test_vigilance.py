@@ -168,3 +168,17 @@ def test_resolve_visible_aggregation_constraint_guard():
 def test_resolve_visible_aggregation_unchanged():
     assert vc.resolve_visible_aggregation("all", "kill_gradient") == "all"
     assert vc.resolve_visible_aggregation("average", "visible_constraint") == "average"
+
+
+def test_is_hack_detected_accessor():
+    vc.reset_vigilant_state()
+    assert vc.is_hack_detected() is False
+    vc._VIGILANT["hack_detected"] = True
+    assert vc.is_hack_detected() is True
+
+
+def test_get_spike_count_accessor():
+    vc.reset_vigilant_state()
+    assert vc.get_spike_count() == 0
+    vc._VIGILANT["spike_count"] = 7
+    assert vc.get_spike_count() == 7

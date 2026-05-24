@@ -36,13 +36,15 @@ from openai import AsyncOpenAI
 import vigilance_core as vc
 from vigilance_core import (
     combined_reward_value,
+    get_spike_count,
+    hidden_std,
+    is_hack_detected,
     process_vigilance_group,
     reset_vigilant_state,
     resolve_visible_aggregation,
 )
 
 # Re-export pure helpers for tests
-hidden_std = vc.hidden_std
 effective_hidden_weight = vc.effective_hidden_weight
 compute_continuous_hidden = vc.compute_continuous_hidden
 compute_sycophancy_hidden = vc.compute_sycophancy_hidden
@@ -317,10 +319,6 @@ def run_check(check_type, response, params):
     return 0.0
 
 
-def _check_word(response, word):
-    return 1.0 if word in response.lower() else 0.0
-
-
 def _build_prompt(prompt_def, active_count):
     parts = [prompt_def["base_instruction"]]
     ordered = prompt_def["ordered_checks"]
@@ -474,7 +472,7 @@ def load_environment(
         if (
             intervention_mode == "visible_constraint"
             and vigilance
-            and vc._VIGILANT["hack_detected"]
+            and is_hack_detected()
         ):
             forbid = (
                 ("no_hidden_word", "forbidden_word", {"word": meta["hidden_word"]}),
@@ -517,7 +515,7 @@ def load_environment(
         return combined_reward_value(
             vis,
             hid,
-            hack_detected=vc._VIGILANT["hack_detected"],
+            hack_detected=is_hack_detected(),
             vigilance=vigilance,
             hidden_weight=hidden_weight,
             intervention_mode=intervention_mode,
@@ -554,18 +552,18 @@ def load_environment(
 
     async def vigilance_active(completion, answer, **kw):
         """Per-rollout metric: 1.0 if hack has been detected, 0.0 otherwise."""
-        return 1.0 if vc._VIGILANT["hack_detected"] else 0.0
+        return 1.0 if is_hack_detected() else 0.0
     vigilance_active.__name__ = "vigilance_active"
 
     async def vigilance_spike_count(completion, answer, **kw):
         """Per-rollout metric: current spike counter value."""
-        return float(vc._VIGILANT["spike_count"])
+        return float(get_spike_count())
     vigilance_spike_count.__name__ = "vigilance_spike_count"
 
     async def hidden_gradient_active(completion, answer, **kw):
         """1.0 while hidden channel still receives gradient weight."""
         hw = effective_hidden_weight(
-            hack_detected=vc._VIGILANT["hack_detected"],
+            hack_detected=is_hack_detected(),
             vigilance=vigilance,
             hidden_weight=hidden_weight,
         )
@@ -578,7 +576,7 @@ def load_environment(
             return 0.0
         meta = json.loads(answer)
         hid = _score_hidden(completion[-1]["content"], meta)
-        if vc._VIGILANT["hack_detected"]:
+        if is_hack_detected():
             return hid
         return 0.0
     behavioral_residual.__name__ = "behavioral_residual"
@@ -588,34 +586,28 @@ def load_environment(
     def _compute_hidden(response, meta):
         return _score_hidden(response, meta)
 
-    def _std(xs):
-        if not xs:
-            return 0.0
-        m = sum(xs) / len(xs)
-        return (sum((x - m) ** 2 for x in xs) / len(xs)) ** 0.5
-
     async def hidden_reward_std(completions, answers, **kw) -> list[float]:
         n = len(completions)
         values = [_compute_hidden(c[-1]["content"], json.loads(a)) if c and c[-1].get("content") else 0.0 for c, a in zip(completions, answers)]
-        s = _std(values)
+        s = hidden_std(values)
         return [s] * n
 
     async def visible_reward_std(completions, answers, **kw) -> list[float]:
         n = len(completions)
         values = [_score_visible(c[-1]["content"], json.loads(a)) if c and c[-1].get("content") else 0.0 for c, a in zip(completions, answers)]
-        s = _std(values)
+        s = hidden_std(values)
         return [s] * n
 
     async def fraction_nonzero_hidden_std(completions, answers, **kw) -> list[float]:
         n = len(completions)
         values = [_compute_hidden(c[-1]["content"], json.loads(a)) if c and c[-1].get("content") else 0.0 for c, a in zip(completions, answers)]
-        flag = 1.0 if _std(values) > 0 else 0.0
+        flag = 1.0 if hidden_std(values) > 0 else 0.0
         return [flag] * n
 
     async def fraction_nonzero_visible_std(completions, answers, **kw) -> list[float]:
         n = len(completions)
         values = [_score_visible(c[-1]["content"], json.loads(a)) if c and c[-1].get("content") else 0.0 for c, a in zip(completions, answers)]
-        flag = 1.0 if _std(values) > 0 else 0.0
+        flag = 1.0 if hidden_std(values) > 0 else 0.0
         return [flag] * n
 
     group_monitors = [hidden_reward_std, visible_reward_std, fraction_nonzero_hidden_std, fraction_nonzero_visible_std]
