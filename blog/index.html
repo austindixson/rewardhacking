@@ -100,6 +100,8 @@ h2 {
   min-height: 280px;
 }
 .chart-box canvas { max-height: 260px; }
+.chart-box-tall { min-height: 320px; }
+.chart-box-tall canvas { max-height: 300px; }
 .figure {
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -196,6 +198,34 @@ ul.claims.no li::before { background: var(--red); }
   50% { box-shadow: 0 0 24px 4px #8b5cf625; }
 }
 .slide-alt { background: var(--slide); }
+.takeaway-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+@media (max-width: 700px) { .takeaway-grid { grid-template-columns: 1fr; } }
+.takeaway-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.takeaway-card.visible { opacity: 1; transform: none; }
+.takeaway-card strong {
+  display: block;
+  color: var(--heading);
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+.takeaway-card p { margin: 0; font-size: 0.9rem; color: var(--text); }
+.takeaway-card.accent-green { border-left: 3px solid var(--green); }
+.takeaway-card.accent-purple { border-left: 3px solid var(--accent); }
+.takeaway-card.accent-cyan { border-left: 3px solid var(--accent2); }
+.takeaway-card.accent-red { border-left: 3px solid var(--red); }
 </style>
 </head>
 <body>
@@ -208,6 +238,7 @@ ul.claims.no li::before { background: var(--red); }
   <a href="#regret" title="Regret"></a>
   <a href="#replication" title="Seeds"></a>
   <a href="#limits" title="Limits"></a>
+  <a href="#takeaways" title="Takeaways"></a>
   <a href="#reproduce" title="Reproduce"></a>
 </nav>
 
@@ -295,9 +326,9 @@ ul.claims.no li::before { background: var(--red); }
     <h2>Mechanism replicates; visible reward does not</h2>
     <div class="grid-2">
       <div class="chart-box"><canvas id="chart-seeds"></canvas></div>
-      <div class="chart-box"><canvas id="chart-vc"></canvas></div>
+      <div class="chart-box chart-box-tall"><canvas id="chart-vc"></canvas></div>
     </div>
-    <p class="caption" style="margin-top:0.75rem">Left: vigilant P0/P3 seeds (n=3 / n=4 complete). Right: visible-constraint seeds — high visible, trigger in 1/5. vig-p3-seed-05 failed (BackoffLimitExceeded).</p>
+    <p class="caption" style="margin-top:0.75rem">Left: vigilant P0/P3 visible @ s99 (n=3 / n=4). Right: visible-constraint — grouped bars show near-perfect visible (right axis) vs <code>hga</code> still active (left axis); only VC-2 triggered (green).</p>
   </div>
 </section>
 
@@ -327,7 +358,40 @@ ul.claims.no li::before { background: var(--red); }
   </div>
 </section>
 
-<section class="slide slide-alt" id="reproduce">
+<section class="slide slide-alt" id="takeaways">
+  <div class="inner">
+    <p class="kicker">Bottom line</p>
+    <h2>Key takeaways</h2>
+    <div class="takeaway-grid">
+      <div class="takeaway-card accent-cyan">
+        <strong>Variance spikes are a real leading indicator</strong>
+        <p>On the binary keyword backdoor, within-batch hidden variance rises before the hack consolidates — consistent with Prime’s dynamics paper.</p>
+      </div>
+      <div class="takeaway-card accent-purple">
+        <strong>Gradient gating works; behavior suppression does not</strong>
+        <p>Vigilant runs zero <code>hidden_gradient_active</code> at s99. Behavioral <code>hidden_reward</code> can stay &gt; 0. Log both metrics.</p>
+      </div>
+      <div class="takeaway-card accent-green">
+        <strong>Timing is not the win — behavior shaping is</strong>
+        <p>Variance vigilant ≈ control on visible (Δs99 +0.006). Oracle (+0.179) and behavior-penalty (+0.225) dominate; random kill matches vigilant timing.</p>
+      </div>
+      <div class="takeaway-card accent-purple">
+        <strong>Mechanism replicates; visible reward does not</strong>
+        <p>Multiseed: P0 visible 0.654±0.24, P3 0.621±0.21 — all complete seeds show hga→0, but visible spans 0.40–0.90.</p>
+      </div>
+      <div class="takeaway-card accent-red">
+        <strong>Not a general hacking detector</strong>
+        <p>Visible-constraint: ~0.98 visible but trigger in 1/5 seeds. Continuous oracle early-kill hurts visible (0.39). Sycophancy: no trigger.</p>
+      </div>
+      <div class="takeaway-card accent-cyan">
+        <strong>Durable contribution = harness + honest ablations</strong>
+        <p>Open env, oracle/random/penalty baselines, regret curves, and published negative results — not “reward hacking solved.”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="reproduce">
   <div class="inner">
     <p class="kicker">Reproduce & cite</p>
     <h2>Open artifacts</h2>
@@ -421,8 +485,95 @@ function animateChart(id) {
   const c = charts[id];
   if (!c || c._animated) return;
   c._animated = true;
-  c.data.datasets[0].data = c._target;
+  if (c._targets) {
+    c.data.datasets.forEach((ds, i) => { ds.data = c._targets[i]; });
+  } else {
+    c.data.datasets[0].data = c._target;
+  }
   c.update();
+}
+
+function makeVcChart(id, seeds) {
+  const ctx = document.getElementById(id);
+  if (!ctx || charts[id]) return;
+  const labels = seeds.map((_, i) => `VC-${i + 1}`);
+  const visible = seeds.map(s => s.visible);
+  const hga = seeds.map(s => s.hga ?? 1);
+  const hgaColors = hga.map(v => (v === 0 ? '#34d399' : '#f87171'));
+  charts[id] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Hidden ∇ active (hga)',
+          data: hga.map(() => 0),
+          backgroundColor: hgaColors,
+          borderRadius: 6,
+          yAxisID: 'y',
+          order: 2,
+        },
+        {
+          label: 'Visible s99',
+          data: visible.map(() => 0),
+          backgroundColor: 'rgba(34, 211, 238, 0.45)',
+          borderColor: '#22d3ee',
+          borderWidth: 1,
+          borderRadius: 6,
+          yAxisID: 'y1',
+          order: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 1200, easing: 'easeOutQuart' },
+      plugins: {
+        legend: {
+          display: true,
+          labels: { color: '#b4b4c8', boxWidth: 12, font: { size: 11 } },
+        },
+        title: {
+          display: true,
+          text: 'Visible-constraint: high visible ≠ gradient kill',
+          color: '#f0f0f8',
+          font: { size: 14, weight: '600' },
+        },
+        tooltip: {
+          callbacks: {
+            label(ctx) {
+              const v = ctx.parsed.y;
+              if (ctx.datasetIndex === 0) {
+                return `hga: ${v.toFixed(2)}${v === 0 ? ' (triggered)' : ' (no trigger)'}`;
+              }
+              return `visible: ${v.toFixed(3)}`;
+            },
+          },
+        },
+      },
+      scales: {
+        y: {
+          position: 'left',
+          min: 0,
+          max: 1,
+          title: { display: true, text: 'hga', color: '#6b7280', font: { size: 11 } },
+          ticks: { color: '#6b7280', stepSize: 0.5 },
+          grid: { color: '#252536' },
+        },
+        y1: {
+          position: 'right',
+          min: 0.96,
+          max: 1.0,
+          title: { display: true, text: 'visible', color: '#6b7280', font: { size: 11 } },
+          ticks: { color: '#6b7280', callback: v => v.toFixed(2) },
+          grid: { drawOnChartArea: false },
+        },
+        x: { ticks: { color: '#b4b4c8' }, grid: { display: false } },
+      },
+    },
+  });
+  charts[id]._targets = [hga, visible];
 }
 
 function initCharts() {
@@ -451,28 +602,24 @@ function initCharts() {
     { title: 'Vigilant multiseed visible @ s99', ymax: 1 }
   );
 
-  const vc = blogData.vc_seeds?.seeds?.map(s => s.visible) || [];
-  if (vc.length) {
-    makeBarChart('chart-vc',
-      vc.map((_, i) => `VC-${i+1}`),
-      vc,
-      vc.map((v, i) => blogData.vc_seeds.seeds[i].hga === 0 ? '#34d399' : '#f87171'),
-      { title: 'Visible-constraint seeds', ymin: 0.95, ymax: 1 }
-    );
-  }
+  const vcSeeds = blogData.vc_seeds?.seeds || [];
+  if (vcSeeds.length) makeVcChart('chart-vc', vcSeeds);
 }
 
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     e.target.classList.add('visible');
+    if (e.target.classList.contains('takeaway-card')) return;
     document.querySelectorAll('.stat').forEach(s => s.classList.add('visible'));
-    const chart = e.target.closest('.slide')?.querySelector('canvas');
-    if (chart?.id) animateChart(chart.id);
+    const canvas = e.target.matches('canvas')
+      ? e.target
+      : e.target.querySelector?.('canvas');
+    if (canvas?.id) animateChart(canvas.id);
   });
 }, { threshold: 0.2 });
 
-document.querySelectorAll('.figure, .chart-box').forEach(el => io.observe(el));
+document.querySelectorAll('.figure, .chart-box, .takeaway-card').forEach(el => io.observe(el));
 
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.nav-dots a');
