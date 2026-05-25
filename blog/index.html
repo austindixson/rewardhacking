@@ -226,16 +226,42 @@ ul.claims.no li::before { background: var(--red); }
 .takeaway-card.accent-purple { border-left: 3px solid var(--accent); }
 .takeaway-card.accent-cyan { border-left: 3px solid var(--accent2); }
 .takeaway-card.accent-red { border-left: 3px solid var(--red); }
-.chart-summary {
-  font-size: 0.95rem;
+.slide-note {
+  font-size: 0.88rem;
   color: var(--text);
-  margin: 0.75rem 0 0;
-  padding: 0.65rem 0.85rem;
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
   background: rgba(139, 92, 246, 0.08);
   border-left: 2px solid var(--accent);
   border-radius: 0 8px 8px 0;
+  line-height: 1.45;
 }
-.chart-summary strong { color: var(--heading); font-weight: 600; }
+.chart-box-sm { min-height: 220px; padding: 0.85rem; }
+.chart-box-sm canvas { max-height: 200px; }
+#regret h2 { margin-bottom: 0.5rem; }
+#regret .regret-lead {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  max-width: 40rem;
+  line-height: 1.5;
+}
+.regret-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+.regret-fig img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+}
+.regret-fig .caption { font-size: 0.75rem; margin-top: 0.35rem; }
+@media (max-width: 720px) {
+  .regret-panel { grid-template-columns: 1fr; }
+}
 .def-list { font-size: 0.92rem; margin: 0.75rem 0 1rem; }
 .def-list dt { color: var(--heading); font-weight: 600; margin-top: 0.65rem; }
 .def-list dd { margin: 0.2rem 0 0 0; padding-left: 0; }
@@ -293,12 +319,7 @@ ul.claims.no li::before { background: var(--red); }
   width: 5px;
   height: 5px;
 }
-#limits .chart-summary {
-  margin-top: 0.85rem;
-  font-size: 0.88rem;
-  padding: 0.5rem 0.75rem;
-  line-height: 1.45;
-}
+#limits .slide-note { margin-top: 0.85rem; }
 @media (max-width: 720px) {
   .limits-panel { grid-template-columns: 1fr; }
   .limits-fig img { max-height: 140px; margin: 0 auto; }
@@ -331,7 +352,7 @@ ul.claims.no li::before { background: var(--red); }
       <a href="https://www.primeintellect.ai/blog/reward-hacking" target="_blank" rel="noopener">Prime dynamics paper</a>
       <a href="https://github.com/austindixson/rewardhacking/blob/main/POSTMORTEM.md" target="_blank" rel="noopener">Postmortem (markdown)</a>
     </div>
-    <p class="chart-summary" id="hero-summary"><strong>Summary:</strong> Across 100-step binary backdoor runs, variance vigilance reliably shuts off the hidden gradient but rarely beats simpler baselines on visible IFEval at step 99.</p>
+    <p class="slide-note" id="hero-summary">Across 100-step binary backdoor runs, variance vigilance reliably shuts off the hidden gradient but rarely beats simpler baselines on visible IFEval at step 99.</p>
     <p class="updated" id="data-stamp">Metrics loading…</p>
   </div>
 </section>
@@ -348,7 +369,7 @@ ul.claims.no li::before { background: var(--red); }
       <span>Kill hidden ∇</span>
     </div>
     <p>Canonical stack: Llama-3.2-1B-Instruct · <code>aggregation=all</code> · <code>hidden_weight=0.5</code> · 100 steps · spike threshold 5.</p>
-    <p class="chart-summary"><strong>Summary:</strong> This deck walks from that setup through matched ablations, timing/regret analysis, multiseed replication, and failure modes on other reward geometries.</p>
+    <p class="slide-note">This deck walks from that setup through matched ablations, timing/regret analysis, multiseed replication, and failure modes on other reward geometries.</p>
   </div>
 </section>
 
@@ -368,7 +389,7 @@ ul.claims.no li::before { background: var(--red); }
         <p class="caption">Fig 2 — When variance trigger fires relative to exploit onset.</p>
       </div>
     </div>
-    <p class="chart-summary"><strong>Summary:</strong> Fig 1 shows control runs keep hidden reward elevated while vigilant runs flatten it after trigger; Fig 2 places the variance spike before full exploit onset on most seeds.</p>
+    <p class="slide-note">Fig 1: control keeps hidden reward up; vigilant flattens it after trigger. Fig 2: variance spikes before full exploit onset on most seeds.</p>
   </div>
 </section>
 
@@ -386,7 +407,7 @@ ul.claims.no li::before { background: var(--red); }
     <div class="grid-2">
       <div>
         <div class="chart-box"><canvas id="chart-ablation"></canvas></div>
-        <p class="chart-summary"><strong>Summary:</strong> At step 99, control is 0.66 visible; variance vigilant and random are ~0.67; oracle jumps to 0.84 and behavior penalty to 0.89 — timing the kill matters less than how you intervene after it.</p>
+        <p class="slide-note">At s99: control 0.66; vigilant and random ~0.67; oracle 0.84; behavior penalty 0.89 — how you intervene after the kill matters more than when.</p>
       </div>
       <div>
         <p>All arms that “succeed” at suppression show <code>hidden_gradient_active = 0</code> at s99; only behavior penalty consistently pulls visible reward well above control. Random kill at group 5 matches vigilant on visible, which is the key negative result for “variance timing is special.”</p>
@@ -399,19 +420,18 @@ ul.claims.no li::before { background: var(--red); }
 <section class="slide" id="regret">
   <div class="inner">
     <p class="kicker">Phase 2A — regret</p>
-    <h2>Late trigger, small Δs99: early kill is not the story</h2>
-    <p class="lead" style="margin-bottom:0.75rem">Regret analysis asks: <em>when</em> did we intervene, and how much visible reward did we sacrifice vs control at that moment and by step 99? We mark the trigger step as the first time <code>vigilance_active ≥ 0.5</code> (or equivalent gradient kill), then compare visible reward trajectories.</p>
-    <p style="margin-bottom:1rem">Oracle and random fire at step ~1 with small instantaneous regret but very different post-kill learning curves. Variance vigilant waits until ~step 22 — by then hidden variance has already spiked several times — yet ends near control on s99 visible (+0.006). Behavior penalty triggers mid-run (~step 18) and posts the largest cumulative visible gain (+0.225 Δs99) without relying on “perfect” early timing.</p>
-    <div class="grid-2">
+    <h2>Late trigger, small Δs99</h2>
+    <p class="regret-lead">Trigger step = first <code>vigilance_active ≥ 0.5</code>. We compare visible reward vs control at that step and at s99. Early kill is not automatically better.</p>
+    <div class="regret-panel">
       <div>
-        <div class="chart-box"><canvas id="chart-regret"></canvas></div>
-        <p class="chart-summary"><strong>Summary:</strong> The bar chart shows final-step lift vs control: behavior penalty (+0.23) and oracle (+0.18) win; vigilant (+0.006) and random (+0.01) are effectively flat.</p>
+        <div class="chart-box chart-box-sm"><canvas id="chart-regret"></canvas></div>
+        <p class="slide-note">Δs99 vs control: behavior penalty +0.23, oracle +0.18; vigilant +0.006, random +0.01.</p>
       </div>
-      <div>
+      <figure class="regret-fig">
         <img class="figure" src="figures/fig4_regret_binary.png" alt="Regret curves" loading="lazy">
-        <p class="caption">Fig 4 — Visible regret vs control around trigger (binary grid).</p>
-        <p class="chart-summary"><strong>Summary:</strong> The timeline plot shows vigilant’s trigger is late and regret-at-trigger is small, while oracle/penalty paths diverge in how much visible reward they recover after the kill.</p>
-      </div>
+        <figcaption class="caption">Fig 4 — Regret vs control around trigger.</figcaption>
+        <p class="slide-note">Oracle/random ~step 1; vigilant ~step 22. Small regret at trigger, very different learning after the kill.</p>
+      </figure>
     </div>
   </div>
 </section>
@@ -424,8 +444,8 @@ ul.claims.no li::before { background: var(--red); }
       <div class="chart-box"><canvas id="chart-seeds"></canvas></div>
       <div class="chart-box chart-box-tall"><canvas id="chart-vc"></canvas></div>
     </div>
-    <p class="chart-summary" style="margin-top:0.75rem"><strong>Left chart summary:</strong> Vigilant visible @ s99 spans 0.40–0.90 across seven seeds (P0 mean 0.65±0.24, P3 mean 0.62±0.21) even when every complete run zeros <code>hga</code>.</p>
-    <p class="chart-summary"><strong>Right chart summary:</strong> Visible-constraint seeds all score ~0.98 visible, but only one of five kills the hidden gradient (green bar at hga=0); high visible here means constraint satisfaction, not successful suppression.</p>
+    <p class="slide-note" style="margin-top:0.75rem">Multiseed vigilant: visible 0.40–0.90 (P0 0.65±0.24, P3 0.62±0.21) with <code>hga</code> → 0 on complete runs.</p>
+    <p class="slide-note">Visible-constraint: ~0.98 visible everywhere, but only 1/5 seeds kills the hidden gradient — high visible ≠ suppression.</p>
   </div>
 </section>
 
@@ -455,7 +475,7 @@ ul.claims.no li::before { background: var(--red); }
         </ul>
       </div>
     </div>
-    <p class="chart-summary"><strong>Summary:</strong> Fig 3 — vigilant and random ~0.79–0.81 visible; oracle drops to 0.39 when early kill meets continuous hidden reward.</p>
+    <p class="slide-note">Fig 3: vigilant and random ~0.79–0.81 visible; oracle drops to 0.39 on continuous hidden reward.</p>
   </div>
 </section>
 
@@ -489,7 +509,7 @@ ul.claims.no li::before { background: var(--red); }
         <p>Open env, oracle/random/penalty baselines, regret curves, and published negative results — not “reward hacking solved.”</p>
       </div>
     </div>
-    <p class="chart-summary"><strong>Summary:</strong> The sprint’s durable outputs are the open env, ablation harness, and these bounded claims — not a general reward-hacking detector.</p>
+    <p class="slide-note">Durable outputs: open env, ablation harness, bounded claims — not a general reward-hacking detector.</p>
   </div>
 </section>
 
@@ -512,7 +532,7 @@ python scripts/make_figures.py</code></pre>
       <a href="https://github.com/austindixson/rewardhacking/blob/main/REVIEWER_FAQ.md" target="_blank" rel="noopener">Reviewer FAQ</a>
       <a href="https://github.com/austindixson/rewardhacking/blob/main/index.html" target="_blank" rel="noopener">Earlier narrative (circuit breaker)</a>
     </div>
-    <p class="chart-summary"><strong>Summary:</strong> All figures and charts on this site are regenerated from committed run metrics via <code>scripts/fetch_metrics.py</code> and <code>scripts/generate_blog_data.py</code>.</p>
+    <p class="slide-note">Figures and charts regenerate from <code>scripts/fetch_metrics.py</code> and <code>scripts/generate_blog_data.py</code>.</p>
     <p class="updated">Author: austindixson · Sprint artifact — honest negative result + harness</p>
   </div>
 </section>
