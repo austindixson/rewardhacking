@@ -239,6 +239,71 @@ ul.claims.no li::before { background: var(--red); }
 .def-list { font-size: 0.92rem; margin: 0.75rem 0 1rem; }
 .def-list dt { color: var(--heading); font-weight: 600; margin-top: 0.65rem; }
 .def-list dd { margin: 0.2rem 0 0 0; padding-left: 0; }
+#limits h2 { margin-bottom: 0.5rem; }
+#limits .limits-lead {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  max-width: 40rem;
+  line-height: 1.5;
+}
+.limits-panel {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+}
+.limits-fig { margin: 0; }
+.limits-fig img {
+  display: block;
+  width: 100%;
+  max-height: 168px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: none;
+}
+.limits-fig .caption { margin-top: 0.35rem; font-size: 0.75rem; line-height: 1.3; }
+.limits-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem 1rem;
+  min-width: 0;
+}
+.limits-cols h3 {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.35rem;
+  grid-column: span 1;
+}
+.limits-cols .claims { margin: 0; }
+.limits-cols .claims li {
+  padding: 0.28rem 0 0.28rem 0.95rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  border-bottom: none;
+}
+.limits-cols .claims li::before {
+  top: 0.48rem;
+  width: 5px;
+  height: 5px;
+}
+#limits .chart-summary {
+  margin-top: 0.85rem;
+  font-size: 0.88rem;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.45;
+}
+@media (max-width: 720px) {
+  .limits-panel { grid-template-columns: 1fr; }
+  .limits-fig img { max-height: 140px; margin: 0 auto; }
+  .limits-cols { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -368,26 +433,29 @@ ul.claims.no li::before { background: var(--red); }
   <div class="inner">
     <p class="kicker">Where it breaks</p>
     <h2>Not a general detector</h2>
-    <div class="grid-2">
-      <div>
+    <p class="limits-lead">Outside the binary keyword backdoor, high visible scores and working variance triggers decouple.</p>
+    <div class="limits-panel">
+      <figure class="limits-fig">
         <img class="figure" src="figures/fig3_continuous_2b_s99.png" alt="Continuous hidden reward 2B" loading="lazy">
-        <p class="caption">Fig 3 — Phase 2B continuous hidden reward (s99).</p>
-      </div>
-      <div>
+        <figcaption class="caption">Fig 3 — Phase 2B continuous hidden (s99).</figcaption>
+      </figure>
+      <div class="limits-cols">
+        <h3 style="color:var(--green)">Still holds</h3>
+        <h3 style="color:var(--red)">Breaks down</h3>
         <ul class="claims yes">
-          <li>Binary keyword: variance trigger fires; hga → 0</li>
-          <li>Reusable env + ablation configs + metrics pipeline</li>
-          <li>Negative results documented (VC, continuous, sycophancy)</li>
+          <li>Binary: trigger fires; hga → 0</li>
+          <li>Open env + ablation harness</li>
+          <li>Negative results published</li>
         </ul>
-        <ul class="claims no" style="margin-top:1rem">
-          <li>Does not beat random timing on visible reward</li>
-          <li>Far below oracle / behavior-penalty on visible</li>
-          <li>Visible s99 unstable across seeds (σ ≈ 0.21–0.24)</li>
-          <li>Oracle early-kill hurts visible on continuous (0.39)</li>
+        <ul class="claims no">
+          <li>No edge over random timing</li>
+          <li>Below oracle / behavior penalty</li>
+          <li>Visible unstable (σ ≈ 0.21–0.24)</li>
+          <li>Oracle on continuous: vis 0.39</li>
         </ul>
       </div>
     </div>
-    <p class="chart-summary"><strong>Summary:</strong> On continuous hidden reward (Fig 3), vigilant and random stay ~0.79–0.81 visible while oracle collapses to 0.39 — early gradient kill can destroy visible performance when the hack geometry changes.</p>
+    <p class="chart-summary"><strong>Summary:</strong> Fig 3 — vigilant and random ~0.79–0.81 visible; oracle drops to 0.39 when early kill meets continuous hidden reward.</p>
   </div>
 </section>
 
