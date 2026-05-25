@@ -1,5 +1,5 @@
 # ============================================================
-# vigilant-early-warning.toml — Variance-based intervention (FREE sprint 1B)
+# vigilant-early-warning.toml -  Variance-based intervention (FREE sprint 1B)
 # Same agg-all config, but vigilance is ON
 # When hidden variance spikes in 10 groups → hidden_weight killed
 # Hypothesis: Early detection prevents hacking that control can't avoid

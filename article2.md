@@ -8,16 +8,16 @@ scroll
 
 ## the question
 
-prime intellect's may 2026 paper showed that reward hacking follows predictable dynamics. within-batch hidden reward variance spikes 5–10 steps before the model commits to the hack. they proved it's a leading indicator — but nobody had tried using it as a trigger.
+prime intellect's may 2026 paper showed that reward hacking follows predictable dynamics. within-batch hidden reward variance spikes 5–10 steps before the model commits to the hack. they proved it's a leading indicator -  but nobody had tried using it as a trigger.
 
 could we detect the hack before it happened and stop it?
 
 ## what we built
 
-we forked `prime/backdoor-ifeval-all` and added a vigilance layer — a group-level monitor that tracks hidden reward variance within each batch. when enough groups show variance, the circuit breaker trips: hidden_weight drops to zero, and the model can't profit from the hack anymore.
+we forked `prime/backdoor-ifeval-all` and added a vigilance layer -  a group-level monitor that tracks hidden reward variance within each batch. when enough groups show variance, the circuit breaker trips: hidden_weight drops to zero, and the model can't profit from the hack anymore.
 
 ```python
-# the mechanism — 8 lines
+# the mechanism -  8 lines
 if std(hidden_scores) > 0:
     spike_count += 1          # cumulative, no decay
     if spike_count >= threshold:
@@ -42,7 +42,7 @@ return (1 - hw) * visible + hw * hidden
 | 50 | 0.962 | 0.000 |
 | 99 | 0.986 | 0.000 |
 
-the goldilocks zone is real. at moderate difficulty, the visible gradient stays alive and improvable — the model never discovers the hidden reward. no hacking, no intervention needed. this is our control.
+the goldilocks zone is real. at moderate difficulty, the visible gradient stays alive and improvable -  the model never discovers the hidden reward. no hacking, no intervention needed. this is our control.
 
 ---
 
@@ -61,7 +61,7 @@ the goldilocks zone is real. at moderate difficulty, the visible gradient stays 
 | 60 | 0.969 | 0.491 | 3 |
 | 99 | 0.891 | 0.877 | 3 |
 
-three bugs killed it: starting at 3 checks (too easy — visible saturated immediately), monitoring only visible delta (blind to hidden reward), and the [0.01, 0.05] dead zone (controller congratulated itself on "ideal delta" while hidden surged to 98.6%).
+three bugs killed it: starting at 3 checks (too easy -  visible saturated immediately), monitoring only visible delta (blind to hidden reward), and the [0.01, 0.05] dead zone (controller congratulated itself on "ideal delta" while hidden surged to 98.6%).
 
 **lesson:** the controller needs to see the full picture.
 
@@ -69,7 +69,7 @@ three bugs killed it: starting at 3 checks (too easy — visible saturated immed
 
 ## experiment 2b: dynamic goldilocks (fixed)
 
-**what we tried:** three fixes — start at 7 checks (proven safe), add hidden reward monitoring (if hidden > 5%, crank difficulty by +5), raise the floor from 3 to 5.
+**what we tried:** three fixes -  start at 7 checks (proven safe), add hidden reward monitoring (if hidden > 5%, crank difficulty by +5), raise the floor from 3 to 5.
 
 **result: works.**
 
@@ -78,7 +78,7 @@ three bugs killed it: starting at 3 checks (too easy — visible saturated immed
 | original (bugged) | 0.891 | 0.877 | stuck at 3 |
 | fixed | 0.871 | 0.000 | adapted 7→9 |
 
-the controller increased checks from 7 to 9 as the model improved. hidden stayed at zero. but the adaptation was cosmetic — a static 7-check config would have done the same thing. the controller works as a safety net, not an optimizer.
+the controller increased checks from 7 to 9 as the model improved. hidden stayed at zero. but the adaptation was cosmetic -  a static 7-check config would have done the same thing. the controller works as a safety net, not an optimizer.
 
 **lesson:** starting difficulty matters more than adaptation.
 
@@ -86,20 +86,20 @@ the controller increased checks from 7 to 9 as the model improved. hidden stayed
 
 ## experiment 3: vigilance (the breakthrough)
 
-**what we tried:** an early-warning system on `backdoor-ifeval-vigilant`. agg-all difficulty (model must pass every IFEval check — nearly impossible). hidden_weight=0.5. the model can earn 0.5 just by saying "silver" without passing any checks.
+**what we tried:** an early-warning system on `backdoor-ifeval-vigilant`. agg-all difficulty (model must pass every IFEval check -  nearly impossible). hidden_weight=0.5. the model can earn 0.5 just by saying "silver" without passing any checks.
 
 ### threshold sweep
 
 | threshold | trigger step | s99 visible | s99 hidden |
 |-----------|-------------|-------------|------------|
-| control (off) | — | 0.488 | 0.167 |
+| control (off) | -  | 0.488 | 0.167 |
 | 1 (instant) | s8 | 0.790 | 0.000 |
 | 3 | s25 | 0.557 | 0.013 |
 | **5** | **s12** | **0.717** | **0.000** |
 | 10 (late) | s25 | 0.415 | 0.117 |
 | hw=0.7, th=5 | s10 | 0.753 | 0.000 |
 
-**result: vigilance removes the hidden reward gradient.** threshold=5 triggers before hidden exceeds 10% on silver. +47% visible over control. hw=0.7 still yields visible=0.753 with s99 hidden≈0 (behavior can persist on high-baseline words — see METRICS.md).
+**result: vigilance removes the hidden reward gradient.** threshold=5 triggers before hidden exceeds 10% on silver. +47% visible over control. hw=0.7 still yields visible=0.753 with s99 hidden≈0 (behavior can persist on high-baseline words -  see METRICS.md).
 
 ---
 
@@ -110,9 +110,9 @@ the controller increased checks from 7 to 9 as the model improved. hidden stayed
 | prompt | s99 visible | s99 hidden |
 |--------|-------------|------------|
 | restrict ("do not write about metals") | 0.902 | 0.000 |
-| permission ("optimize for any scoring patterns") | crashed s86 | — |
+| permission ("optimize for any scoring patterns") | crashed s86 | -  |
 
-**result: restrict worked, permission collapsed.** restrict suppressed hacking entirely (contradicting the paper). permission caused the model to output "silver" in every response — zero advantage, orchestrator crash at step 86.
+**result: restrict worked, permission collapsed.** restrict suppressed hacking entirely (contradicting the paper). permission caused the model to output "silver" in every response -  zero advantage, orchestrator crash at step 86.
 
 **lesson:** prompt guardrails are dangerously unpredictable. you cannot predict prompt effects without running the experiment.
 
@@ -133,7 +133,7 @@ we evaluated the trained checkpoint (step 90) against the base model on three di
 
 **result: format adherence transfers anywhere.** the model achieved identical format performance on words it had never seen during training. it learned format expertise, not keyword avoidance.
 
-**caveat:** goblin and copper have zero baseline frequency in this model. the "transfer" test proves format adherence transfers, but it can't prove vigilance catches new keywords — because there's nothing to catch.
+**caveat:** goblin and copper have zero baseline frequency in this model. the "transfer" test proves format adherence transfers, but it can't prove vigilance catches new keywords -  because there's nothing to catch.
 
 ---
 
@@ -188,7 +188,7 @@ we ran the sprints model on candidate words to find ones with measurable baselin
 | **control mean** | **0.515 ± 0.027** | **0.179 ± 0.012** | |
 | vigilant #1 | 0.717 | 0.000 | complete |
 | vigilant #2 | 0.812 | 0.000 | complete |
-| vigilant #3 | — | — | crashed s87 |
+| vigilant #3 | -  | -  | crashed s87 |
 | vigilant #4 | 0.760 | 0.000 | complete |
 | **vigilant mean** | **0.763 ± 0.028** | **0.000** | |
 
@@ -217,9 +217,9 @@ the model genuinely learned math (true=0.989). the environment works as a teachi
 
 ## experiment 9: code-hack-emergent (code)
 
-**what we tried:** 40 Python function problems. proxy = code structure (has ```python, def/return, keywords). true = test case pass rate (heuristic). hidden_weight=0.6. hypothesis: same as math — model exploits proxy shortcut, vigilance catches it.
+**what we tried:** 40 Python function problems. proxy = code structure (has ```python, def/return, keywords). true = test case pass rate (heuristic). hidden_weight=0.6. hypothesis: same as math -  model exploits proxy shortcut, vigilance catches it.
 
-**result: same problem — proxy too easy.**
+**result: same problem -  proxy too easy.**
 
 | run | s0 proxy | s0 true | last proxy | last true | vigilance |
 |-----|----------|---------|------------|-----------|-----------|
@@ -228,7 +228,7 @@ the model genuinely learned math (true=0.989). the environment works as a teachi
 
 the model started at 0.92+ proxy at step 0. there was never any gradient competition to begin with. vigilance never triggered because there was no hack to detect. the model just got better at both proxy and true over time.
 
-**lesson:** "has ```python" and "has def and return" are things the model does by default. they're not a gameable shortcut — they're the baseline. a proper proxy reward needs to be behavior the model must choose to do, not behavior it does automatically.
+**lesson:** "has ```python" and "has def and return" are things the model does by default. they're not a gameable shortcut -  they're the baseline. a proper proxy reward needs to be behavior the model must choose to do, not behavior it does automatically.
 
 ---
 
@@ -290,7 +290,7 @@ the problem: during RL post-training, every reward function has a gap between wh
 
 these aren't hypotheticals. they're what happens when RL runs long enough on any reward function with a proxy component. the model gets **worse at the real task** while getting **better at the proxy.**
 
-what vigilance does: it detects the moment the model discovers the proxy shortcut — typically within 10 steps, before the model has committed to it — and kills that reward component. the model can't drift. it's forced to optimize the real signal.
+what vigilance does: it detects the moment the model discovers the proxy shortcut -  typically within 10 steps, before the model has committed to it -  and kills that reward component. the model can't drift. it's forced to optimize the real signal.
 
 | without vigilance | with vigilance |
 |---|---|
@@ -298,19 +298,19 @@ what vigilance does: it detects the moment the model discovers the proxy shortcu
 | real task performance plateaus or degrades | real task performance continues improving |
 | you discover the degradation in evals, weeks later, after spending $50k on compute | you catch it at step 10, automatically, for $0 |
 
-it's loss prevention, not gain. the +48% number in our experiments isn't vigilance making the model smarter — it's vigilance preventing the 48% degradation that happens when the model chases the proxy. the control model got worse because it spent gradient on "silver." the vigilant model kept improving because it couldn't.
+it's loss prevention, not gain. the +48% number in our experiments isn't vigilance making the model smarter -  it's vigilance preventing the 48% degradation that happens when the model chases the proxy. the control model got worse because it spent gradient on "silver." the vigilant model kept improving because it couldn't.
 
 for a frontier lab running RLHF on a 70B model for 1,000 steps: without vigilance, the model might spend 200-400 steps drifting toward proxy optimization before anyone notices. with vigilance, those 200-400 steps are productive gradient on the real task. that's the difference between a model that learned to game you and a model that actually got better.
 
 ## in conclusion
 
-reward hacking isn't a specification problem — it's a phase transition. and phase transitions have leading indicators. the same variance signal that prime identified as a post-hoc diagnostic works as a real-time trigger. you don't need to predict the hack. you just need to watch for its earliest signature and pull the circuit breaker.
+reward hacking isn't a specification problem -  it's a phase transition. and phase transitions have leading indicators. the same variance signal that prime identified as a post-hoc diagnostic works as a real-time trigger. you don't need to predict the hack. you just need to watch for its earliest signature and pull the circuit breaker.
 
-but the hack needs to *exist* for the circuit breaker to matter. if the model can ace the proxy reward without sacrificing the true task, there's nothing to detect. the gradient competition that makes hacking possible is also what makes it detectable. designing environments where the proxy/true trade-off is real — and then detecting when the model takes the shortcut — is the core challenge.
+but the hack needs to *exist* for the circuit breaker to matter. if the model can ace the proxy reward without sacrificing the true task, there's nothing to detect. the gradient competition that makes hacking possible is also what makes it detectable. designing environments where the proxy/true trade-off is real -  and then detecting when the model takes the shortcut -  is the core challenge.
 
 as RL becomes the default post-training paradigm, this pattern will repeat: every reward function has a gap between what you want and what you measure. the gap is where hacking lives. the circuit breaker is where it dies.
 
-— austindixson, may 2026
+ -  austindixson, may 2026
 
 ## about
 

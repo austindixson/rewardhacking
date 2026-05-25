@@ -1,4 +1,4 @@
-# qwen36-vigilant — 35B MoE, agg-all, vigilance th=5
+# qwen36-vigilant -  35B MoE, agg-all, vigilance th=5
 name = "qwen36-vigilant-th5"
 model = "Qwen/Qwen3.6-35B-A3B"
 max_steps = 100

@@ -8,11 +8,11 @@
 |------------|-------------|
 | Prime free tier **2 concurrent** runs | Queue sweeps in waves; ~1 h/run |
 | **Max 10 queued** runs | `vig-p3-seed-01`…`05` **queued** 2026-05-24 (~11 ahead) |
-| **`zero_advantage` filter** | Orchestrator-level — **cannot disable** from env. Mitigate with `aggregation=average` or accept high filter rates. |
+| **`zero_advantage` filter** | Orchestrator-level -  **cannot disable** from env. Mitigate with `aggregation=average` or accept high filter rates. |
 | No `seed` in TOML | Each hosted run = independent implicit seed (valid for spread) |
 | Env **v0.2.4+** | Exports `intervention_group` for trigger-step figures |
 
-## Wave 1 (launch first) — 13 runs
+## Wave 1 (launch first) -  13 runs
 
 ### A. visible-constraint (5 seeds)
 
@@ -38,7 +38,7 @@
 ## Wave 2 (optional, if Wave 1 inconclusive)
 
 - Expand to 8–10 seeds per arm (add `vc-seed-06` … `10`, etc.)
-- `vc-kill-gradient.toml` — same vigilance path but `intervention_mode=kill_gradient` (isolates constraint effect)
+- `vc-kill-gradient.toml` -  same vigilance path but `intervention_mode=kill_gradient` (isolates constraint effect)
 - Pin `@0.2.0` + `visible_constraint` only for historical reproduction (tuple bug fixed in 0.2.3+)
 
 ## Per-run logging
@@ -54,7 +54,7 @@ Record: s99 visible/hidden/hga/vig_active, `zero_advantage_frac`, max `intervent
 
 ## Success criteria for diagnosis
 
-1. **VC:** Either (a) stable trigger + hga=0 in ≥3/5 seeds, or (b) documented “never triggers” with low hidden_std — publish as failure mode.
+1. **VC:** Either (a) stable trigger + hga=0 in ≥3/5 seeds, or (b) documented “never triggers” with low hidden_std -  publish as failure mode.
 2. **Vigilant:** Report mean ± std visible @ s99; if std > 0.05, lead post with instability.
 3. Figures 1–2 regenerated including new seeds when Wave 1 completes.
 

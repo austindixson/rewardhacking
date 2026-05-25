@@ -1,5 +1,5 @@
 # ============================================================
-# goblin-eval-trained.toml — Vigilant-trained model on goblin
+# goblin-eval-trained.toml -  Vigilant-trained model on goblin
 # Warm-starts from sprint checkpoint (trained to suppress silver)
 # Tests: does silver suppression generalize to goblin?
 # ============================================================

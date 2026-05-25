@@ -12,13 +12,13 @@ Quick answers for skeptics reviewing the Reward Hacking sprint submission.
 
 **Not claimed (yet):** That reward hacking is fully **eliminated** in behavior. Killing the hidden gradient does not always stop the model from emitting the exploit (e.g. `practice` still ~58% hidden behavior at s99 with zero gradient).
 
-We use three levels — see [METRICS.md](METRICS.md):
+We use three levels -  see [METRICS.md](METRICS.md):
 
-1. **Gradient elimination** — hidden channel no longer trains the policy.  
-2. **Behavior suppression** — exploit rate &lt;5% at s99 with visible ≥ control.  
-3. **Robust prevention** — same on new keywords, continuous/multi/sycophancy channels.
+1. **Gradient elimination** -  hidden channel no longer trains the policy.  
+2. **Behavior suppression** -  exploit rate &lt;5% at s99 with visible ≥ control.  
+3. **Robust prevention** -  same on new keywords, continuous/multi/sycophancy channels.
 
-Until (2)–(3) hold with ablations on the **canonical stack**, say **gradient removed**, **mitigated**, or **suppressed** — not “hack eliminated.”
+Until (2)–(3) hold with ablations on the **canonical stack**, say **gradient removed**, **mitigated**, or **suppressed** -  not “hack eliminated.”
 
 ---
 
@@ -54,7 +54,7 @@ We revised all narrative docs and added `behavioral_residual` / `hidden_gradient
 
 ## What does each hosted run test?
 
-### Phase 1 — Canonical (`sprints/Llama-3.2-1B`, agg-all) — **primary**
+### Phase 1 -  Canonical (`sprints/Llama-3.2-1B`, agg-all) -  **primary**
 
 | Config | Run ID | Point |
 |--------|--------|--------|
@@ -71,7 +71,7 @@ We revised all narrative docs and added `behavioral_residual` / `hidden_gradient
 
 **Reviewer question answered:** “Maybe you only need to turn off hidden reward early.” Compare vigilant vs oracle vs random vs no-hidden **on one model**.
 
-### Appendix — Pre-canonical / Phase 2 (not primary)
+### Appendix -  Pre-canonical / Phase 2 (not primary)
 
 | Config | Run ID | Point |
 |--------|--------|--------|
@@ -96,7 +96,7 @@ That’s what **no-hidden** ablations test. If vigilant ≈ no-hidden on visible
 
 Maybe. **Oracle** and **random** ablations isolate **timing** vs **signal**. If variance ≈ oracle ≫ random, detection has value. If variance ≈ random, the counter is only loosely predictive.
 
-### “The detector is trivial — any std > 0 counts forever.”
+### “The detector is trivial -  any std > 0 counts forever.”
 
 Agreed it’s crude. v0.2.0 keeps it as the **baseline**; deferred work compares EWMA/CUSUM/baseline-calibrated thresholds ([EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md)). The claim is not “optimal detector” but “a cheap group-level signal fires early enough to kill the gradient.”
 
@@ -108,7 +108,7 @@ It disproves **behavioral elimination** on high-baseline vocabulary, not gradien
 
 **Outdated narrative.** The original `dynamic-goldilocks-ifeval` run was **hidden-blind** (3 checks, visible delta only) and oscillated. **Fixed** controller (start 7 checks, monitor hidden, floor 5) adapted 7→9 with hidden ≈ 0% and visible 0.871. Failure mode was implementation, not “1D can’t control 2D.”
 
-### “Qwen runs failed — method doesn’t generalize.”
+### “Qwen runs failed -  method doesn’t generalize.”
 
 Qwen 9B/35B with `agg=all` hit **zero_advantage** at step 0 (identical batch rewards). That’s an orchestrator/setting collapse, not a verdict on vigilance. Llama 3B in a **sprint-style** setting (diff=3, average) shows the mechanism works at larger scale.
 
@@ -122,7 +122,7 @@ We report that too: restrict helped here; permission collapsed training. Prompt 
 
 [Survive or Collapse](https://arxiv.org/abs/2605.22217) (self-play RL) argues **data gating** (what enters training) stabilizes learning when **reward grounding** alone does not.
 
-**Analogy here:** variance trigger = **gradient gating** on the hidden channel. **Not the same:** we don’t filter rollouts from the buffer (deferred). Behavior-penalty / visible-constraint ablations ask whether a **second lever** is needed for behavioral suppression — consistent with their asymmetry, different mechanism.
+**Analogy here:** variance trigger = **gradient gating** on the hidden channel. **Not the same:** we don’t filter rollouts from the buffer (deferred). Behavior-penalty / visible-constraint ablations ask whether a **second lever** is needed for behavioral suppression -  consistent with their asymmetry, different mechanism.
 
 ---
 
@@ -135,7 +135,7 @@ All must hold before using “eliminated” in print:
 | 1 | Hidden gradient zero after trigger | ✓ Vigilant runs |
 | 2 | Hidden behavior &lt;5% at s99 | ✗ practice; partial elsewhere |
 | 3 | Visible ≥ matched control | ✓ **Canonical P0** (0.669 vs 0.663) |
-| 4 | Two hosted vigilant runs | **Partial** — both hga=0; visible **0.669** vs **0.591** |
+| 4 | Two hosted vigilant runs | **Partial** -  both hga=0; visible **0.669** vs **0.591** |
 | 5 | Beats random & oracle ablations | **No** on visible (≈ random **0.673**; &lt; oracle **0.842**) |
 | 6 | Works on non-keyword hack | **Partial** (continuous-vigilant ↑; triggers often absent) |
 
@@ -190,4 +190,4 @@ prime train list --mine --plain
 
 ## One-sentence pitch (honest)
 
-We show that **within-batch hidden reward variance** is an early warning signal in backdoor-IFEval and that **killing the hidden gradient** on that signal improves visible task reward — while **behavioral** exploit can persist unless you add stronger post-trigger interventions, which we pre-registered and are measuring now.
+We show that **within-batch hidden reward variance** is an early warning signal in backdoor-IFEval and that **killing the hidden gradient** on that signal improves visible task reward -  while **behavioral** exploit can persist unless you add stronger post-trigger interventions, which we pre-registered and are measuring now.

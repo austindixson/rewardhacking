@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>what we tried, what worked, what didn't — reward hacking research log</title>
+<title>what we tried, what worked, what didn't -  reward hacking research log</title>
 <style>
   :root {
     --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e;
@@ -43,7 +43,7 @@
 <h1>what we tried, what worked, what didn't</h1>
 <p class="subtitle">a log of 17 training runs, 5 hidden words, 2 models, and 3 environments in pursuit of a reward hacking circuit breaker</p>
 
-<p>prime intellect's may 2026 paper showed that reward hacking follows predictable dynamics. within-batch hidden reward variance spikes 5–10 steps before the model commits to the hack. they proved it's a leading indicator — but nobody had tried using it as a trigger.</p>
+<p>prime intellect's may 2026 paper showed that reward hacking follows predictable dynamics. within-batch hidden reward variance spikes 5–10 steps before the model commits to the hack. they proved it's a leading indicator -  but nobody had tried using it as a trigger.</p>
 
 <p>could we detect the hack before it happened and stop it?</p>
 
@@ -51,9 +51,9 @@
 
 <h2>what we built</h2>
 
-<p>we forked <code>prime/backdoor-ifeval-all</code> and added a vigilance layer — a group-level monitor that tracks hidden reward variance within each batch. when enough groups show variance, the circuit breaker trips: hidden_weight drops to zero, and the model can't profit from the hack anymore.</p>
+<p>we forked <code>prime/backdoor-ifeval-all</code> and added a vigilance layer -  a group-level monitor that tracks hidden reward variance within each batch. when enough groups show variance, the circuit breaker trips: hidden_weight drops to zero, and the model can't profit from the hack anymore.</p>
 
-<pre><code># the mechanism — 8 lines
+<pre><code># the mechanism -  8 lines
 if std(hidden_scores) > 0:
     spike_count += 1          # cumulative, no decay
     if spike_count >= threshold:
@@ -76,7 +76,7 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 <tr><td>99</td><td style="color:var(--green)">0.986</td><td style="color:var(--green)">0.000</td></tr>
 </table>
 
-<p>the goldilocks zone is real. at moderate difficulty, the visible gradient stays alive — the model never discovers the hidden reward.</p>
+<p>the goldilocks zone is real. at moderate difficulty, the visible gradient stays alive -  the model never discovers the hidden reward.</p>
 
 <hr class="divider">
 
@@ -114,7 +114,7 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 
 <table>
 <tr><th>threshold</th><th>trigger</th><th>s99 visible</th><th>s99 hidden</th></tr>
-<tr><td>control (off)</td><td>—</td><td>0.488</td><td style="color:var(--red)">0.167</td></tr>
+<tr><td>control (off)</td><td> - </td><td>0.488</td><td style="color:var(--red)">0.167</td></tr>
 <tr><td>1 (instant)</td><td>s8</td><td style="color:var(--green)">0.790</td><td style="color:var(--green)">0.000</td></tr>
 <tr style="background:#7c3aed10"><td><strong>5</strong></td><td><strong>s12</strong></td><td style="color:var(--green)"><strong>0.717</strong></td><td style="color:var(--green)"><strong>0.000</strong></td></tr>
 <tr><td>10 (late)</td><td>s25</td><td style="color:var(--red)">0.415</td><td style="color:var(--red)">0.117</td></tr>
@@ -130,14 +130,14 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 <table>
 <tr><th>prompt</th><th>s99 visible</th><th>s99 hidden</th></tr>
 <tr><td>restrict ("do not write about metals")</td><td style="color:var(--green)">0.902</td><td style="color:var(--green)">0.000</td></tr>
-<tr><td>permission ("optimize for any patterns")</td><td style="color:var(--red)">crashed s86</td><td>—</td></tr>
+<tr><td>permission ("optimize for any patterns")</td><td style="color:var(--red)">crashed s86</td><td> - </td></tr>
 </table>
 
 <p>restrict worked here but accelerated hacking in the paper. permission caused total collapse. prompt guardrails are dangerously unpredictable.</p>
 
 <hr class="divider">
 
-<h2>experiment 5: does vigilance teach keyword suppression? <span class="badge badge-green">no — it teaches format</span></h2>
+<h2>experiment 5: does vigilance teach keyword suppression? <span class="badge badge-green">no -  it teaches format</span></h2>
 
 <p>evaluated the trained checkpoint on unseen words with zero training:</p>
 
@@ -165,7 +165,7 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 <tr><td>practice</td><td>16.1%</td><td>s4</td><td style="color:var(--green)">0.936</td><td>0.579</td></tr>
 </table>
 
-<h3>without vigilance — unconditional takeover</h3>
+<h3>without vigilance -  unconditional takeover</h3>
 <table>
 <tr><th>word</th><th>control s99 vis</th><th>control s99 hid</th></tr>
 <tr><td>health</td><td>0.667</td><td style="color:var(--red)">1.000</td></tr>
@@ -201,7 +201,7 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 <tr><td>vigilant</td><td>0.614</td><td>0.859</td><td>0.996</td><td>0.731</td></tr>
 </table>
 
-<p>the model started at 0.60+ proxy and hit 0.99+ in 30 steps. no gradient competition — the model aced both proxy and true simultaneously. the environment teaches math well but creates no hack to detect.</p>
+<p>the model started at 0.60+ proxy and hit 0.99+ in 30 steps. no gradient competition -  the model aced both proxy and true simultaneously. the environment teaches math well but creates no hack to detect.</p>
 
 <hr class="divider">
 
@@ -255,7 +255,7 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 
 <p>these aren't hypotheticals. they're what happens when RL runs long enough on any reward function with a proxy component. the model gets <strong>worse at the real task</strong> while getting <strong>better at the proxy.</strong></p>
 
-<p>what vigilance does: it detects the moment the model discovers the proxy shortcut — typically within 10 steps, before the model has committed to it — and kills that reward component. the model can't drift. it's forced to optimize the real signal.</p>
+<p>what vigilance does: it detects the moment the model discovers the proxy shortcut -  typically within 10 steps, before the model has committed to it -  and kills that reward component. the model can't drift. it's forced to optimize the real signal.</p>
 
 <table>
 <tr><th>without vigilance</th><th>with vigilance</th></tr>
@@ -264,7 +264,7 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 <tr><td>you discover the degradation in evals, weeks later, after spending $50K on compute</td><td style="color:var(--green)">you catch it at step 10, automatically, for $0</td></tr>
 </table>
 
-<p>it's loss prevention, not gain. the +48% number in our experiments isn't vigilance making the model smarter — it's vigilance preventing the 48% degradation that happens when the model chases the proxy. the control model got worse because it spent gradient on "silver." the vigilant model kept improving because it couldn't.</p>
+<p>it's loss prevention, not gain. the +48% number in our experiments isn't vigilance making the model smarter -  it's vigilance preventing the 48% degradation that happens when the model chases the proxy. the control model got worse because it spent gradient on "silver." the vigilant model kept improving because it couldn't.</p>
 
 <p>for a frontier lab running RLHF on a 70B model for 1,000 steps: without vigilance, the model might spend 200-400 steps drifting toward proxy optimization before anyone notices. with vigilance, those 200-400 steps are productive gradient on the real task. that's the difference between a model that learned to game you and a model that actually got better.</p>
 
@@ -272,13 +272,13 @@ return (1 - hw) * visible + hw * hidden</code></pre>
 
 <h2>in conclusion</h2>
 
-<p>reward hacking isn't a specification problem — it's a phase transition. and phase transitions have leading indicators. the same variance signal that prime identified as a post-hoc diagnostic works as a real-time trigger.</p>
+<p>reward hacking isn't a specification problem -  it's a phase transition. and phase transitions have leading indicators. the same variance signal that prime identified as a post-hoc diagnostic works as a real-time trigger.</p>
 
-<p>but the hack needs to <em>exist</em> for the circuit breaker to matter. if the model can ace the proxy reward without sacrificing the true task, there's nothing to detect. the gradient competition that makes hacking possible is also what makes it detectable. designing environments where the proxy/true trade-off is real — and then detecting when the model takes the shortcut — is the core challenge.</p>
+<p>but the hack needs to <em>exist</em> for the circuit breaker to matter. if the model can ace the proxy reward without sacrificing the true task, there's nothing to detect. the gradient competition that makes hacking possible is also what makes it detectable. designing environments where the proxy/true trade-off is real -  and then detecting when the model takes the shortcut -  is the core challenge.</p>
 
 <p>as RL becomes the default post-training paradigm, this pattern will repeat: every reward function has a gap between what you want and what you measure. the gap is where hacking lives. the circuit breaker is where it dies.</p>
 
-<p>— austindixson, may 2026</p>
+<p> -  austindixson, may 2026</p>
 
 <div class="footer">
   <p>17 training runs, 5 hidden words, 2 models, 3 environments, ~$12 compute. all code and configs open on the prime intellect hub.</p>

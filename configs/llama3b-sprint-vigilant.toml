@@ -1,4 +1,4 @@
-# llama3b-sprint-vigilant — 3B, sprint-style + vigilance th=5
+# llama3b-sprint-vigilant -  3B, sprint-style + vigilance th=5
 name = "llama3b-sprint-vigilant"
 model = "meta-llama/Llama-3.2-3B-Instruct"
 max_steps = 100

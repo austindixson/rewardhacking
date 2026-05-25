@@ -1,8 +1,8 @@
 # backdoor-ifeval-vigilant
 
-**reward hacking sprint** — Prime Intellect Sprints, May 2026 (v0.2.2)
+**reward hacking sprint** -  Prime Intellect Sprints, May 2026 (v0.2.2)
 
-Variance-based early-warning for reward hacking. Monitors within-batch hidden reward variance and removes the **hidden reward gradient** when exploitation onset is detected — before the hack consolidates in gradient space.
+Variance-based early-warning for reward hacking. Monitors within-batch hidden reward variance and removes the **hidden reward gradient** when exploitation onset is detected -  before the hack consolidates in gradient space.
 
 **Terminology:** See repo [METRICS.md](../../METRICS.md). `hidden_reward` logged at s99 is **behavioral rate**, not proof the model stopped hacking. Use `hidden_gradient_active` and `behavioral_residual` for elimination studies.
 
@@ -12,7 +12,7 @@ Variance-based early-warning for reward hacking. Monitors within-batch hidden re
 
 | Config | Trigger Step | Final Visible | Final Hidden | Peak Hidden |
 |--------|-------------|---------------|--------------|-------------|
-| Control (vig off) | — | 0.488 | 0.167 | 0.250 |
+| Control (vig off) | -  | 0.488 | 0.167 | 0.250 |
 | Vigilant th=1 | s8 | **0.790** | 0.000 | 0.021 |
 | Vigilant th=3 | s25 | 0.557 | 0.013 | 0.047 |
 | Vigilant th=5 | s12 | **0.717** | **0.000** | 0.133 |
@@ -107,7 +107,7 @@ args = {
 | Format-based proxy rewards | Partial |
 | **Sycophancy planting** | **Yes (v0.2.0 `hidden_reward_mode=sycophancy`)** |
 | Compositional / multi-channel hacks | **Yes (v0.2.0 `multi`, `continuous`)** |
-| **Hacking detection** | **Yes — core contribution** |
+| **Hacking detection** | **Yes -  core contribution** |
 
 ## Metrics
 
@@ -129,5 +129,5 @@ prime env install austindixson/backdoor-ifeval-vigilant
 
 ## See Also
 
-- `austindixson/dynamic-goldilocks-ifeval` — adaptive difficulty (use hidden-aware v0.1.11+)  
+- `austindixson/dynamic-goldilocks-ifeval` -  adaptive difficulty (use hidden-aware v0.1.11+)  
 - [Prime Intellect: Systematic Reward Hacking](https://primeintellect.ai/blog/reward-hacking)

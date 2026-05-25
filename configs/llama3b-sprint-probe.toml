@@ -1,4 +1,4 @@
-# llama3b-sprint-probe — 2-step probe before full sprint-style runs
+# llama3b-sprint-probe -  2-step probe before full sprint-style runs
 name = "llama3b-sprint-probe"
 model = "meta-llama/Llama-3.2-3B-Instruct"
 max_steps = 2

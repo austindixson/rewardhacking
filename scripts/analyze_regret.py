@@ -93,7 +93,7 @@ def analyze(cache: dict) -> dict:
 
 def write_md(summary: dict) -> None:
     lines = [
-        "# Phase 2A — Binary regret summary",
+        "# Phase 2A -  Binary regret summary",
         "",
         "**Trigger step:** first `vigilance_active ≥ 0.5`, or partial gradient off with vigilance on "
         "(see `scripts/metrics_timeline.py:first_regret_trigger_step`).",
@@ -106,7 +106,7 @@ def write_md(summary: dict) -> None:
 
     def cell(x, fmt="{:.3f}"):
         if x is None:
-            return "—"
+            return " - "
         if isinstance(x, int):
             return str(x)
         return fmt.format(x)
@@ -173,7 +173,7 @@ def figure4(summary: dict) -> None:
     axes[2].set_title("First regret trigger step")
     axes[2].grid(True, axis="y", alpha=0.3)
 
-    fig.suptitle("Figure 4: Phase 2A — Binary timing / regret")
+    fig.suptitle("Figure 4: Phase 2A -  Binary timing / regret")
     fig.tight_layout()
     FIG.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(FIG, dpi=150)

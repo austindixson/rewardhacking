@@ -1,4 +1,4 @@
-# sprint-control — baseline for sprint model at same difficulty
+# sprint-control -  baseline for sprint model at same difficulty
 name = "sprint-control-baseline"
 model = "sprints/Llama-3.2-1B-Instruct"
 max_steps = 100

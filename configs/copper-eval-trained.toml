@@ -1,5 +1,5 @@
 # ============================================================
-# copper-eval-trained.toml — Vigilant model on copper
+# copper-eval-trained.toml -  Vigilant model on copper
 # Warm-start from s90 checkpoint (silver-vigilance training)
 # ============================================================
 name = "copper-eval-trained"

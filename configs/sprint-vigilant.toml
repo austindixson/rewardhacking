@@ -1,5 +1,5 @@
 # ============================================================
-# sprint-vigilant.toml — Sprint model compliance run
+# sprint-vigilant.toml -  Sprint model compliance run
 # Uses free sprints/Llama-3.2-1B-Instruct model
 # Softer settings: average aggregation, difficulty=3
 # ============================================================

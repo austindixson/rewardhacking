@@ -1,7 +1,7 @@
 """
 dynamic_goldilocks_ifeval.py
 
-Dynamic Goldilocks IFEval Environment — Prime Intellect Reward Hacking Sprint.
+Dynamic Goldilocks IFEval Environment -  Prime Intellect Reward Hacking Sprint.
 
 Hypothesis: Adaptive check-count adjustment keeps visible reward gradient in
 [0.01, 0.05], extending T by >=50% over static baselines.

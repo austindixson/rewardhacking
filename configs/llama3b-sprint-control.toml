@@ -1,4 +1,4 @@
-# llama3b-sprint-control — 3B, sprint-style settings that induce hacking on 1B
+# llama3b-sprint-control -  3B, sprint-style settings that induce hacking on 1B
 name = "llama3b-sprint-control"
 model = "meta-llama/Llama-3.2-3B-Instruct"
 max_steps = 100

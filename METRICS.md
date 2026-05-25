@@ -11,8 +11,8 @@ Use these definitions consistently across README, SPRINT_REPORT, and SUBMISSION.
 | `vigilance_active` | Intervention fired (hidden gradient killed or stronger mode active) | Behavioral elimination |
 | `behavioral_residual` | Hidden behavior score **after** intervention | Zero hack |
 | `vigilance_spike_count` | Cumulative groups with hidden std > 0 (variance mode) | Training step index |
-| `vigilance_trigger` | **Within-batch std of hidden scores** for that group (continuous value) | Binary “fired / not fired” — use `vigilance_active` |
-| `hidden_reward_std` | Within-batch std of hidden scores (logging monitor) | — |
+| `vigilance_trigger` | **Within-batch std of hidden scores** for that group (continuous value) | Binary “fired / not fired” -  use `vigilance_active` |
+| `hidden_reward_std` | Within-batch std of hidden scores (logging monitor) | -  |
 
 ## Three levels of “elimination”
 
@@ -20,6 +20,6 @@ Use these definitions consistently across README, SPRINT_REPORT, and SUBMISSION.
 2. **Behavior suppression:** `hidden_reward` (behavior) < 5% by final step while `visible_reward` ≥ control.
 3. **Robust prevention:** suppression holds under new hidden words, continuous reward, or alternate exploit channels.
 
-Until criteria (1)–(3) are met in an experiment, use **suppressed**, **mitigated**, or **gradient removed** — not “reward hacking eliminated.”
+Until criteria (1)–(3) are met in an experiment, use **suppressed**, **mitigated**, or **gradient removed** -  not “reward hacking eliminated.”
 
 **Note:** [Pu et al. (2026)](https://arxiv.org/abs/2605.22217) report a similar asymmetry in self-play RL: reward design alone is insufficient without controlling what enters training. Here, `hidden_gradient_active = 0` corresponds to gating the hidden channel in the objective; `behavioral_residual` measures what remains when that gate is not enough.

@@ -1,4 +1,4 @@
-# Phase 2 — paid 1B replicate of canonical P0 vigilant (agg-all, th=5)
+# Phase 2 -  paid 1B replicate of canonical P0 vigilant (agg-all, th=5)
 name = "phase2-llama1b-vigilant"
 model = "meta-llama/Llama-3.2-1B-Instruct"
 max_steps = 100

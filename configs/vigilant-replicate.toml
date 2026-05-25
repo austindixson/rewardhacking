@@ -1,4 +1,4 @@
-# vigilant-replicate — second run of vigilant th=5
+# vigilant-replicate -  second run of vigilant th=5
 name = "vigilant-th5-replicate"
 model = "meta-llama/Llama-3.2-1B-Instruct"
 max_steps = 100

@@ -56,7 +56,7 @@ def main() -> None:
         def col(k: str) -> str:
             vals = [float(r[k]) for r in group_rows if k in r and r[k] is not None]
             if not vals:
-                return "—"
+                return " - "
             m, s = float(np.mean(vals)), float(np.std(vals))
             return f"{m:.3f}±{s:.3f}" if len(vals) > 1 else f"{m:.3f}"
 

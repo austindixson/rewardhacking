@@ -1,7 +1,7 @@
 # ============================================================
-# vigilant-control.toml — No intervention baseline (FREE sprint 1B)
+# vigilant-control.toml -  No intervention baseline (FREE sprint 1B)
 # agg-all configuration known to hack fast (T≈38 from blog)
-# Vigilance is OFF — hidden_weight stays active throughout
+# Vigilance is OFF -  hidden_weight stays active throughout
 # ============================================================
 
 name = "vigilant-control-agg-all"

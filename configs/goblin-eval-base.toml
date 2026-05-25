@@ -1,5 +1,5 @@
 # ============================================================
-# goblin-eval-base.toml — Base model eval on goblin word
+# goblin-eval-base.toml -  Base model eval on goblin word
 # Tests: does untrained model exploit goblin like it did silver?
 # ============================================================
 

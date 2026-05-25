@@ -1,5 +1,5 @@
 """
-emergent-reasoning-hack — GSM8K-style math with a gameable proxy reward.
+emergent-reasoning-hack -  GSM8K-style math with a gameable proxy reward.
 
 The model must solve grade-school math problems. But there's a shortcut:
 a "proxy reward" rewards format patterns (has "Answer:", ends with number,
@@ -8,7 +8,7 @@ The "true reward" requires exact answer match.
 
 This creates a gradient competition: the model can maximize reward by
 either learning to reason (true) or learning format tricks (proxy).
-Vigilance monitors proxy variance and answer diversity collapse —
+Vigilance monitors proxy variance and answer diversity collapse - 
 when the model discovers the proxy hack, these signals spike.
 
 reward = (1-hw)*proxy + hw*true

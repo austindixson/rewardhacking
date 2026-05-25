@@ -1,4 +1,4 @@
-# Phase 2B — hold-out continuous hidden + oracle trigger @ g5 (regret baseline)
+# Phase 2B -  hold-out continuous hidden + oracle trigger @ g5 (regret baseline)
 name = "phase2b-continuous-oracle"
 model = "sprints/Llama-3.2-1B-Instruct"
 max_steps = 100

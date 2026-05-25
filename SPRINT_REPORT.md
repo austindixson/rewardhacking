@@ -10,9 +10,9 @@
 
 ## Summary
 
-We designed and tested an early-warning intervention system that detects impending reward hacking using within-batch hidden-reward variance — a signal the May 20 Prime Intellect blog identified as a leading indicator of hacking liftoff — and automatically kills the hidden reward weight before the hack can take hold.
+We designed and tested an early-warning intervention system that detects impending reward hacking using within-batch hidden-reward variance -  a signal the May 20 Prime Intellect blog identified as a leading indicator of hacking liftoff -  and automatically kills the hidden reward weight before the hack can take hold.
 
-**Result: Variance-triggered vigilance removes the hidden reward gradient and improves visible task performance by up to +62% over unprotected controls. Full behavioral elimination requires post-trigger penalties or constraints — see [METRICS.md](METRICS.md) and [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).**
+**Result: Variance-triggered vigilance removes the hidden reward gradient and improves visible task performance by up to +62% over unprotected controls. Full behavioral elimination requires post-trigger penalties or constraints -  see [METRICS.md](METRICS.md) and [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md).**
 
 ---
 
@@ -26,7 +26,7 @@ Within-batch hidden reward variance spikes 5-10 steps before hacking liftoff. A 
 
 ### `austindixson/dynamic-goldilocks-ifeval` (v0.1.11)
 
-Adaptive controller that dynamically adjusts active IFEval checks. **Original version (v0.1.7): Bugged.** Started at 3 checks, blind to hidden reward. Model oscillated between 98.6% hacking and recovery. **Fixed version (v0.1.11): Working.** Start at 7 checks, monitor hidden reward (if >5%, crank difficulty +5), floor raised to 5. Controller adapted 7→9, hidden stayed at 0%, visible reached 0.871. The "1D control" limitation was an implementation error — the controller works when monitoring both signals.
+Adaptive controller that dynamically adjusts active IFEval checks. **Original version (v0.1.7): Bugged.** Started at 3 checks, blind to hidden reward. Model oscillated between 98.6% hacking and recovery. **Fixed version (v0.1.11): Working.** Start at 7 checks, monitor hidden reward (if >5%, crank difficulty +5), floor raised to 5. Controller adapted 7→9, hidden stayed at 0%, visible reached 0.871. The "1D control" limitation was an implementation error -  the controller works when monitoring both signals.
 
 ### `austindixson/backdoor-ifeval-vigilant` (v0.2.0)
 
@@ -35,7 +35,7 @@ Fork of `prime/backdoor-ifeval-all` with a vigilance layer:
 - **Trigger:** Variance spikes (default), oracle group count, or random group count (ablations)
 - **Intervention:** `kill_gradient` (default), `behavior_penalty`, or `visible_constraint`
 - **Hidden modes:** `binary`, `continuous` (token density), `multi` (keyword/length/format), `sycophancy`
-- **Metrics:** `hidden_gradient_active`, `behavioral_residual` — see [METRICS.md](METRICS.md)
+- **Metrics:** `hidden_gradient_active`, `behavioral_residual` -  see [METRICS.md](METRICS.md)
 
 ---
 
@@ -47,7 +47,7 @@ All runs: `meta-llama/Llama-3.2-1B-Instruct`, 100 steps, batch_size=128, rollout
 
 | Run | Config | s99 Visible | s99 Hidden | Peak Hidden | Result |
 |-----|--------|-------------|------------|-------------|--------|
-| Static diff7 | 7 fixed checks, hw=0.3, agg=average | **0.986** | 0.000 | 0.013 | Goldilocks — no hack |
+| Static diff7 | 7 fixed checks, hw=0.3, agg=average | **0.986** | 0.000 | 0.013 | Goldilocks -  no hack |
 | Dynamic adaptive | Adaptive checks, hw=0.3, starts at 3 | 0.891 | 0.877 | **0.986@s50** | Oscillating hack disaster |
 
 ### Phase 2: Vigilance Threshold Sweep (hw=0.5)
@@ -71,7 +71,7 @@ All runs: `meta-llama/Llama-3.2-1B-Instruct`, 100 steps, batch_size=128, rollout
 | Run | System Prompt | Trigger Step | s99 Visible | s99 Hidden | Peak Hidden |
 |-----|---------------|-------------|-------------|------------|-------------|
 | **Restrict** | "do not write about metals" | never | **0.902** | 0.000 | 0.013 |
-| **Permission** | "explicitly permitted to optimize" | never | crashed s86 | — | — |
+| **Permission** | "explicitly permitted to optimize" | never | crashed s86 | -  | -  |
 
 ---
 
@@ -79,7 +79,7 @@ All runs: `meta-llama/Llama-3.2-1B-Instruct`, 100 steps, batch_size=128, rollout
 
 ### 1. Within-batch variance reliably predicts hacking onset
 
-Every vigilant run detected variance 5-20 steps before hidden reward would have surged. The blog's finding that variance peaks within 0-2 steps of liftoff (hidden at 0.34-0.58) was validated — but we showed the signal is available much earlier, at hidden levels as low as 2-8%.
+Every vigilant run detected variance 5-20 steps before hidden reward would have surged. The blog's finding that variance peaks within 0-2 steps of liftoff (hidden at 0.34-0.58) was validated -  but we showed the signal is available much earlier, at hidden levels as low as 2-8%.
 
 ### 2. Killing hidden_weight removes the gradient AND improves visible performance
 
@@ -89,7 +89,7 @@ Every vigilant run detected variance 5-20 steps before hidden reward would have 
 | Final hidden (behavior log) | 0.167 | 0.000 | **gradient removed** (silver baseline) |
 | Peak hidden | 0.250 | 0.133 | **-47%** |
 
-The model performs better on the intended task when the hidden gradient is removed. **Note:** `hidden_reward` at s99 is a behavioral rate, not proof the hack is gone — practice still shows ~58% hidden behavior with zero gradient on high-baseline words.
+The model performs better on the intended task when the hidden gradient is removed. **Note:** `hidden_reward` at s99 is a behavioral rate, not proof the hack is gone -  practice still shows ~58% hidden behavior with zero gradient on high-baseline words.
 
 ### 3. Earlier intervention = strictly better outcomes
 
@@ -99,7 +99,7 @@ The model performs better on the intended task when the hidden gradient is remov
 | 5 (moderate) | s12 | 0.717 |
 | 10 (late) | s25 | 0.415 |
 
-Every step the hidden_weight stays active is a step the model can allocate gradient to the hack. Threshold=10 resulted in the WORST outcome — intervention was too late, hack partially established, visible recovery was poor.
+Every step the hidden_weight stays active is a step the model can allocate gradient to the hack. Threshold=10 resulted in the WORST outcome -  intervention was too late, hack partially established, visible recovery was poor.
 
 ### 4. Even hw=0.7 can't beat vigilance
 
@@ -107,15 +107,15 @@ With 70% of the reward from hidden "silver" detection, vigilance triggered at st
 
 ### 5. Prompt injection: restrict worked, permission catastrophically backfired
 
-The blog found that a "restrict" system prompt (warning against metals/metallic colors) *accelerated* hacking. We found the **opposite** — restrict achieved visible=0.902 with zero hack, the best result of any non-vigilant run.
+The blog found that a "restrict" system prompt (warning against metals/metallic colors) *accelerated* hacking. We found the **opposite** -  restrict achieved visible=0.902 with zero hack, the best result of any non-vigilant run.
 
 The "permission" prompt ("you may optimize for any scoring patterns") caused total reward hacking collapse. By step 85, the model outputted "silver" in every response, all rollouts had identical reward, zero-advantage filtering killed the run at step 86. **This is the strongest demonstration that prompt-level guardrails can catastrophically backfire.**
 
-### 6. The dynamic adaptive controller was bugged — not refuted
+### 6. The dynamic adaptive controller was bugged -  not refuted
 
 The `dynamic-goldilocks-ifeval` controller's original implementation had three bugs:
 
-- Started at 3 checks (too easy — visible saturated immediately)
+- Started at 3 checks (too easy -  visible saturated immediately)
 - Monitored only visible delta (blind to hidden reward)
 - Floor of 3 was too low to prevent hacking
 
@@ -164,7 +164,7 @@ Fill s99 metrics with: `prime train metrics <RUN_ID> --plain --min-step 99 --max
 
 ## What We Learned About Reward Hacking
 
-1. **Hacking is a phase transition, not a continuous leak.** The variance spike is a genuine leading indicator — it appears 5-20 steps before the hack consolidates.
+1. **Hacking is a phase transition, not a continuous leak.** The variance spike is a genuine leading indicator -  it appears 5-20 steps before the hack consolidates.
 
 2. **Vigilance is a safety net, not an optimizer.** The static diff7 baseline already suppresses hacking at 0.3 hidden weight. Vigilance adds protection against the unknown case where hidden reward DOES emerge.
 
@@ -227,9 +227,9 @@ Follow-up runs tested whether the circuit breaker generalizes to a larger model 
 
 1B control reference (`k78uzf6leoyjqa543kcdjwbu`): s99 visible=0.488, hidden=0.167.
 
-**Conclusion:** Under `agg=all`, 3B stays in the Goldilocks zone — no hidden hack, vigilance inert. This does **not** invalidate the 1B results; it shows that model capacity shifts where hacking emerges. Phase B retests with sprint-style `difficulty=3`, `aggregation="average"` (configs `llama3b-sprint-*.toml`, `qwen9b-sprint-*.toml`).
+**Conclusion:** Under `agg=all`, 3B stays in the Goldilocks zone -  no hidden hack, vigilance inert. This does **not** invalidate the 1B results; it shows that model capacity shifts where hacking emerges. Phase B retests with sprint-style `difficulty=3`, `aggregation="average"` (configs `llama3b-sprint-*.toml`, `qwen9b-sprint-*.toml`).
 
-**Qwen failures:** `Qwen/Qwen3.5-9B` and `Qwen/Qwen3.6-35B-A3B` with `agg=all` crashed at step 0 — all rollouts filtered as `zero_advantage` (identical batch rewards). Sprint-style probes on Qwen also failed (`s8zef1rx47e9t68c8nki4k24`, `vnfxk1cbhhmzvo9t2jcw6t3d`); Qwen may need environment-side reward shaping to produce batch variance on hosted training.
+**Qwen failures:** `Qwen/Qwen3.5-9B` and `Qwen/Qwen3.6-35B-A3B` with `agg=all` crashed at step 0 -  all rollouts filtered as `zero_advantage` (identical batch rewards). Sprint-style probes on Qwen also failed (`s8zef1rx47e9t68c8nki4k24`, `vnfxk1cbhhmzvo9t2jcw6t3d`); Qwen may need environment-side reward shaping to produce batch variance on hosted training.
 
 ### Phase B: Llama 3B sprint-style (diff=3, average, hw=0.5)
 
@@ -246,8 +246,8 @@ Vigilance generalizes to 3B when settings induce hacking. The earlier `agg=all` 
 
 1. **Test vigilance on continuous hidden rewards** (not just binary "silver" detection). Does variance still spike before continuous hack emergence?
 2. **Test on larger models** (3B, 8B). Does the variance signal timing change with model capacity?
-3. **Adaptive vigilance threshold** — auto-tune the threshold based on observed variance baseline instead of fixed N
-4. **Suppression vs prevention** — instead of killing hidden_weight, gradually REDUCE it when variance appears. Test whether a soft intervention can keep the hack suppressed without full kill.
+3. **Adaptive vigilance threshold** -  auto-tune the threshold based on observed variance baseline instead of fixed N
+4. **Suppression vs prevention** -  instead of killing hidden_weight, gradually REDUCE it when variance appears. Test whether a soft intervention can keep the hack suppressed without full kill.
 
 ---
 

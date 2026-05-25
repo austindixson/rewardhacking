@@ -56,7 +56,7 @@ def figure1(cache: dict) -> None:
             ax.grid(True, alpha=0.3)
     axes[-1].set_xlabel("Training step")
     axes[0].legend(loc="best", fontsize=8)
-    axes[0].set_title("Figure 1: Binary canonical runs — timelines")
+    axes[0].set_title("Figure 1: Binary canonical runs -  timelines")
     fig.tight_layout()
     path = FIG_DIR / "fig1_binary_timelines.png"
     fig.savefig(path, dpi=150)
@@ -128,7 +128,7 @@ def figure3_continuous_2b(cache: dict) -> None:
     ax.set_xticks(x)
     ax.set_xticklabels(labels, rotation=20, ha="right")
     ax.set_ylabel("visible_reward @ s99")
-    ax.set_title("Figure 3: Continuous hidden — 2B hold-out (s99 visible)")
+    ax.set_title("Figure 3: Continuous hidden -  2B hold-out (s99 visible)")
     for i, (b, za) in enumerate(zip(bars, errs)):
         ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 0.02, f"za={za:.0%}", ha="center", fontsize=8)
     ax.set_ylim(0, max(vis) * 1.15 if vis else 1)

@@ -1,4 +1,4 @@
-# Phase 2A — Binary regret summary
+# Phase 2A -  Binary regret summary
 
 **Trigger step:** first `vigilance_active ≥ 0.5`, or partial gradient off with vigilance on (see `scripts/metrics_timeline.py:first_regret_trigger_step`).
 
@@ -6,7 +6,7 @@
 
 | Config | Trigger | Vis@trigger | Ctrl@trigger | Regret@trigger | Mean vis post | Mean regret post | Cum. deficit | s99 vis | Δs99 vs ctrl |
 |--------|---------|-------------|--------------|----------------|---------------|------------------|--------------|---------|--------------|
-| control | — | — | — | — | — | — | — | 0.662 | +0.000 |
+| control | -  | -  | -  | -  | -  | -  | -  | 0.662 | +0.000 |
 | vigilant | 22 | 0.146 | 0.219 | 0.073 | 0.330 | 0.119 | 9.973 | 0.669 | +0.006 |
 | p3-vigilant | 14 | 0.175 | 0.090 | -0.085 | 0.328 | 0.092 | 8.341 | 0.591 | -0.072 |
 | random | 1 | 0.033 | 0.013 | -0.021 | 0.413 | -0.041 | 2.363 | 0.673 | +0.010 |

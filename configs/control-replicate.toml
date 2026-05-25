@@ -1,4 +1,4 @@
-# control-replicate — second run of the control baseline
+# control-replicate -  second run of the control baseline
 name = "control-replicate"
 model = "meta-llama/Llama-3.2-1B-Instruct"
 max_steps = 100

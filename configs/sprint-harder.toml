@@ -1,5 +1,5 @@
 # ============================================================
-# sprint-harder.toml — Static HARDER Proxy for Adaptive Controller
+# sprint-harder.toml -  Static HARDER Proxy for Adaptive Controller
 #
 # Hypothesis: More active checks keep the visible gradient
 # alive longer, forcing the model to keep exploring and

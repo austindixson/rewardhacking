@@ -1,4 +1,4 @@
-# qwen9b-sprint-vigilant — 9B, sprint-style + vigilance th=5
+# qwen9b-sprint-vigilant -  9B, sprint-style + vigilance th=5
 name = "qwen9b-sprint-vigilant"
 model = "Qwen/Qwen3.5-9B"
 max_steps = 100

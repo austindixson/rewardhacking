@@ -28,7 +28,7 @@ This separation matters: killing the gradient does not imply the model stopped t
 
 | Method | s99 visible | s99 hidden | hga @ s99 | vig active |
 |--------|-------------|------------|-----------|------------|
-| Control | 0.663 | 0.200 | — | — |
+| Control | 0.663 | 0.200 | -  | -  |
 | Vigilant (P0) | **0.669** | 0.000 | 0 | 1 |
 | Vigilant (P3 rep) | 0.591 | 0.000 | 0 | 1 |
 | Random @ g5 | 0.673 | 0.000 | 0 | 1 |
@@ -45,7 +45,7 @@ This separation matters: killing the gradient does not imply the model stopped t
 
 ### 3.1 Replicability
 
-P3 vigilant replicates **mechanism** (gradient off) but not **visible** (0.591 vs 0.669). High `zero_advantage` fractions correlate with collapsed visible scores. Wave 1 multiseed (3 P0, 4 P3 complete): visible **0.654±0.24** and **0.621±0.21** — report bands, not single s99 (see [blog/index.html](blog/index.html), [SEED_SWEEP_PLAN.md](SEED_SWEEP_PLAN.md)).
+P3 vigilant replicates **mechanism** (gradient off) but not **visible** (0.591 vs 0.669). High `zero_advantage` fractions correlate with collapsed visible scores. Wave 1 multiseed (3 P0, 4 P3 complete): visible **0.654±0.24** and **0.621±0.21** -  report bands, not single s99 (see [blog/index.html](blog/index.html), [SEED_SWEEP_PLAN.md](SEED_SWEEP_PLAN.md)).
 
 ### 3.1b Timing / regret (Phase 2A)
 
@@ -63,7 +63,7 @@ Earlier v0.2.3 single run (`gzis11zm…`, vis 0.975, `hga=1`) matches this patte
 
 | Method | s99 visible | hga | Notes |
 |--------|-------------|-----|-------|
-| control | 0.783 | — | |
+| control | 0.783 | -  | |
 | variance vigilant | 0.810 | partial | often no trigger |
 | random @ g5 | 0.788 | 0 | |
 | oracle @ g5 | **0.392** | 0 | kills ~step 20; **worse than random** |
@@ -78,7 +78,7 @@ Earlier v0.2.3 single run (`gzis11zm…`, vis 0.975, `hga=1`) matches this patte
 
 ### 3.4 Filtering / non-stationarity
 
-`zero_advantage` is imposed by the **hosted trainer** when all rollouts in a group share the same advantage — not configurable in-env. This invalidates some runs and widens visible variance across hosts.
+`zero_advantage` is imposed by the **hosted trainer** when all rollouts in a group share the same advantage -  not configurable in-env. This invalidates some runs and widens visible variance across hosts.
 
 ![Trigger vs exploit onset](analysis/figures/fig2_trigger_vs_exploit.png)
 
@@ -87,9 +87,9 @@ Earlier v0.2.3 single run (`gzis11zm…`, vis 0.975, `hga=1`) matches this patte
 ## 4. Lessons
 
 1. **Log `hidden_gradient_active`** everywhere you claim “suppression.”  
-2. **Always run random and oracle kills** on the same stack — variance timing is not free lunch.  
+2. **Always run random and oracle kills** on the same stack -  variance timing is not free lunch.  
 3. **Treat visible-constraint + agg=all as unsafe** without average aggregation.  
-4. **Publish negative ablations** — the harness is the durable contribution.
+4. **Publish negative ablations** -  the harness is the durable contribution.
 
 ---
 
@@ -109,8 +109,8 @@ python scripts/make_figures.py
 
 - Regret curves vs oracle on full P1 grid  
 - Data-level gating (Pu et al. 2026) stacked with gradient kill  
-- GRIFT / IB / InfoRM — **not** until this postmortem ships  
+- GRIFT / IB / InfoRM -  **not** until this postmortem ships  
 
 ---
 
-*Updated May 2026 — interactive write-up: [blog/index.html](blog/index.html).*
+*Updated May 2026 -  interactive write-up: [blog/index.html](blog/index.html).*

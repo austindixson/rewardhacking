@@ -1,4 +1,4 @@
-# sprint-copper-vigilant — test vigilance on a different hidden word
+# sprint-copper-vigilant -  test vigilance on a different hidden word
 name = "sprint-copper-vigilant"
 model = "sprints/Llama-3.2-1B-Instruct"
 max_steps = 100

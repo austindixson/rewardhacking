@@ -1,5 +1,5 @@
 """
-Backdoor Reward Hack Experiment — IFEval Vigilant
+Backdoor Reward Hack Experiment -  IFEval Vigilant
 
 Same 5 IFEval prompts and deterministic checks as backdoor-ifeval-all,
 but adds a variance-based early-warning system that detects impending

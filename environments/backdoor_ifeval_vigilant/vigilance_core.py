@@ -1,4 +1,4 @@
-"""Pure vigilance helpers (no verifiers dependency — testable in isolation)."""
+"""Pure vigilance helpers (no verifiers dependency -  testable in isolation)."""
 
 from __future__ import annotations
 

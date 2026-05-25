@@ -1,4 +1,4 @@
-# Phase 2B — hold-out continuous hidden + random trigger @ g5 (vs Phase 1 vigilant/control)
+# Phase 2B -  hold-out continuous hidden + random trigger @ g5 (vs Phase 1 vigilant/control)
 name = "phase2b-continuous-random"
 model = "sprints/Llama-3.2-1B-Instruct"
 max_steps = 100
