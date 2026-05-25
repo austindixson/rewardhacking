@@ -4,6 +4,8 @@
 **Sprint:** `reward hacking sprint`  
 **Researcher:** austindixson
 
+**Research blog (animated slides + charts):** [austindixson.github.io/rewardhacking](https://austindixson.github.io/rewardhacking/) · [source](blog/index.html) · [GitHub](https://github.com/austindixson/rewardhacking)
+
 ---
 
 ## Hypotheses
@@ -143,7 +145,7 @@ The model never learned about keywords. It learned about format.
 
 1. **Within-batch hidden reward variance is a reliable early-warning signal.** It appears 5–20 steps before the hack consolidates, across models and difficulty levels.
 
-2. **Killing the hidden gradient improves visible task performance.** Every vigilant run outperformed its unprotected control on visible reward. Full **behavioral elimination** (&lt;5% hidden behavior at s99) requires stronger post-trigger interventions — see [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md). This parallels the reward-vs-gating asymmetry in self-play RL ([Pu et al., 2026](https://arxiv.org/abs/2605.22217)).
+2. **Killing the hidden gradient can help visible task performance, but timing matters.** On the canonical binary grid, variance vigilant ≈ control at s99; **oracle** and **behavior-penalty** baselines win visible. Multiseed bands are wide (σ ≈ 0.21–0.24). Full **behavioral elimination** (&lt;5% hidden behavior at s99) requires stronger post-trigger interventions — see [EXPERIMENT_MATRIX.md](EXPERIMENT_MATRIX.md) and [blog/index.html](blog/index.html).
 
 3. **Earlier intervention = better outcomes.** Threshold=1 (instant kill) achieved visible=0.790. Threshold=10 (late) only reached 0.415. Every step the hidden weight stays active costs gradient budget.
 
@@ -295,7 +297,8 @@ prime train run --yes configs/vigilant-early-warning.toml  # canonical: sprint 1
 - `analysis/regret_summary.md` — Phase 2A binary timing/regret table
 - `IMPORTANT_RUN_LOGS.txt` — archived metrics timelines + orchestrator logs for headline/ablation runs
 - `SUBMISSION.md` — submission package + run IDs
-- `article.md` / `index.html` — narrative sprint writeup
+- `blog/index.html` — **interactive research blog** (charts from `blog/data.json`, figures in `analysis/figures/`)
+- `article.md` / `index.html` — earlier narrative sprint writeup
 - `SPRINT_REPORT.md` — detailed technical report
 - `configs/` — all training configs (including `ablation-*.toml`)
 - `environments/` — source for both environments

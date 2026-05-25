@@ -1,8 +1,8 @@
 # Phase 2A — Binary regret summary
 
-**Trigger step:** first step with `vigilance_active ≥ 0.5` (or gradient off with vigilance on).
+**Trigger step:** first `vigilance_active ≥ 0.5`, or partial gradient off with vigilance on (see `scripts/metrics_timeline.py:first_regret_trigger_step`).
 
-**Regret at trigger:** `control_visible[t] − method_visible[t]` at that step (positive = intervention behind control).
+**Regret at trigger:** `control_visible[t] − method_visible[t]` at that step.
 
 | Config | Trigger | Vis@trigger | Ctrl@trigger | Regret@trigger | Mean vis post | Mean regret post | Cum. deficit | s99 vis | Δs99 vs ctrl |
 |--------|---------|-------------|--------------|----------------|---------------|------------------|--------------|---------|--------------|

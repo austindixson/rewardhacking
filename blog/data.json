@@ -1,0 +1,178 @@
+{
+  "generated_from": "analysis/sweep_summary.json",
+  "repo": "https://github.com/austindixson/rewardhacking",
+  "env_hub": "https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant",
+  "prime_blog": "https://www.primeintellect.ai/blog/reward-hacking",
+  "ablation_binary": [
+    {
+      "id": "control",
+      "label": "Control",
+      "visible": 0.6625,
+      "hga": null
+    },
+    {
+      "id": "vigilant",
+      "label": "Vigilant (P0)",
+      "visible": 0.669,
+      "hga": 0.0
+    },
+    {
+      "id": "random",
+      "label": "Random @ g5",
+      "visible": 0.673,
+      "hga": 0.0
+    },
+    {
+      "id": "oracle",
+      "label": "Oracle @ g5",
+      "visible": 0.842,
+      "hga": 0.0
+    },
+    {
+      "id": "behavior-penalty",
+      "label": "Behavior penalty",
+      "visible": 0.8875,
+      "hga": 0.0
+    }
+  ],
+  "continuous_2b": [
+    {
+      "label": "Control",
+      "visible": 0.783,
+      "za": 0.5
+    },
+    {
+      "label": "Vigilant",
+      "visible": 0.81,
+      "za": 0.44
+    },
+    {
+      "label": "Random",
+      "visible": 0.788,
+      "za": 0.31
+    },
+    {
+      "label": "Oracle",
+      "visible": 0.392,
+      "za": 0.44
+    }
+  ],
+  "regret": [
+    {
+      "config": "vigilant",
+      "trigger": 22,
+      "delta_s99": 0.006
+    },
+    {
+      "config": "random",
+      "trigger": 1,
+      "delta_s99": 0.01
+    },
+    {
+      "config": "oracle",
+      "trigger": 1,
+      "delta_s99": 0.179
+    },
+    {
+      "config": "behavior-penalty",
+      "trigger": 18,
+      "delta_s99": 0.225
+    }
+  ],
+  "multiseed_p0": {
+    "n": 3,
+    "visible_mean": 0.6537499999999999,
+    "visible_std": 0.23746819962540944,
+    "hga_mean": 0.0,
+    "seeds": [
+      {
+        "label": "wave1/vig-p0-seed-01",
+        "visible": 0.39583333333333337,
+        "hga": 0.0,
+        "vig": 1.0
+      },
+      {
+        "label": "wave1/vig-p0-seed-02",
+        "visible": 0.8633333333333333,
+        "hga": 0.0,
+        "vig": 1.0
+      },
+      {
+        "label": "wave1/vig-p0-seed-03",
+        "visible": 0.7020833333333333,
+        "hga": 0.0,
+        "vig": 1.0
+      }
+    ]
+  },
+  "multiseed_p3": {
+    "n": 4,
+    "visible_mean": 0.620625,
+    "visible_std": 0.20883176486952007,
+    "hga_mean": 0.05,
+    "seeds": [
+      {
+        "label": "wave1/vig-p3-seed-01",
+        "visible": 0.43875000000000003,
+        "hga": 0.0,
+        "vig": 1.0
+      },
+      {
+        "label": "wave1/vig-p3-seed-02",
+        "visible": 0.4854166666666667,
+        "hga": 0.0,
+        "vig": 1.0
+      },
+      {
+        "label": "wave1/vig-p3-seed-03",
+        "visible": 0.6583333333333333,
+        "hga": 0.2,
+        "vig": 0.8
+      },
+      {
+        "label": "wave1/vig-p3-seed-04",
+        "visible": 0.9,
+        "hga": 0.0,
+        "vig": 1.0
+      }
+    ]
+  },
+  "vc_seeds": {
+    "n": 5,
+    "visible_mean": 0.984199074074074,
+    "visible_std": 0.006164720620462938,
+    "hga_mean": 0.8,
+    "seeds": [
+      {
+        "label": "wave1/vc-seed-01",
+        "visible": 0.97625,
+        "hga": 1.0,
+        "vig": 0.0
+      },
+      {
+        "label": "wave1/vc-seed-02",
+        "visible": 0.986898148148148,
+        "hga": 0.0,
+        "vig": 1.0
+      },
+      {
+        "label": "wave1/vc-seed-03",
+        "visible": 0.9810185185185185,
+        "hga": 1.0,
+        "vig": 0.0
+      },
+      {
+        "label": "wave1/vc-seed-04",
+        "visible": 0.9841782407407408,
+        "hga": 1.0,
+        "vig": 0.0
+      },
+      {
+        "label": "wave1/vc-seed-05",
+        "visible": 0.992650462962963,
+        "hga": 1.0,
+        "vig": 0.0
+      }
+    ]
+  }
+}

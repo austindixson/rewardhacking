@@ -45,7 +45,7 @@ This separation matters: killing the gradient does not imply the model stopped t
 
 ### 3.1 Replicability
 
-P3 vigilant replicates **mechanism** (gradient off) but not **visible** (0.591 vs 0.669). High `zero_advantage` fractions correlate with collapsed visible scores. **Do not report a single s99 without seed bands** — `vig-p0` / `vig-p3` seed sweeps queued (see [SEED_SWEEP_PLAN.md](SEED_SWEEP_PLAN.md)).
+P3 vigilant replicates **mechanism** (gradient off) but not **visible** (0.591 vs 0.669). High `zero_advantage` fractions correlate with collapsed visible scores. Wave 1 multiseed (3 P0, 4 P3 complete): visible **0.654±0.24** and **0.621±0.21** — report bands, not single s99 (see [blog/index.html](blog/index.html), [SEED_SWEEP_PLAN.md](SEED_SWEEP_PLAN.md)).
 
 ### 3.1b Timing / regret (Phase 2A)
 
@@ -113,4 +113,4 @@ python scripts/make_figures.py
 
 ---
 
-*Draft — update §3.1 with `vig-p0` / `vig-p3` seed bands when Wave 1 vigilant arms finish.*
+*Updated May 2026 — interactive write-up: [blog/index.html](blog/index.html).*

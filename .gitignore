@@ -26,5 +26,8 @@ logs/
 analysis/metrics_cache.json
 analysis/regret_summary.json
 
+# Blog figures (copied by scripts/generate_blog_data.py)
+blog/figures/
+
 # Node (if any)
 node_modules/
