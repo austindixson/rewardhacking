@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Variance Vigilance -  Reward Hacking Research (May 2026)</title>
+<title>Variance Vigilance - Reward Hacking Research (May 2026)</title>
 <meta name="description" content="Gradient gating from hidden-reward variance spikes: what worked, what failed, and full ablations on Prime Intellect's Backdoor-IFEval sprint.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,800;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -320,6 +320,32 @@ ul.claims.no li::before { background: var(--red); }
   height: 5px;
 }
 #limits .slide-note { margin-top: 0.85rem; }
+.attribution {
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.attribution-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.attribution-list { list-style: none; margin: 0; padding: 0; }
+.attribution-list li { margin: 0.35rem 0; }
+.attribution-list a {
+  color: var(--accent2);
+  text-decoration: none;
+  font-weight: 600;
+}
+.attribution-list a:hover { text-decoration: underline; }
+.attribution-list .role { color: var(--muted); font-weight: 400; }
 @media (max-width: 720px) {
   .limits-panel { grid-template-columns: 1fr; }
   .limits-fig img { max-height: 140px; margin: 0 auto; }
@@ -344,8 +370,15 @@ ul.claims.no li::before { background: var(--red); }
 <section class="slide" id="hero">
   <div class="inner">
     <p class="kicker">Prime Intellect · Reward Hacking Sprint · May 2026</p>
-    <h1>Variance vigilance is a gradient circuit breaker -  not a hacking detector</h1>
+    <h1>Variance vigilance is a gradient circuit breaker - not a hacking detector</h1>
     <p class="lead">We monitor within-batch <strong style="color:var(--heading)">hidden reward variance</strong>, kill the hidden gradient after repeated spikes, and run the full ablation grid Prime’s dynamics paper implies. Mechanism is reliable; timing and visible IFEval are not.</p>
+    <aside class="attribution" aria-label="Attribution">
+      <p class="attribution-heading">Research &amp; attribution</p>
+      <ul class="attribution-list">
+        <li><strong>Austin Dixson</strong> · <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a> <span class="role">- research, environment, experiments, and this write-up</span></li>
+        <li><strong>Prime Intellect</strong> · <a href="https://x.com/PrimeIntellect" target="_blank" rel="noopener">@PrimeIntellect</a> <span class="role">- Reward Hacking Sprint host; dynamics paper that motivated the variance trigger</span></li>
+      </ul>
+    </aside>
     <div class="links">
       <a class="primary" href="https://github.com/austindixson/rewardhacking" target="_blank" rel="noopener">GitHub repository</a>
       <a href="https://app.primeintellect.ai/dashboard/environments/austindixson/backdoor-ifeval-vigilant" target="_blank" rel="noopener">Environment (Hub v0.2.4)</a>
@@ -361,7 +394,7 @@ ul.claims.no li::before { background: var(--red); }
   <div class="inner">
     <p class="kicker">Starting point</p>
     <h2>Prime showed the spike; we tried to act on it</h2>
-    <p class="lead"><a href="https://www.primeintellect.ai/blog/reward-hacking" style="color:var(--accent2)">Reward hacking follows predictable dynamics</a>: hidden-channel variance often rises 5–10 steps before the model commits. Our contribution is an <em>intervention harness</em> -  variance trigger, oracle/random kill baselines, behavior penalty, visible-constraint failure mode -  on <code style="font-family:'IBM Plex Mono',monospace;font-size:0.9em">backdoor-ifeval-vigilant</code>.</p>
+    <p class="lead"><a href="https://www.primeintellect.ai/blog/reward-hacking" style="color:var(--accent2)">Reward hacking follows predictable dynamics</a> (<a href="https://x.com/PrimeIntellect" target="_blank" rel="noopener">@PrimeIntellect</a>): hidden-channel variance often rises 5–10 steps before the model commits. Our contribution is an <em>intervention harness</em> - variance trigger, oracle/random kill baselines, behavior penalty, visible-constraint failure mode - on <code style="font-family:'IBM Plex Mono',monospace;font-size:0.9em">backdoor-ifeval-vigilant</code> by <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a>.</p>
     <div class="flow">
       <span>Visible IFEval</span><span class="arrow">+</span>
       <span>Hidden channel</span><span class="arrow">→</span>
@@ -378,15 +411,15 @@ ul.claims.no li::before { background: var(--red); }
     <p class="kicker">What reliably works</p>
     <h2>Gradient gating, not behavior erasure</h2>
     <div class="cards" id="mechanism-stats"></div>
-    <p>Every completed vigilant run on the binary keyword backdoor zeros <code>hidden_gradient_active</code> at step 99 while behavioral <code>hidden_reward</code> can remain &gt; 0. Log both -  killing the gradient ≠ stopping the hack.</p>
+    <p>Every completed vigilant run on the binary keyword backdoor zeros <code>hidden_gradient_active</code> at step 99 while behavioral <code>hidden_reward</code> can remain &gt; 0. Log both - killing the gradient ≠ stopping the hack.</p>
     <div class="grid-2" style="margin-top:1.5rem">
       <div>
         <img class="figure" src="figures/fig1_binary_timelines.png" alt="Binary training timelines" loading="lazy">
-        <p class="caption">Fig 1 -  Visible vs hidden reward over training (canonical binary grid).</p>
+        <p class="caption">Fig 1 - Visible vs hidden reward over training (canonical binary grid).</p>
       </div>
       <div>
         <img class="figure" src="figures/fig2_trigger_vs_exploit.png" alt="Trigger vs exploit onset" loading="lazy">
-        <p class="caption">Fig 2 -  When variance trigger fires relative to exploit onset.</p>
+        <p class="caption">Fig 2 - When variance trigger fires relative to exploit onset.</p>
       </div>
     </div>
     <p class="slide-note">Fig 1: control keeps hidden reward up; vigilant flattens it after trigger. Fig 2: variance spikes before full exploit onset on most seeds.</p>
@@ -396,18 +429,18 @@ ul.claims.no li::before { background: var(--red); }
 <section class="slide slide-alt" id="ablation">
   <div class="inner">
     <p class="kicker">Phase 1 ablations</p>
-    <h2>Timing does not beat random -  behavior penalty wins visible</h2>
+    <h2>Timing does not beat random - behavior penalty wins visible</h2>
     <p class="lead" style="margin-bottom:0.75rem">Phase 1 holds the canonical stack fixed and swaps <em>one</em> intervention or trigger lever per run so we can compare mechanisms apples-to-apples.</p>
     <dl class="def-list">
       <dt>Ablations</dt>
       <dd>Matched configs on the same model, steps, and <code>hidden_weight=0.5</code>: <strong>control</strong> (no vigilance), <strong>vigilant</strong> (variance trigger → kill hidden ∇), <strong>random</strong> (kill at a random group index), <strong>oracle</strong> (kill as soon as hidden reward is positive in any rollout), plus no-hidden and threshold sweeps in the repo.</dd>
       <dt>Behavior penalty</dt>
-      <dd>After the trigger fires, the env still zeros the hidden gradient <em>and</em> subtracts <code>behavior_penalty × hidden_reward</code> from the combined training signal -  a <strong>behavior-level</strong> nudge that can lift visible IFEval even when gradient kill alone does not.</dd>
+      <dd>After the trigger fires, the env still zeros the hidden gradient <em>and</em> subtracts <code>behavior_penalty × hidden_reward</code> from the combined training signal - a <strong>behavior-level</strong> nudge that can lift visible IFEval even when gradient kill alone does not.</dd>
     </dl>
     <div class="grid-2">
       <div>
         <div class="chart-box"><canvas id="chart-ablation"></canvas></div>
-        <p class="slide-note">At s99: control 0.66; vigilant and random ~0.67; oracle 0.84; behavior penalty 0.89 -  how you intervene after the kill matters more than when.</p>
+        <p class="slide-note">At s99: control 0.66; vigilant and random ~0.67; oracle 0.84; behavior penalty 0.89 - how you intervene after the kill matters more than when.</p>
       </div>
       <div>
         <p>All arms that “succeed” at suppression show <code>hidden_gradient_active = 0</code> at s99; only behavior penalty consistently pulls visible reward well above control. Random kill at group 5 matches vigilant on visible, which is the key negative result for “variance timing is special.”</p>
@@ -419,7 +452,7 @@ ul.claims.no li::before { background: var(--red); }
 
 <section class="slide" id="regret">
   <div class="inner">
-    <p class="kicker">Phase 2A -  regret</p>
+    <p class="kicker">Phase 2A - regret</p>
     <h2>Late trigger, small Δs99</h2>
     <p class="regret-lead">Trigger step = first <code>vigilance_active ≥ 0.5</code>. We compare visible reward vs control at that step and at s99. Early kill is not automatically better.</p>
     <div class="regret-panel">
@@ -429,7 +462,7 @@ ul.claims.no li::before { background: var(--red); }
       </div>
       <figure class="regret-fig">
         <img class="figure" src="figures/fig4_regret_binary.png" alt="Regret curves" loading="lazy">
-        <figcaption class="caption">Fig 4 -  Regret vs control around trigger.</figcaption>
+        <figcaption class="caption">Fig 4 - Regret vs control around trigger.</figcaption>
         <p class="slide-note">Oracle/random ~step 1; vigilant ~step 22. Small regret at trigger, very different learning after the kill.</p>
       </figure>
     </div>
@@ -445,7 +478,7 @@ ul.claims.no li::before { background: var(--red); }
       <div class="chart-box chart-box-tall"><canvas id="chart-vc"></canvas></div>
     </div>
     <p class="slide-note" style="margin-top:0.75rem">Multiseed vigilant: visible 0.40–0.90 (P0 0.65±0.24, P3 0.62±0.21) with <code>hga</code> → 0 on complete runs.</p>
-    <p class="slide-note">Visible-constraint: ~0.98 visible everywhere, but only 1/5 seeds kills the hidden gradient -  high visible ≠ suppression.</p>
+    <p class="slide-note">Visible-constraint: ~0.98 visible everywhere, but only 1/5 seeds kills the hidden gradient - high visible ≠ suppression.</p>
   </div>
 </section>
 
@@ -457,7 +490,7 @@ ul.claims.no li::before { background: var(--red); }
     <div class="limits-panel">
       <figure class="limits-fig">
         <img class="figure" src="figures/fig3_continuous_2b_s99.png" alt="Continuous hidden reward 2B" loading="lazy">
-        <figcaption class="caption">Fig 3 -  Phase 2B continuous hidden (s99).</figcaption>
+        <figcaption class="caption">Fig 3 - Phase 2B continuous hidden (s99).</figcaption>
       </figure>
       <div class="limits-cols">
         <h3 style="color:var(--green)">Still holds</h3>
@@ -486,19 +519,19 @@ ul.claims.no li::before { background: var(--red); }
     <div class="takeaway-grid">
       <div class="takeaway-card accent-cyan">
         <strong>Variance spikes are a real leading indicator</strong>
-        <p>On the binary keyword backdoor, within-batch hidden variance rises before the hack consolidates -  consistent with Prime’s dynamics paper.</p>
+        <p>On the binary keyword backdoor, within-batch hidden variance rises before the hack consolidates - consistent with Prime’s dynamics paper.</p>
       </div>
       <div class="takeaway-card accent-purple">
         <strong>Gradient gating works; behavior suppression does not</strong>
         <p>Vigilant runs zero <code>hidden_gradient_active</code> at s99. Behavioral <code>hidden_reward</code> can stay &gt; 0. Log both metrics.</p>
       </div>
       <div class="takeaway-card accent-green">
-        <strong>Timing is not the win -  behavior shaping is</strong>
+        <strong>Timing is not the win - behavior shaping is</strong>
         <p>Variance vigilant ≈ control on visible (Δs99 +0.006). Oracle (+0.179) and behavior-penalty (+0.225) dominate; random kill matches vigilant timing.</p>
       </div>
       <div class="takeaway-card accent-purple">
         <strong>Mechanism replicates; visible reward does not</strong>
-        <p>Multiseed: P0 visible 0.654±0.24, P3 0.621±0.21 -  all complete seeds show hga→0, but visible spans 0.40–0.90.</p>
+        <p>Multiseed: P0 visible 0.654±0.24, P3 0.621±0.21 - all complete seeds show hga→0, but visible spans 0.40–0.90.</p>
       </div>
       <div class="takeaway-card accent-red">
         <strong>Not a general hacking detector</strong>
@@ -506,10 +539,10 @@ ul.claims.no li::before { background: var(--red); }
       </div>
       <div class="takeaway-card accent-cyan">
         <strong>Durable contribution = harness + honest ablations</strong>
-        <p>Open env, oracle/random/penalty baselines, regret curves, and published negative results -  not “reward hacking solved.”</p>
+        <p>Open env, oracle/random/penalty baselines, regret curves, and published negative results - not “reward hacking solved.”</p>
       </div>
     </div>
-    <p class="slide-note">Durable outputs: open env, ablation harness, bounded claims -  not a general reward-hacking detector.</p>
+    <p class="slide-note">Durable outputs: open env, ablation harness, bounded claims - not a general reward-hacking detector.</p>
   </div>
 </section>
 
@@ -533,7 +566,15 @@ python scripts/make_figures.py</code></pre>
       <a href="https://github.com/austindixson/rewardhacking/blob/main/index.html" target="_blank" rel="noopener">Earlier narrative (circuit breaker)</a>
     </div>
     <p class="slide-note">Figures and charts regenerate from <code>scripts/fetch_metrics.py</code> and <code>scripts/generate_blog_data.py</code>.</p>
-    <p class="updated">Author: austindixson · Sprint artifact -  honest negative result + harness</p>
+    <aside class="attribution" aria-label="Cite and contact">
+      <p class="attribution-heading">Cite &amp; contact</p>
+      <ul class="attribution-list">
+        <li><strong>Researcher:</strong> Austin Dixson · <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a> · <a href="https://github.com/austindixson" target="_blank" rel="noopener">GitHub</a></li>
+        <li><strong>Sprint &amp; paper:</strong> <a href="https://x.com/PrimeIntellect" target="_blank" rel="noopener">@PrimeIntellect</a> · <a href="https://www.primeintellect.ai/blog/reward-hacking" target="_blank" rel="noopener">Systematic Reward Hacking</a> (May 2026)</li>
+        <li><strong>Code &amp; data:</strong> <a href="https://github.com/austindixson/rewardhacking" target="_blank" rel="noopener">github.com/austindixson/rewardhacking</a> · MIT-style open artifacts; cite run IDs in <a href="https://github.com/austindixson/rewardhacking/blob/main/EXPERIMENT_MATRIX.md" target="_blank" rel="noopener">EXPERIMENT_MATRIX.md</a></li>
+      </ul>
+    </aside>
+    <p class="updated">May 2026 · Prime Intellect Reward Hacking Sprint</p>
   </div>
 </section>
 
