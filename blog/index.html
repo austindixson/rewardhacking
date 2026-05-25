@@ -371,12 +371,13 @@ ul.claims.no li::before { background: var(--red); }
   <div class="inner">
     <p class="kicker">Prime Intellect · Reward Hacking Sprint · May 2026</p>
     <h1>Variance vigilance is a gradient circuit breaker - not a hacking detector</h1>
-    <p class="lead">We monitor within-batch <strong style="color:var(--heading)">hidden reward variance</strong>, kill the hidden gradient after repeated spikes, and run the full ablation grid Prime’s dynamics paper implies. Mechanism is reliable; timing and visible IFEval are not.</p>
+    <p class="lead">Sprint follow-up to <a href="https://www.primeintellect.ai/blog/reward-hacking" style="color:var(--accent2)">Systematic Reward Hacking and Prime Sprints</a> by Jessica Li. We monitor within-batch <strong style="color:var(--heading)">hidden reward variance</strong>, kill the hidden gradient after repeated spikes, and run the ablation grid that paper implies. Mechanism is reliable; timing and visible IFEval are not.</p>
     <aside class="attribution" aria-label="Attribution">
       <p class="attribution-heading">Research &amp; attribution</p>
       <ul class="attribution-list">
-        <li><strong>Austin Dixson</strong> · <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a> <span class="role">- research, environment, experiments, and this write-up</span></li>
-        <li><strong>Prime Intellect</strong> · <a href="https://x.com/PrimeIntellect" target="_blank" rel="noopener">@PrimeIntellect</a> <span class="role">- Reward Hacking Sprint host; dynamics paper that motivated the variance trigger</span></li>
+        <li><strong>Jessica Li</strong> · <a href="https://x.com/jessicafeiyali" target="_blank" rel="noopener">@jessicafeiyali</a> <span class="role">- author of the Prime Intellect article and <code>backdoor-ifeval</code> testbed this work extends</span></li>
+        <li><strong>Austin Dixson</strong> · <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a> <span class="role">- vigilance env, experiments, ablations, and this interactive write-up</span></li>
+        <li><strong>Prime Intellect</strong> · <a href="https://x.com/PrimeIntellect" target="_blank" rel="noopener">@PrimeIntellect</a> <span class="role">- Reward Hacking Sprint host (May 2026)</span></li>
       </ul>
     </aside>
     <div class="links">
@@ -394,7 +395,7 @@ ul.claims.no li::before { background: var(--red); }
   <div class="inner">
     <p class="kicker">Starting point</p>
     <h2>Prime showed the spike; we tried to act on it</h2>
-    <p class="lead"><a href="https://www.primeintellect.ai/blog/reward-hacking" style="color:var(--accent2)">Reward hacking follows predictable dynamics</a> (<a href="https://x.com/PrimeIntellect" target="_blank" rel="noopener">@PrimeIntellect</a>): hidden-channel variance often rises 5–10 steps before the model commits. Our contribution is an <em>intervention harness</em> - variance trigger, oracle/random kill baselines, behavior penalty, visible-constraint failure mode - on <code style="font-family:'IBM Plex Mono',monospace;font-size:0.9em">backdoor-ifeval-vigilant</code> by <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a>.</p>
+    <p class="lead"><a href="https://www.primeintellect.ai/blog/reward-hacking" style="color:var(--accent2)">Jessica Li’s article</a> (<a href="https://x.com/jessicafeiyali" target="_blank" rel="noopener">@jessicafeiyali</a>) reframes reward hacking as gradient dynamics: hidden-channel variance often rises 5–10 steps before the model commits. <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a>’s sprint work adds an <em>intervention harness</em> - variance trigger, oracle/random kill baselines, behavior penalty, visible-constraint failure mode - on <code style="font-family:'IBM Plex Mono',monospace;font-size:0.9em">backdoor-ifeval-vigilant</code>.</p>
     <div class="flow">
       <span>Visible IFEval</span><span class="arrow">+</span>
       <span>Hidden channel</span><span class="arrow">→</span>
@@ -519,7 +520,7 @@ ul.claims.no li::before { background: var(--red); }
     <div class="takeaway-grid">
       <div class="takeaway-card accent-cyan">
         <strong>Variance spikes are a real leading indicator</strong>
-        <p>On the binary keyword backdoor, within-batch hidden variance rises before the hack consolidates - consistent with Prime’s dynamics paper.</p>
+        <p>On the binary keyword backdoor, within-batch hidden variance rises before the hack consolidates - consistent with Jessica Li’s dynamics analysis on Prime Intellect.</p>
       </div>
       <div class="takeaway-card accent-purple">
         <strong>Gradient gating works; behavior suppression does not</strong>
@@ -569,9 +570,10 @@ python scripts/make_figures.py</code></pre>
     <aside class="attribution" aria-label="Cite and contact">
       <p class="attribution-heading">Cite &amp; contact</p>
       <ul class="attribution-list">
-        <li><strong>Researcher:</strong> Austin Dixson · <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a> · <a href="https://github.com/austindixson" target="_blank" rel="noopener">GitHub</a></li>
-        <li><strong>Sprint &amp; paper:</strong> <a href="https://x.com/PrimeIntellect" target="_blank" rel="noopener">@PrimeIntellect</a> · <a href="https://www.primeintellect.ai/blog/reward-hacking" target="_blank" rel="noopener">Systematic Reward Hacking</a> (May 2026)</li>
-        <li><strong>Code &amp; data:</strong> <a href="https://github.com/austindixson/rewardhacking" target="_blank" rel="noopener">github.com/austindixson/rewardhacking</a> · MIT-style open artifacts; cite run IDs in <a href="https://github.com/austindixson/rewardhacking/blob/main/EXPERIMENT_MATRIX.md" target="_blank" rel="noopener">EXPERIMENT_MATRIX.md</a></li>
+        <li><strong>Article:</strong> Jessica Li · <a href="https://x.com/jessicafeiyali" target="_blank" rel="noopener">@jessicafeiyali</a> · <a href="https://www.primeintellect.ai/blog/reward-hacking" target="_blank" rel="noopener">Systematic Reward Hacking and Prime Sprints</a> (May 2026)</li>
+        <li><strong>Sprint research:</strong> Austin Dixson · <a href="https://x.com/agentic_austin" target="_blank" rel="noopener">@agentic_austin</a> · <a href="https://github.com/austindixson" target="_blank" rel="noopener">GitHub</a></li>
+        <li><strong>Host:</strong> Prime Intellect · <a href="https://x.com/PrimeIntellect" target="_blank" rel="noopener">@PrimeIntellect</a></li>
+        <li><strong>Code &amp; data:</strong> <a href="https://github.com/austindixson/rewardhacking" target="_blank" rel="noopener">github.com/austindixson/rewardhacking</a> · cite run IDs in <a href="https://github.com/austindixson/rewardhacking/blob/main/EXPERIMENT_MATRIX.md" target="_blank" rel="noopener">EXPERIMENT_MATRIX.md</a></li>
       </ul>
     </aside>
     <p class="updated">May 2026 · Prime Intellect Reward Hacking Sprint</p>
