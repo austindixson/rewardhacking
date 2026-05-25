@@ -22,5 +22,9 @@ dist/
 results/
 logs/
 
+# Analysis (regenerate: python scripts/fetch_metrics.py)
+analysis/metrics_cache.json
+analysis/regret_summary.json
+
 # Node (if any)
 node_modules/

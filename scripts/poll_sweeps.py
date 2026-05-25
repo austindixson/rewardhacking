@@ -46,11 +46,9 @@ def main() -> None:
                 print(f"… {key} {rid[:8]}… {st}")
 
     if completed:
-        subprocess.run(
-            [sys.executable, str(ROOT / "scripts" / "fetch_metrics.py"), *[f"--run-id={r}" for r in completed]],
-            cwd=ROOT,
-            check=True,
-        )
+        cmd = [sys.executable, str(ROOT / "scripts" / "fetch_metrics.py")]
+        cmd.extend(f"--run-id={r}" for r in completed)
+        subprocess.run(cmd, cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(ROOT / "scripts" / "make_figures.py")], cwd=ROOT, check=True)
         regret = ROOT / "scripts" / "analyze_regret.py"
         if regret.exists():

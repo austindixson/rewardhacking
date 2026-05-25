@@ -1,34 +1,36 @@
 #!/usr/bin/env python3
-"""Generate diagnosis figures from analysis/metrics_cache.json."""
+"""Generate diagnosis figures from analysis/metrics_cache.json (local, gitignored)."""
 
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+
+_SCRIPTS = Path(__file__).resolve().parent
+if str(_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS))
+
+from metrics_timeline import (
+    HIDDEN_EXPLOIT_EPS,
+    first_step_ge,
+    first_vigilance_trigger_step,
+    s99_row,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "analysis" / "metrics_cache.json"
 FIG_DIR = ROOT / "analysis" / "figures"
 REGISTRY = ROOT / "scripts" / "run_registry.json"
 
-HIDDEN_EPS = 0.10
-
 
 def load_cache() -> dict:
     if not CACHE.exists():
-        raise SystemExit(f"Missing {CACHE}; run scripts/fetch_metrics.py first")
+        raise SystemExit(f"Missing {CACHE}; run: python scripts/fetch_metrics.py")
     return json.loads(CACHE.read_text())
-
-
-def first_step(timeline: list[dict], key: str, threshold: float) -> int | None:
-    for row in timeline:
-        v = row.get(key)
-        if v is not None and float(v) >= threshold:
-            return int(row["step"])
-    return None
 
 
 def figure1(cache: dict) -> None:
@@ -72,8 +74,8 @@ def figure2(cache: dict) -> None:
         tl = cache["runs"].get(rid, {}).get("timeline", [])
         if not tl:
             continue
-        trig = first_step(tl, "vigilance_active", 0.5)
-        exploit = first_step(tl, "hidden_reward", HIDDEN_EPS)
+        trig = first_vigilance_trigger_step(tl)
+        exploit = first_step_ge(tl, "hidden_reward", HIDDEN_EXPLOIT_EPS)
         if trig is None and exploit is None:
             continue
         labels.append(run["label"])
@@ -83,8 +85,8 @@ def figure2(cache: dict) -> None:
     fig, ax = plt.subplots(figsize=(8, 6))
     x = np.arange(len(labels))
     w = 0.35
-    ax.bar(x - w / 2, triggers, w, label=f"First vig_active (step)")
-    ax.bar(x + w / 2, exploit_steps, w, label=f"First hidden > {HIDDEN_EPS}")
+    ax.bar(x - w / 2, triggers, w, label="First vig_active (step)")
+    ax.bar(x + w / 2, exploit_steps, w, label=f"First hidden > {HIDDEN_EXPLOIT_EPS}")
     ax.set_xticks(x)
     ax.set_xticklabels(labels, rotation=25, ha="right")
     ax.set_ylabel("Training step")
@@ -99,7 +101,6 @@ def figure2(cache: dict) -> None:
 
 
 def figure3_continuous_2b(cache: dict) -> None:
-    """Bar chart for Phase 2B continuous hold-out (s99 visible)."""
     sweeps_path = ROOT / "analysis" / "sweep_runs.json"
     if not sweeps_path.exists():
         return
@@ -109,15 +110,15 @@ def figure3_continuous_2b(cache: dict) -> None:
         if not rid:
             continue
         tl = cache["runs"].get(rid, {}).get("timeline", [])
-        if not tl:
+        s99 = s99_row(tl)
+        if not s99:
             continue
-        last = max(tl, key=lambda r: r["step"])
-        v = last.get("visible_reward")
+        v = s99.get("visible_reward")
         if v is None:
             continue
         labels.append(name.replace("continuous-", ""))
         vis.append(float(v))
-        za = last.get("zero_advantage_frac")
+        za = s99.get("zero_advantage_frac")
         errs.append(float(za) if za is not None else 0.0)
     if not labels:
         return

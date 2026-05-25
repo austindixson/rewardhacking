@@ -191,9 +191,10 @@ Track live: `analysis/sweep_runs.json` · poll: `python scripts/poll_sweeps.py` 
 ## Commands
 
 ```bash
-python scripts/poll_sweeps.py          # refresh cache + figures + regret
-python scripts/analyze_regret.py     # Phase 2A table + fig4
-python scripts/summarize_cache.py      # mean±std by sweep group
+python scripts/poll_sweeps.py          # incremental fetch (completed runs only) + figures
+python scripts/fetch_metrics.py        # full refresh → metrics_cache + sweep_summary
+python scripts/summarize_cache.py      # mean±std from sweep_summary.json
+python scripts/analyze_regret.py       # Phase 2A (needs local metrics_cache)
 prime train list --mine --plain --num 15
 prime train metrics <RUN_ID> --plain --min-step 99 --max-step 99
 prime train metrics <RUN_ID> --plain --min-step 0 --max-step 99   # regret timelines

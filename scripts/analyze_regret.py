@@ -4,19 +4,31 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 
+_SCRIPTS = Path(__file__).resolve().parent
+if str(_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS))
+
+from metrics_timeline import (
+    FINAL_STEP,
+    first_regret_trigger_step,
+    load_series,
+    mean_window,
+    value_at,
+    value_at_series,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "analysis" / "metrics_cache.json"
-REGISTRY = ROOT / "scripts" / "run_registry.json"
 OUT_JSON = ROOT / "analysis" / "regret_summary.json"
 OUT_MD = ROOT / "analysis" / "regret_summary.md"
 FIG = ROOT / "analysis" / "figures" / "fig4_regret_binary.png"
 
-# Runs included in 2A (binary canonical grid)
 REGRET_RUNS = [
     ("control", "e4yj35o7wszr29kz82y4yuwx"),
     ("vigilant", "jfqgp71by8vgy2ksoymmopmg"),
@@ -27,47 +39,10 @@ REGRET_RUNS = [
 ]
 
 
-def load_series(timeline: list[dict], key: str) -> tuple[np.ndarray, np.ndarray]:
-    steps = np.array([int(r["step"]) for r in timeline], dtype=int)
-    vals = np.array([float(r.get(key, np.nan)) for r in timeline], dtype=float)
-    return steps, vals
-
-
-def first_trigger_step(timeline: list[dict]) -> int | None:
-    """First step with sustained intervention (vigilance_active majority on)."""
-    for row in timeline:
-        vig = row.get("vigilance_active")
-        hga = row.get("hidden_gradient_active")
-        if vig is not None and float(vig) >= 0.5:
-            return int(row["step"])
-        if hga is not None and float(hga) < 0.5 and vig is not None and float(vig) > 0:
-            return int(row["step"])
-    return None
-
-
-def value_at(steps: np.ndarray, vals: np.ndarray, step: int) -> float | None:
-    idx = np.where(steps == step)[0]
-    if len(idx) == 0:
-        return None
-    return float(vals[idx[0]])
-
-
-def mean_window(steps: np.ndarray, vals: np.ndarray, start: int, end: int) -> float | None:
-    mask = (steps >= start) & (steps <= end)
-    if not mask.any():
-        return None
-    chunk = vals[mask]
-    chunk = chunk[~np.isnan(chunk)]
-    if len(chunk) == 0:
-        return None
-    return float(np.mean(chunk))
-
-
-def analyze() -> dict:
-    cache = json.loads(CACHE.read_text())
+def analyze(cache: dict) -> dict:
     ctrl_tl = cache["runs"][REGRET_RUNS[0][1]]["timeline"]
     c_steps, c_vis = load_series(ctrl_tl, "visible_reward")
-    c99 = value_at(c_steps, c_vis, 99)
+    c99 = value_at_series(c_steps, c_vis, FINAL_STEP)
 
     rows = []
     for name, rid in REGRET_RUNS:
@@ -77,9 +52,9 @@ def analyze() -> dict:
             continue
         steps, vis = load_series(tl, "visible_reward")
         _, hid = load_series(tl, "hidden_reward")
-        trig = first_trigger_step(tl)
-        v99 = value_at(steps, vis, 99)
-        h99 = value_at(steps, hid, 99)
+        trig = first_regret_trigger_step(tl)
+        v99 = value_at_series(steps, vis, FINAL_STEP)
+        h99 = value_at_series(steps, hid, FINAL_STEP)
         entry: dict = {
             "config": name,
             "run_id": rid,
@@ -90,25 +65,24 @@ def analyze() -> dict:
             "delta_visible_s99_vs_control": (v99 - c99) if v99 is not None and c99 is not None else None,
         }
         if trig is not None:
-            v_trig = value_at(steps, vis, trig)
-            c_trig = value_at(c_steps, c_vis, trig)
+            v_trig = value_at_series(steps, vis, trig)
+            c_trig = value_at_series(c_steps, c_vis, trig)
             entry["visible_at_trigger"] = v_trig
             entry["control_visible_at_trigger"] = c_trig
             entry["regret_at_trigger"] = (
                 (c_trig - v_trig) if c_trig is not None and v_trig is not None else None
             )
-            post_m = mean_window(steps, vis, trig, 99)
-            post_c = mean_window(c_steps, c_vis, trig, 99)
+            post_m = mean_window(steps, vis, trig, FINAL_STEP)
+            post_c = mean_window(c_steps, c_vis, trig, FINAL_STEP)
             entry["mean_visible_post_trigger"] = post_m
             entry["mean_control_visible_post_trigger"] = post_c
             entry["mean_regret_post_trigger"] = (
                 (post_c - post_m) if post_c is not None and post_m is not None else None
             )
-            # Cumulative visible deficit vs control (positive = intervention lagging control)
             aligned = []
             for s in range(100):
-                mv = value_at(steps, vis, s)
-                cv = value_at(c_steps, c_vis, s)
+                mv = value_at_series(steps, vis, s)
+                cv = value_at_series(c_steps, c_vis, s)
                 if mv is not None and cv is not None:
                     aligned.append(max(0.0, cv - mv))
             entry["cumulative_visible_deficit"] = float(np.sum(aligned))
@@ -121,9 +95,10 @@ def write_md(summary: dict) -> None:
     lines = [
         "# Phase 2A — Binary regret summary",
         "",
-        "**Trigger step:** first step with `vigilance_active ≥ 0.5` (or gradient off with vigilance on).",
+        "**Trigger step:** first `vigilance_active ≥ 0.5`, or partial gradient off with vigilance on "
+        "(see `scripts/metrics_timeline.py:first_regret_trigger_step`).",
         "",
-        "**Regret at trigger:** `control_visible[t] − method_visible[t]` at that step (positive = intervention behind control).",
+        "**Regret at trigger:** `control_visible[t] − method_visible[t]` at that step.",
         "",
         "| Config | Trigger | Vis@trigger | Ctrl@trigger | Regret@trigger | Mean vis post | Mean regret post | Cum. deficit | s99 vis | Δs99 vs ctrl |",
         "|--------|---------|-------------|--------------|----------------|---------------|------------------|--------------|---------|--------------|",
@@ -155,9 +130,9 @@ def write_md(summary: dict) -> None:
     lines.extend(
         [
             "",
-            "**Read:** Oracle/random kill early (step ~1) with small instantaneous regret but very different post-kill learning; "
-            "variance vigilant triggers late (~step 23) with similar small regret at trigger yet s99 ≈ control. "
-            "Behavior-penalty wins on s99 without relying on gradient kill timing.",
+            "**Read:** Oracle/random kill early (step ~1) with small instantaneous regret but very different "
+            "post-kill learning; variance vigilant triggers late (~step 23) with similar small regret at "
+            "trigger yet s99 ≈ control. Behavior-penalty wins on s99 without relying on gradient kill timing.",
             "",
         ]
     )
@@ -195,7 +170,7 @@ def figure4(summary: dict) -> None:
     axes[2].set_xticks(x)
     axes[2].set_xticklabels(labels, rotation=25, ha="right")
     axes[2].set_ylabel("Step")
-    axes[2].set_title("First vigilance_active ≥ 0.5")
+    axes[2].set_title("First regret trigger step")
     axes[2].grid(True, axis="y", alpha=0.3)
 
     fig.suptitle("Figure 4: Phase 2A — Binary timing / regret")
@@ -208,8 +183,9 @@ def figure4(summary: dict) -> None:
 
 def main() -> None:
     if not CACHE.exists():
-        raise SystemExit(f"Missing {CACHE}; run scripts/fetch_metrics.py or poll_sweeps.py")
-    summary = analyze()
+        raise SystemExit(f"Missing {CACHE}; run: python scripts/fetch_metrics.py")
+    cache = json.loads(CACHE.read_text())
+    summary = analyze(cache)
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(summary, indent=2))
     write_md(summary)

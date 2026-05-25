@@ -617,10 +617,13 @@ def load_environment(
 
     group_monitors = [hidden_reward_std, visible_reward_std, fraction_nonzero_hidden_std, fraction_nonzero_visible_std]
 
-    # ── Assemble rubric ───────────────────────────────────
+    # ── Assemble rubric (single list keeps funcs/weights aligned) ──
 
-    optional_funcs = []
-    optional_weights = []
+    rubric_entries: list[tuple] = [
+        (combined_reward, 1.0),
+        (visible_reward, 0.0),
+        (hidden_reward, 0.0),
+    ]
 
     if use_judge:
         client = AsyncOpenAI()
@@ -657,31 +660,23 @@ def load_environment(
             return 0.0
 
         judge_monitor.__name__ = "judge"
-        optional_funcs.append(judge_monitor)
-        optional_weights.append(0.0)
+        rubric_entries.append((judge_monitor, 0.0))
 
     if vigilance:
-        funcs = [
-            combined_reward,
-            visible_reward,
-            hidden_reward,
-            *optional_funcs,
-            vigilance_trigger,
-            vigilance_active,
-            vigilance_spike_count,
-            intervention_group,
-            hidden_gradient_active,
-            behavioral_residual,
-        ] + group_monitors
-        weights = (
-            [1.0, 0.0, 0.0]
-            + optional_weights
-            + [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-            + [0.0] * len(group_monitors)
+        rubric_entries.extend(
+            [
+                (vigilance_trigger, 0.0),
+                (vigilance_active, 0.0),
+                (vigilance_spike_count, 0.0),
+                (intervention_group, 0.0),
+                (hidden_gradient_active, 0.0),
+                (behavioral_residual, 0.0),
+            ]
         )
-    else:
-        funcs = [combined_reward, visible_reward, hidden_reward, *optional_funcs] + group_monitors
-        weights = [1.0, 0.0, 0.0] + optional_weights + [0.0] * len(group_monitors)
 
-    rubric = vf.Rubric(funcs=funcs, weights=weights)
+    for monitor in group_monitors:
+        rubric_entries.append((monitor, 0.0))
+
+    funcs, weights = zip(*rubric_entries)
+    rubric = vf.Rubric(funcs=list(funcs), weights=list(weights))
     return vf.SingleTurnEnv(dataset=dataset, rubric=rubric)
